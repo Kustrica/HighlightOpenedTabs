@@ -4,6 +4,10 @@ if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
+// Global flag to suppress highlighting for a specific tab until it becomes inactive or user switches tabs
+let suppressionMap = new Map(); // tabId -> boolean
+let lastTabSwitchTime = 0; // Timestamp of last tab switch to prevent race conditions
+
 function highlightTab(tabId) {
     browser.tabs.update(tabId, { active: false, highlighted: true })
         .catch(err => console.error("Error highlighting tab:", err));
@@ -105,7 +109,12 @@ function clearAllHighlights() {
 }
 
 // Event Listeners
-browser.tabs.onActivated.addListener(() => {
+browser.tabs.onActivated.addListener((activeInfo) => {
+    // Reset suppression for the newly activated tab (or any tab really, logic: switch resets state)
+    // Actually, we should probably just clear suppression for the tab we are LEAVING? 
+    // Or simpler: clear suppression for the new active tab so it starts fresh.
+    suppressionMap.delete(activeInfo.tabId);
+    
     setTimeout(() => {
         highlightDuplicatesOfActiveTab();
     }, 200);
@@ -133,6 +142,15 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
         if (message.action === 'highlightTab') {
             if (!message.url) return;
             
+            // Clear ANY existing highlights before adding new ones
+            // This prevents "mixing" of highlights from current page duplicates and hovered link duplicates
+            let currentHighlighted = await browser.tabs.query({ highlighted: true });
+            for (let t of currentHighlighted) {
+                if (!t.active) {
+                    removeHighlight(t.id);
+                }
+            }
+            
             const targetHref = getNormalizedUrlHref(message.url);
             let tabs = await browser.tabs.query({});
             
@@ -147,7 +165,11 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
 
             for (let tab of tabs) {
                 if (!tab.url) continue;
+                // Don't highlight the active tab (sender) itself
                 if (activeTabId && tab.id === activeTabId) continue;
+                
+                // Don't highlight if suppressed
+                if (suppressionMap.get(tab.id)) continue;
 
                 const tabHref = getNormalizedUrlHref(tab.url);
                 if (tabHref === targetHref) {
@@ -161,14 +183,7 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
 
             if (activeTabId) {
                 if (matchCount > 0 && showCounter) {
-                    // Update badge text for the active tab (where the user is hovering)
-                    // Note: This badge is temporary while hovering. 
-                    // Usually we want duplicate count of CURRENT page, not hover link.
-                    // But user requested "duplicate counter on icon". 
-                    // Let's assume standard behavior is count of duplicates of CURRENT PAGE URL.
-                    // If this block was intended to show count of HOVERED link, it might be confusing.
-                    // Reverting to standard behavior: Badge always shows duplicates of current page URL.
-                    // So we do NOT update badge here based on hover.
+                    // Update badge logic here if needed
                 }
             }
             return { count: matchCount, tabIds: matchedTabIds };
@@ -186,7 +201,44 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
             await highlightDuplicatesOfActiveTab();
 
         } else if (message.action === 'UNHIGHLIGHT_ALL') {
-            clearAllHighlights();
+            // Only block UNHIGHLIGHT_ALL if it comes from a tab blur event right after switch
+            // But if user explicitly moves mouse to top, we should allow it IF it comes from the ACTIVE tab.
+            // However, content script messages don't always indicate "blur" vs "mouseleave".
+            // Let's reduce the safety timeout or check if sender is active tab.
+            
+            // If the message comes from the ACTIVE tab, we should probably honor it immediately?
+            // "blur" (switching tabs) usually comes from the OLD tab (inactive).
+            // "mouseleave" (top hover) comes from the ACTIVE tab.
+            
+            let isActiveTab = false;
+            if (sender.tab) {
+                let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
+                if (activeTabs.length > 0 && activeTabs[0].id === sender.tab.id) {
+                    isActiveTab = true;
+                }
+            }
+            
+            // If it's the active tab saying "unhighlight", we honor it.
+            // If it's an inactive tab (blurring), we check the timeout.
+            if (isActiveTab || Date.now() - lastTabSwitchTime > 500) {
+                clearAllHighlights();
+            }
+        } else if (message.action === 'SUPPRESS_HIGHLIGHT_FOR_TAB') {
+             // Same logic: if active tab requests suppression (mouse top), do it.
+             let isActiveTab = false;
+             if (sender.tab) {
+                let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
+                if (activeTabs.length > 0 && activeTabs[0].id === sender.tab.id) {
+                    isActiveTab = true;
+                }
+             }
+
+             if (isActiveTab || Date.now() - lastTabSwitchTime > 500) {
+                  if (sender.tab) {
+                      suppressionMap.set(sender.tab.id, true);
+                      clearAllHighlights();
+                  }
+             }
         } else if (message.action === 'SWITCH_TO_TAB') {
             if (message.tabId) {
                 browser.tabs.update(message.tabId, { active: true }).then(() => {

@@ -39,13 +39,6 @@ document.addEventListener('mouseover', (e) => {
     if (!link || !link.href) return;
     if (!link.href.startsWith('http')) return;
     
-    // Ignore links to current page anchor
-    // Removed: User wants to highlight duplicates even if it's the current page URL (opened in another tab)
-    /*
-    const url = new URL(link.href);
-    if (url.pathname === window.location.pathname && url.host === window.location.host) return;
-    */
-
     if (link === currentTarget) return;
 
     if (hoverTimeout) clearTimeout(hoverTimeout);
@@ -78,14 +71,24 @@ document.addEventListener('mouseout', (e) => {
 // Optional unhighlight on leaving window/document
 document.addEventListener('mouseleave', (e) => {
     if (unhighlightOnWindowLeave) {
-        browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
+        // If leaving towards top (clientY <= 0), suppress highlighting until return
+        if (e.clientY <= 0) {
+             browser.runtime.sendMessage({ action: 'SUPPRESS_HIGHLIGHT_FOR_TAB' }).catch(() => {});
+        } else {
+             browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
+        }
     }
 }, { passive: true });
 
 document.addEventListener('mouseout', (e) => {
     if (unhighlightOnWindowLeave) {
         if (!e.relatedTarget && !e.toElement) {
-            browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
+             // Check if it's top exit
+             if (e.clientY <= 0) {
+                 browser.runtime.sendMessage({ action: 'SUPPRESS_HIGHLIGHT_FOR_TAB' }).catch(() => {});
+             } else {
+                 browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
+             }
         }
     }
 }, { passive: true });
