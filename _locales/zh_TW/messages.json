@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "設定",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "懸停連結時突出顯示分頁之前的等待時間。"
+  },
+  "saved": {
+    "message": "已儲存"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "showCounterLabel": {
+    "message": "顯示重複計數"
+  },
+  "hoverDelayLabel": {
+    "message": "懸停延遲 (ms)："
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "離開視窗/頂部面板時移除突出顯示"
+  }
+}

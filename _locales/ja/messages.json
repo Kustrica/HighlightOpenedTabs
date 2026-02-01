@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "設定",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "タブを強調表示するまでの待機時間。"
+  },
+  "saved": {
+    "message": "保存しました"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "showCounterLabel": {
+    "message": "重複カウンターを表示"
+  },
+  "hoverDelayLabel": {
+    "message": "ホバー遅延 (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "ウィンドウ/上部パネルから離れるときに強調表示を解除"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Einstellungen",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Wartezeit vor dem Hervorheben von Tabs."
+  },
+  "saved": {
+    "message": "Gespeichert"
+  },
+  "settingsTitle": {
+    "message": "Einstellungen"
+  },
+  "showCounterLabel": {
+    "message": "Duplikat-Zähler anzeigen"
+  },
+  "hoverDelayLabel": {
+    "message": "Verzögerung (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Markierung entfernen beim Verlassen des Fensters/oberen Bereichs"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Instellingen",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Wachttijd voor het markeren van tabbladen."
+  },
+  "saved": {
+    "message": "Opgeslagen"
+  },
+  "settingsTitle": {
+    "message": "Instellingen"
+  },
+  "showCounterLabel": {
+    "message": "Toon duplicaatteller"
+  },
+  "hoverDelayLabel": {
+    "message": "Vertraging (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Markering verwijderen bij verlaten venster/bovenpaneel"
+  }
+}

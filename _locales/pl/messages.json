@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Ustawienia",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Czas oczekiwania przed podświetleniem kart."
+  },
+  "saved": {
+    "message": "Zapisano"
+  },
+  "settingsTitle": {
+    "message": "Ustawienia"
+  },
+  "showCounterLabel": {
+    "message": "Pokaż licznik duplikatów"
+  },
+  "hoverDelayLabel": {
+    "message": "Opóźnienie (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Usuń podświetlenie po opuszczeniu okna/górnego panelu"
+  }
+}

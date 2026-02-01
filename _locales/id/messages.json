@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Pengaturan",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Waktu tunggu sebelum menyorot tab."
+  },
+  "saved": {
+    "message": "Disimpan"
+  },
+  "settingsTitle": {
+    "message": "Pengaturan"
+  },
+  "showCounterLabel": {
+    "message": "Tampilkan Penghitung Duplikat"
+  },
+  "hoverDelayLabel": {
+    "message": "Tunda (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Hapus sorotan saat meninggalkan jendela/panel atas"
+  }
+}

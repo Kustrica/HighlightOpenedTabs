@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "version": "1.0",
+  "default_locale": "en",
+  "description": "__MSG_extensionDescription__",
+  "author": "Kustrica (Telegram: @kustric)",
+  "homepage_url": "https://t.me/kustric",
+  "action": {
+    "default_title": "Highlight Opened Tabs",
+    "default_icon": "icons/main-64.png"
+  },
+  "icons": {
+    "64": "icons/main-64.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "highlightopenedtabs@user.addon",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

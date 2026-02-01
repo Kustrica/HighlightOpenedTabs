@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Налады",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Час чакання перад падсвятленнем укладак."
+  },
+  "saved": {
+    "message": "Захавана"
+  },
+  "settingsTitle": {
+    "message": "Налады"
+  },
+  "showCounterLabel": {
+    "message": "Лічыльнік дублікатаў"
+  },
+  "hoverDelayLabel": {
+    "message": "Затрымка (мс):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Прыбраць вылучэнне пры выхадзе з акна/верхняй панэлі"
+  }
+}

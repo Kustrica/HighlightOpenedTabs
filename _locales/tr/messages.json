@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "Ayarlar",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "Sekmeleri vurgulamadan önce beklenecek süre."
+  },
+  "saved": {
+    "message": "Kaydedildi"
+  },
+  "settingsTitle": {
+    "message": "Ayarlar"
+  },
+  "showCounterLabel": {
+    "message": "Yinelenen sayacı göster"
+  },
+  "hoverDelayLabel": {
+    "message": "Gecikme (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "Pencereden/üst panelden ayrılırken vurgulamayı kaldır"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Highlight Opened Tabs",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "description": "Description of the extension"
+  },
+  "optionsTitle": {
+    "message": "설정",
+    "description": "Title of the options page"
+  },
+  "hoverDelayDesc": {
+    "message": "탭을 강조 표시하기 전 대기 시간입니다."
+  },
+  "saved": {
+    "message": "저장됨"
+  },
+  "settingsTitle": {
+    "message": "설정"
+  },
+  "showCounterLabel": {
+    "message": "중복 카운터 표시"
+  },
+  "hoverDelayLabel": {
+    "message": "호버 지연 (ms):"
+  },
+  "unhighlightOnWindowLeaveLabel": {
+    "message": "창/상단 패널을 벗어날 때 강조 표시 제거"
+  }
+}
