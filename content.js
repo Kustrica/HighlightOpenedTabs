@@ -59,12 +59,6 @@ function clearHighlights(action) {
     }, 160);
 }
 
-function canProcessWindowExit() {
-    if (document.visibilityState !== "visible") return false;
-    if (!document.hasFocus()) return false;
-    return true;
-}
-
 function getHttpLinkUrl(target) {
     if (!target || typeof target.closest !== "function") return null;
     const link = target.closest("a[href]");
@@ -109,13 +103,17 @@ document.addEventListener("mousemove", (e) => {
 
 document.addEventListener("mouseleave", (e) => {
     if (!unhighlightOnWindowLeave) return;
-    if (!canProcessWindowExit()) return;
+    const isOutsideViewport =
+        e.clientX <= 0 ||
+        e.clientY <= 0 ||
+        e.clientX >= window.innerWidth ||
+        e.clientY >= window.innerHeight;
+    if (!isOutsideViewport) return;
     clearHighlights(e.clientY <= 0 ? "SUPPRESS_HIGHLIGHT_FOR_TAB" : "UNHIGHLIGHT_ALL");
 }, { passive: true });
 
 document.addEventListener("mouseout", (e) => {
     if (!unhighlightOnWindowLeave) return;
-    if (!canProcessWindowExit()) return;
     if (!e.relatedTarget && !e.toElement) {
         const isOutsideViewport =
             e.clientX <= 0 ||
