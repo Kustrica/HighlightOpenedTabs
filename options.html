@@ -154,7 +154,7 @@
         <div class="control-group">
             <label class="checkbox-container">
                 <input type="checkbox" id="unhighlight-leave">
-                <span data-i18n="unhighlightOnWindowLeaveLabel">Unhighlight when leaving window/top panel</span>
+                <span data-i18n="unhighlightOnWindowLeaveLabel">Remove highlight when cursor leaves page to browser top/side panels</span>
             </label>
         </div>
 
@@ -165,6 +165,15 @@
                 <span id="delay-value" class="range-value">50ms</span>
             </div>
             <p class="info-text" data-i18n="hoverDelayDesc">Time to wait before highlighting tabs when hovering a link.</p>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" data-i18n="autoHideDelayLabel">Auto-hide duplicate highlight delay (ms):</label>
+            <div style="display: flex; align-items: center;">
+                <input type="range" id="auto-hide-delay" min="0" max="15000" step="500">
+                <span id="auto-hide-delay-value" class="range-value">5000ms</span>
+            </div>
+            <p class="info-text" data-i18n="autoHideDelayDesc">How long to keep duplicate-tab highlight visible. Set 0 to disable auto-hide.</p>
         </div>
     </div>
 

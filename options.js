@@ -24,18 +24,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     const unhighlightCheck = document.getElementById('unhighlight-leave');
     const delayInput = document.getElementById('hover-delay');
     const delayValue = document.getElementById('delay-value');
+    const autoHideDelayInput = document.getElementById('auto-hide-delay');
+    const autoHideDelayValue = document.getElementById('auto-hide-delay-value');
     
     // Load settings
     const data = await chrome.storage.local.get({
         showCounter: true,
         hoverDelay: 50,
-        unhighlightOnWindowLeave: true
+        unhighlightOnWindowLeave: true,
+        duplicateAutoHideDelay: 5000
     });
 
     counterCheck.checked = data.showCounter;
     unhighlightCheck.checked = data.unhighlightOnWindowLeave;
     delayInput.value = data.hoverDelay;
     delayValue.textContent = data.hoverDelay + 'ms';
+    autoHideDelayInput.value = data.duplicateAutoHideDelay;
+    autoHideDelayValue.textContent = data.duplicateAutoHideDelay + 'ms';
 
     // Save functions
     const save = async (obj) => {
@@ -55,5 +60,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     delayInput.addEventListener('change', () => {
         save({ hoverDelay: parseInt(delayInput.value, 10) });
+    });
+
+    autoHideDelayInput.addEventListener('input', () => {
+        autoHideDelayValue.textContent = autoHideDelayInput.value + 'ms';
+    });
+
+    autoHideDelayInput.addEventListener('change', () => {
+        save({ duplicateAutoHideDelay: parseInt(autoHideDelayInput.value, 10) });
     });
 });
