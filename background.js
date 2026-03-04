@@ -1,254 +1,339 @@
-// background.js
-
 if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
-// Global flag to suppress highlighting for a specific tab until it becomes inactive or user switches tabs
-let suppressionMap = new Map(); // tabId -> boolean
-let lastTabSwitchTime = 0; // Timestamp of last tab switch to prevent race conditions
+const state = {
+    mode: "duplicates",
+    highlightedTabIds: new Set(),
+    hoverSourceTabId: null,
+    requestId: 0
+};
 
-function highlightTab(tabId) {
-    browser.tabs.update(tabId, { active: false, highlighted: true })
-        .catch(err => console.error("Error highlighting tab:", err));
+const suppressedSourceTabs = new Map();
+let refreshTimer = null;
+let duplicateAutoHideTimer = null;
+let duplicateAutoHideDelay = 5000;
+
+browser.storage.local.get({ duplicateAutoHideDelay: 5000 }).then(data => {
+    duplicateAutoHideDelay = Number.isFinite(data.duplicateAutoHideDelay) ? data.duplicateAutoHideDelay : 5000;
+});
+
+function cancelDuplicateAutoHide() {
+    if (duplicateAutoHideTimer) {
+        clearTimeout(duplicateAutoHideTimer);
+        duplicateAutoHideTimer = null;
+    }
 }
 
-function removeHighlight(tabId) {
-    browser.tabs.update(tabId, { highlighted: false })
-        .catch(err => console.error("Error removing highlight:", err));
+function scheduleDuplicateAutoHide(requestId) {
+    cancelDuplicateAutoHide();
+    if (!duplicateAutoHideDelay || duplicateAutoHideDelay <= 0) return;
+    duplicateAutoHideTimer = setTimeout(async () => {
+        if (state.mode !== "duplicates") return;
+        if (requestId !== state.requestId) return;
+        await syncHighlights([]);
+    }, duplicateAutoHideDelay);
 }
 
-function getNormalizedUrlHref(urlStr) {
+function getNormalizedUrlKey(urlStr) {
     try {
         const url = new URL(urlStr);
-        
-        // Special case for YouTube: strictly match Video ID
-        if (url.hostname.includes('youtube.com') || url.hostname === 'youtu.be') {
-            if (url.pathname === '/watch') {
-                const v = new URLSearchParams(url.search).get('v');
-                if (v) return 'youtube.com/watch?v=' + v;
+        if (!url.protocol.startsWith("http")) return null;
+
+        const hostname = url.hostname.toLowerCase();
+
+        if (hostname.includes("youtube.com") || hostname === "youtu.be") {
+            if (hostname === "youtu.be") {
+                const shortId = url.pathname.split("/").filter(Boolean)[0];
+                if (shortId) return `youtube.com/watch?v=${shortId}`;
             }
-            // Handle short links if needed (youtu.be/ID) or shorts (/shorts/ID)
-            if (url.pathname.startsWith('/shorts/')) {
-                 // Remove trailing slash from shorts ID if present
-                 let id = url.pathname.split('/')[2];
-                 if (id) return 'youtube.com/shorts/' + id;
+            if (url.pathname === "/watch") {
+                const v = url.searchParams.get("v");
+                if (v) return `youtube.com/watch?v=${v}`;
+            }
+            if (url.pathname.startsWith("/shorts/")) {
+                const id = url.pathname.split("/")[2];
+                if (id) return `youtube.com/shorts/${id}`;
             }
         }
-        
-        // Normalize hostname: remove common subdomains
-        let hostname = url.hostname.replace(/^(www|new|old|sh)\./, '');
-        
-        // Normalize pathname: decode URI components (fixes Wikipedia etc.)
+
+        const normalizedHost = hostname.replace(/^www\./, "");
+        const port = url.port ? `:${url.port}` : "";
         let pathname = url.pathname;
+
         try {
             pathname = decodeURIComponent(pathname);
-        } catch (e) {}
-        
-        if (pathname.endsWith('/') && pathname.length > 1) {
+        } catch (_) {}
+
+        if (pathname.endsWith("/") && pathname.length > 1) {
             pathname = pathname.slice(0, -1);
         }
-        
-        // Return without protocol to match http vs https
-        return hostname + pathname;
-    } catch (e) {
-        return urlStr;
-    }
-}
 
-async function highlightDuplicatesOfActiveTab() {
-    try {
-        let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
-        if (activeTabs.length === 0) return;
-
-        let activeTab = activeTabs[0];
-        if (!activeTab.url || !activeTab.url.startsWith('http')) {
-            browser.action.setBadgeText({ text: "", tabId: activeTab.id });
-            return;
-        }
-
-        const targetHref = getNormalizedUrlHref(activeTab.url);
-        let tabs = await browser.tabs.query({});
-        let matchCount = 0;
-
-        // Clear existing highlights on other tabs first to avoid stuck states
-        tabs.forEach(tab => {
-             if (tab.id !== activeTab.id && tab.highlighted) {
-                 removeHighlight(tab.id);
-             }
+        const trackingParamPattern = /^(utm_.+|fbclid|gclid|yclid|mc_cid|mc_eid)$/i;
+        const params = [];
+        url.searchParams.forEach((value, key) => {
+            if (trackingParamPattern.test(key)) return;
+            params.push([key, value]);
         });
 
-        for (let tab of tabs) {
-            if (tab.id === activeTab.id) continue;
-            if (!tab.url) continue;
+        params.sort(([aKey, aValue], [bKey, bValue]) => {
+            if (aKey !== bKey) return aKey.localeCompare(bKey);
+            return aValue.localeCompare(bValue);
+        });
 
-            const tabHref = getNormalizedUrlHref(tab.url);
-            if (tabHref === targetHref) {
-                highlightTab(tab.id);
-                matchCount++;
-            }
-        }
+        const query = params
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            .join("&");
 
-        const { showCounter } = await browser.storage.local.get({ showCounter: true });
-
-        if (matchCount > 0 && showCounter) {
-            browser.action.setBadgeText({ text: matchCount.toString(), tabId: activeTab.id });
-            browser.action.setBadgeBackgroundColor({ color: '#FF4444', tabId: activeTab.id });
-        } else {
-            browser.action.setBadgeText({ text: "", tabId: activeTab.id });
-        }
-    } catch (e) {
-        console.error("Error in highlightDuplicatesOfActiveTab:", e);
+        return `${normalizedHost}${port}${pathname}${query ? `?${query}` : ""}`;
+    } catch (_) {
+        return null;
     }
 }
 
-function clearAllHighlights() {
-    browser.tabs.query({ active: false, highlighted: true }).then(tabs => {
-        tabs.forEach(tab => removeHighlight(tab.id));
-    });
+async function getActiveTab() {
+    const activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
+    return activeTabs.length > 0 ? activeTabs[0] : null;
 }
 
-// Event Listeners
-browser.tabs.onActivated.addListener((activeInfo) => {
-    // Reset suppression for the newly activated tab (or any tab really, logic: switch resets state)
-    // Actually, we should probably just clear suppression for the tab we are LEAVING? 
-    // Or simpler: clear suppression for the new active tab so it starts fresh.
-    suppressionMap.delete(activeInfo.tabId);
-    
-    setTimeout(() => {
-        highlightDuplicatesOfActiveTab();
-    }, 200);
+async function setBadge(tabId, count) {
+    const { showCounter } = await browser.storage.local.get({ showCounter: true });
+    if (!showCounter || !count) {
+        await browser.action.setBadgeText({ text: "", tabId });
+        return;
+    }
+
+    await browser.action.setBadgeText({ text: String(count), tabId });
+    await browser.action.setBadgeBackgroundColor({ color: "#FF4444", tabId });
+}
+
+async function clearBadgeOnActiveTab() {
+    const activeTab = await getActiveTab();
+    if (activeTab) {
+        await browser.action.setBadgeText({ text: "", tabId: activeTab.id });
+    }
+}
+
+async function syncHighlights(nextTabIds) {
+    const nextSet = new Set(nextTabIds);
+    const previousSet = state.highlightedTabIds;
+
+    for (const tabId of previousSet) {
+        if (!nextSet.has(tabId)) {
+            browser.tabs.update(tabId, { highlighted: false }).catch(() => {});
+        }
+    }
+
+    for (const tabId of nextSet) {
+        if (!previousSet.has(tabId)) {
+            browser.tabs.update(tabId, { active: false, highlighted: true }).catch(() => {});
+        }
+    }
+
+    state.highlightedTabIds = nextSet;
+}
+
+function scheduleDuplicateRefresh(delay = 120) {
+    if (refreshTimer) clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => {
+        if (state.mode === "hover") return;
+        showDuplicatesForActiveTab();
+    }, delay);
+}
+
+async function showDuplicatesForActiveTab() {
+    const requestId = ++state.requestId;
+    state.mode = "duplicates";
+    state.hoverSourceTabId = null;
+
+    const activeTab = await getActiveTab();
+    if (!activeTab) return;
+
+    const activeKey = getNormalizedUrlKey(activeTab.url || "");
+    if (!activeKey) {
+        if (activeTab.status === "loading") {
+            scheduleDuplicateRefresh(180);
+            return;
+        }
+        if (requestId !== state.requestId) return;
+        cancelDuplicateAutoHide();
+        await syncHighlights([]);
+        await browser.action.setBadgeText({ text: "", tabId: activeTab.id });
+        return;
+    }
+
+    const tabs = await browser.tabs.query({});
+    if (requestId !== state.requestId) return;
+
+    const matchedTabs = tabs.filter(tab => getNormalizedUrlKey(tab.url || "") === activeKey);
+    const highlightIds = matchedTabs
+        .filter(tab => tab.id !== activeTab.id)
+        .map(tab => tab.id);
+
+    await syncHighlights(highlightIds);
+    if (requestId !== state.requestId) return;
+
+    await setBadge(activeTab.id, matchedTabs.length);
+    if (highlightIds.length > 0) {
+        scheduleDuplicateAutoHide(requestId);
+    } else {
+        cancelDuplicateAutoHide();
+    }
+}
+
+async function showHoverMatches(sourceTabId, hoveredUrl) {
+    if (!sourceTabId || !hoveredUrl) {
+        return { count: 0, tabIds: [] };
+    }
+
+    const suppressedUntil = suppressedSourceTabs.get(sourceTabId);
+    if (suppressedUntil && suppressedUntil > Date.now()) {
+        return { count: 0, tabIds: [] };
+    }
+    suppressedSourceTabs.delete(sourceTabId);
+
+    const hoveredKey = getNormalizedUrlKey(hoveredUrl);
+    if (!hoveredKey) {
+        return { count: 0, tabIds: [] };
+    }
+    cancelDuplicateAutoHide();
+
+    const sourceTab = await browser.tabs.get(sourceTabId).catch(() => null);
+    const sourceKey = sourceTab ? getNormalizedUrlKey(sourceTab.url || "") : null;
+    if (sourceKey && sourceKey === hoveredKey) {
+        await showDuplicatesForActiveTab();
+        const tabIds = Array.from(state.highlightedTabIds);
+        return { count: tabIds.length, tabIds };
+    }
+
+    const requestId = ++state.requestId;
+    state.mode = "hover";
+    state.hoverSourceTabId = sourceTabId;
+
+    const tabs = await browser.tabs.query({});
+    if (requestId !== state.requestId) {
+        return { count: 0, tabIds: [] };
+    }
+
+    const matchedTabs = tabs.filter(tab => {
+        if (tab.id === sourceTabId) return false;
+        return getNormalizedUrlKey(tab.url || "") === hoveredKey;
+    });
+
+    const highlightIds = matchedTabs.map(tab => tab.id);
+    await syncHighlights(highlightIds);
+
+    return { count: matchedTabs.length, tabIds: highlightIds };
+}
+
+async function endHoverMode(sourceTabId) {
+    if (state.mode !== "hover") return;
+    if (sourceTabId && state.hoverSourceTabId && sourceTabId !== state.hoverSourceTabId) return;
+
+    state.mode = "duplicates";
+    state.hoverSourceTabId = null;
+    scheduleDuplicateRefresh(0);
+}
+
+async function clearAllVisuals() {
+    state.requestId++;
+    state.mode = "none";
+    state.hoverSourceTabId = null;
+    cancelDuplicateAutoHide();
+    await syncHighlights([]);
+    await clearBadgeOnActiveTab();
+}
+
+browser.tabs.onActivated.addListener(activeInfo => {
+    suppressedSourceTabs.delete(activeInfo.tabId);
+    state.mode = "duplicates";
+    state.hoverSourceTabId = null;
+    scheduleDuplicateRefresh(80);
 });
 
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status === 'complete' || changeInfo.url) {
-        if (tab.active) {
-            setTimeout(() => {
-                highlightDuplicatesOfActiveTab();
-            }, 200);
-        }
+    if (!tab.active) return;
+    if (!changeInfo.url && changeInfo.status !== "complete") return;
+
+    state.mode = "duplicates";
+    scheduleDuplicateRefresh(120);
+});
+
+browser.tabs.onRemoved.addListener(tabId => {
+    if (state.highlightedTabIds.has(tabId)) {
+        state.highlightedTabIds.delete(tabId);
+    }
+    if (state.mode !== "hover") {
+        scheduleDuplicateRefresh(80);
     }
 });
 
-// Update badge if setting changes
 browser.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && changes.showCounter) {
-        highlightDuplicatesOfActiveTab();
+    if (area !== "local") return;
+    if (changes.showCounter) {
+        scheduleDuplicateRefresh(0);
+    }
+    if (changes.duplicateAutoHideDelay) {
+        const nextDelay = changes.duplicateAutoHideDelay.newValue;
+        duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 5000;
+        if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
+            scheduleDuplicateAutoHide(state.requestId);
+        } else {
+            cancelDuplicateAutoHide();
+        }
     }
 });
 
 browser.runtime.onMessage.addListener(async (message, sender) => {
     try {
-        if (message.action === 'highlightTab') {
-            if (!message.url) return;
-            
-            // Clear ANY existing highlights before adding new ones
-            // This prevents "mixing" of highlights from current page duplicates and hovered link duplicates
-            let currentHighlighted = await browser.tabs.query({ highlighted: true });
-            for (let t of currentHighlighted) {
-                if (!t.active) {
-                    removeHighlight(t.id);
+        const sourceTabId = sender.tab ? sender.tab.id : null;
+
+        if (message.action === "highlightTab" || message.action === "HOVER_LINK") {
+            return await showHoverMatches(sourceTabId, message.url);
+        }
+
+        if (message.action === "SETTINGS_UPDATED" && message.settings) {
+            if (Object.prototype.hasOwnProperty.call(message.settings, "duplicateAutoHideDelay")) {
+                const nextDelay = message.settings.duplicateAutoHideDelay;
+                duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 5000;
+                if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
+                    scheduleDuplicateAutoHide(state.requestId);
+                } else {
+                    cancelDuplicateAutoHide();
                 }
             }
-            
-            const targetHref = getNormalizedUrlHref(message.url);
-            let tabs = await browser.tabs.query({});
-            
-            let activeTabId = sender.tab ? sender.tab.id : null;
-            if (!activeTabId) {
-                let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
-                if (activeTabs.length > 0) activeTabId = activeTabs[0].id;
-            }
+            return { ok: true };
+        }
 
-            let matchCount = 0;
-            let matchedTabIds = [];
+        if (message.action === "removeHighlight" || message.action === "HOVER_END") {
+            await endHoverMode(sourceTabId);
+            return { ok: true };
+        }
 
-            for (let tab of tabs) {
-                if (!tab.url) continue;
-                // Don't highlight the active tab (sender) itself
-                if (activeTabId && tab.id === activeTabId) continue;
-                
-                // Don't highlight if suppressed
-                if (suppressionMap.get(tab.id)) continue;
+        if (message.action === "UNHIGHLIGHT_ALL") {
+            await clearAllVisuals();
+            return { ok: true };
+        }
 
-                const tabHref = getNormalizedUrlHref(tab.url);
-                if (tabHref === targetHref) {
-                    highlightTab(tab.id);
-                    matchCount++;
-                    matchedTabIds.push(tab.id);
-                }
+        if (message.action === "SUPPRESS_HIGHLIGHT_FOR_TAB") {
+            if (sourceTabId) {
+                suppressedSourceTabs.set(sourceTabId, Date.now() + 700);
             }
+            await clearAllVisuals();
+            return { ok: true };
+        }
 
-            const { showCounter } = await browser.storage.local.get({ showCounter: true });
-
-            if (activeTabId) {
-                if (matchCount > 0 && showCounter) {
-                    // Update badge logic here if needed
-                }
-            }
-            return { count: matchCount, tabIds: matchedTabIds };
-
-        } else if (message.action === 'removeHighlight') {
-            let tabs = await browser.tabs.query({ active: false, highlighted: true });
-            for (let tab of tabs) {
-                removeHighlight(tab.id);
-            }
-            
-            if (sender.tab) {
-                browser.action.setBadgeText({ text: "", tabId: sender.tab.id });
-            }
-            
-            await highlightDuplicatesOfActiveTab();
-
-        } else if (message.action === 'UNHIGHLIGHT_ALL') {
-            // Only block UNHIGHLIGHT_ALL if it comes from a tab blur event right after switch
-            // But if user explicitly moves mouse to top, we should allow it IF it comes from the ACTIVE tab.
-            // However, content script messages don't always indicate "blur" vs "mouseleave".
-            // Let's reduce the safety timeout or check if sender is active tab.
-            
-            // If the message comes from the ACTIVE tab, we should probably honor it immediately?
-            // "blur" (switching tabs) usually comes from the OLD tab (inactive).
-            // "mouseleave" (top hover) comes from the ACTIVE tab.
-            
-            let isActiveTab = false;
-            if (sender.tab) {
-                let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
-                if (activeTabs.length > 0 && activeTabs[0].id === sender.tab.id) {
-                    isActiveTab = true;
-                }
-            }
-            
-            // If it's the active tab saying "unhighlight", we honor it.
-            // If it's an inactive tab (blurring), we check the timeout.
-            if (isActiveTab || Date.now() - lastTabSwitchTime > 500) {
-                clearAllHighlights();
-            }
-        } else if (message.action === 'SUPPRESS_HIGHLIGHT_FOR_TAB') {
-             // Same logic: if active tab requests suppression (mouse top), do it.
-             let isActiveTab = false;
-             if (sender.tab) {
-                let activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
-                if (activeTabs.length > 0 && activeTabs[0].id === sender.tab.id) {
-                    isActiveTab = true;
-                }
-             }
-
-             if (isActiveTab || Date.now() - lastTabSwitchTime > 500) {
-                  if (sender.tab) {
-                      suppressionMap.set(sender.tab.id, true);
-                      clearAllHighlights();
-                  }
-             }
-        } else if (message.action === 'SWITCH_TO_TAB') {
-            if (message.tabId) {
-                browser.tabs.update(message.tabId, { active: true }).then(() => {
-                    browser.tabs.get(message.tabId).then(tab => {
-                        browser.windows.update(tab.windowId, { focused: true });
-                    });
-                });
-            }
+        if (message.action === "SWITCH_TO_TAB" && message.tabId) {
+            await browser.tabs.update(message.tabId, { active: true });
+            const tab = await browser.tabs.get(message.tabId);
+            await browser.windows.update(tab.windowId, { focused: true });
+            return { ok: true };
         }
     } catch (error) {
         console.error("Background error:", error);
     }
+
+    return undefined;
 });
+
+showDuplicatesForActiveTab();

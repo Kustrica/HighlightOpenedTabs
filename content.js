@@ -2,20 +2,20 @@ if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
-let hoverTimeout;
-let currentTarget = null;
-let hoverDelay = 50; 
+let hoverTimeout = null;
+let pendingLinkUrl = null;
+let activeHoverUrl = null;
+let hoverDelay = 50;
 let unhighlightOnWindowLeave = true;
+let clearLock = false;
 
-// Initialize from storage
 browser.storage.local.get({ hoverDelay: 50, unhighlightOnWindowLeave: true }).then(data => {
     hoverDelay = data.hoverDelay;
     unhighlightOnWindowLeave = data.unhighlightOnWindowLeave;
 });
 
-// Listen for changes
 browser.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local') {
+    if (area === "local") {
         if (changes.hoverDelay) {
             hoverDelay = changes.hoverDelay.newValue;
         }
@@ -25,76 +25,104 @@ browser.storage.onChanged.addListener((changes, area) => {
     }
 });
 
-// Also listen for runtime messages if storage listener fails
 browser.runtime.onMessage.addListener((message) => {
-    if (message.action === 'SETTINGS_UPDATED') {
+    if (message.action === "SETTINGS_UPDATED") {
         if (message.settings.hoverDelay !== undefined) hoverDelay = message.settings.hoverDelay;
         if (message.settings.unhighlightOnWindowLeave !== undefined) unhighlightOnWindowLeave = message.settings.unhighlightOnWindowLeave;
     }
 });
 
-// Event Listeners
-document.addEventListener('mouseover', (e) => {
-    const link = e.target.closest('a');
-    if (!link || !link.href) return;
-    if (!link.href.startsWith('http')) return;
-    
-    if (link === currentTarget) return;
-
-    if (hoverTimeout) clearTimeout(hoverTimeout);
-    
-    if (currentTarget && currentTarget !== link) {
-        browser.runtime.sendMessage({ action: 'removeHighlight', url: currentTarget.href }).catch(() => {});
+function cancelHoverTimer() {
+    if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = null;
     }
+    pendingLinkUrl = null;
+}
 
+function sendHoverStart(url) {
+    browser.runtime.sendMessage({ action: "HOVER_LINK", url }).catch(() => {});
+}
+
+function sendHoverEnd() {
+    browser.runtime.sendMessage({ action: "HOVER_END" }).catch(() => {});
+}
+
+function clearHighlights(action) {
+    if (clearLock) return;
+    clearLock = true;
+    cancelHoverTimer();
+    activeHoverUrl = null;
+    browser.runtime.sendMessage({ action }).catch(() => {});
+    setTimeout(() => {
+        clearLock = false;
+    }, 160);
+}
+
+function canProcessWindowExit() {
+    if (document.visibilityState !== "visible") return false;
+    if (!document.hasFocus()) return false;
+    return true;
+}
+
+function getHttpLinkUrl(target) {
+    if (!target || typeof target.closest !== "function") return null;
+    const link = target.closest("a[href]");
+    if (!link || !link.href) return null;
+    if (!link.href.startsWith("http")) return null;
+    return link.href;
+}
+
+function scheduleHover(url) {
+    if (!url) return;
+    if (url === activeHoverUrl) return;
+    if (url === pendingLinkUrl && hoverTimeout) return;
+
+    cancelHoverTimer();
+    pendingLinkUrl = url;
     hoverTimeout = setTimeout(() => {
-        currentTarget = link;
-        browser.runtime.sendMessage({ action: 'highlightTab', url: link.href })
-            .catch(err => console.error("Error checking tabs:", err));
-    }, hoverDelay); 
+        hoverTimeout = null;
+        if (pendingLinkUrl !== url) return;
+        activeHoverUrl = url;
+        pendingLinkUrl = null;
+        sendHoverStart(url);
+    }, hoverDelay);
+}
+
+function endHoverIfNeeded() {
+    const hadPending = Boolean(hoverTimeout);
+    const hadActive = Boolean(activeHoverUrl);
+    cancelHoverTimer();
+    if (!hadPending && !hadActive) return;
+    activeHoverUrl = null;
+    sendHoverEnd();
+}
+
+document.addEventListener("mousemove", (e) => {
+    const url = getHttpLinkUrl(e.target);
+    if (!url) {
+        endHoverIfNeeded();
+        return;
+    }
+    scheduleHover(url);
+}, { passive: true, capture: true });
+
+document.addEventListener("mouseleave", (e) => {
+    if (!unhighlightOnWindowLeave) return;
+    if (!canProcessWindowExit()) return;
+    clearHighlights(e.clientY <= 0 ? "SUPPRESS_HIGHLIGHT_FOR_TAB" : "UNHIGHLIGHT_ALL");
 }, { passive: true });
 
-document.addEventListener('mouseout', (e) => {
-    const link = e.target.closest('a');
-    if (!link) return;
-    
-    if (hoverTimeout) clearTimeout(hoverTimeout);
-    
-    if (link === currentTarget) {
-        if (link.contains(e.relatedTarget)) return;
-        
-        browser.runtime.sendMessage({ action: 'removeHighlight', url: link.href }).catch(() => {});
-        currentTarget = null;
+document.addEventListener("mouseout", (e) => {
+    if (!unhighlightOnWindowLeave) return;
+    if (!canProcessWindowExit()) return;
+    if (!e.relatedTarget && !e.toElement) {
+        const isOutsideViewport =
+            e.clientX <= 0 ||
+            e.clientY <= 0 ||
+            e.clientX >= window.innerWidth ||
+            e.clientY >= window.innerHeight;
+        if (!isOutsideViewport) return;
+        clearHighlights(e.clientY <= 0 ? "SUPPRESS_HIGHLIGHT_FOR_TAB" : "UNHIGHLIGHT_ALL");
     }
-}, { passive: true });
-
-// Optional unhighlight on leaving window/document
-document.addEventListener('mouseleave', (e) => {
-    if (unhighlightOnWindowLeave) {
-        // If leaving towards top (clientY <= 0), suppress highlighting until return
-        if (e.clientY <= 0) {
-             browser.runtime.sendMessage({ action: 'SUPPRESS_HIGHLIGHT_FOR_TAB' }).catch(() => {});
-        } else {
-             browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
-        }
-    }
-}, { passive: true });
-
-document.addEventListener('mouseout', (e) => {
-    if (unhighlightOnWindowLeave) {
-        if (!e.relatedTarget && !e.toElement) {
-             // Check if it's top exit
-             if (e.clientY <= 0) {
-                 browser.runtime.sendMessage({ action: 'SUPPRESS_HIGHLIGHT_FOR_TAB' }).catch(() => {});
-             } else {
-                 browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
-             }
-        }
-    }
-}, { passive: true });
-
-window.addEventListener('blur', () => {
-    if (unhighlightOnWindowLeave) {
-        browser.runtime.sendMessage({ action: 'UNHIGHLIGHT_ALL' }).catch(() => {});
-    }
-});
+}, { passive: true, capture: true });
