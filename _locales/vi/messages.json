@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Thời gian chờ trước khi làm nổi bật tab."
   },
+  "autoHideDelayLabel": {
+    "message": "Độ trễ tự ẩn làm nổi bật tab trùng lặp (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Giữ hiển thị làm nổi bật tab trùng lặp trong bao lâu. Đặt 0 để tắt tự ẩn."
+  },
   "saved": {
     "message": "Đã lưu"
   },
@@ -27,6 +33,6 @@
     "message": "Độ trễ (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Xóa đánh dấu khi rời cửa sổ/bảng trên cùng"
+    "message": "Xóa làm nổi bật khi con trỏ rời trang sang thanh trên/cạnh của trình duyệt"
   }
 }

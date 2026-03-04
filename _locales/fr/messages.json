@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Temps d'attente avant la mise en évidence."
   },
+  "autoHideDelayLabel": {
+    "message": "Délai de masquage auto de la mise en évidence des doublons (ms) :"
+  },
+  "autoHideDelayDesc": {
+    "message": "Durée d'affichage de la mise en évidence des onglets en double. Mettez 0 pour désactiver le masquage automatique."
+  },
   "saved": {
     "message": "Enregistré"
   },
@@ -27,6 +33,6 @@
     "message": "Délai de survol (ms) :"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Supprimer la mise en évidence en quittant la fenêtre/panneau supérieur"
+    "message": "Retirer la mise en évidence quand le curseur quitte la page vers les panneaux haut/latéraux du navigateur"
   }
 }

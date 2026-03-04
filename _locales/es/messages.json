@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Tiempo de espera antes de resaltar pestañas."
   },
+  "autoHideDelayLabel": {
+    "message": "Retardo de auto-ocultación del resaltado de duplicados (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Cuánto tiempo mantener visible el resaltado de pestañas duplicadas. Usa 0 para desactivar el auto-ocultado."
+  },
   "saved": {
     "message": "Guardado"
   },
@@ -27,6 +33,6 @@
     "message": "Retardo (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Eliminar resaltado al salir de la ventana/panel superior"
+    "message": "Quitar resaltado cuando el cursor sale de la página hacia los paneles superior/lateral del navegador"
   }
 }

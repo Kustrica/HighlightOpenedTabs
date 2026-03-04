@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Waktu tunggu sebelum menyorot tab."
   },
+  "autoHideDelayLabel": {
+    "message": "Jeda auto-hide sorotan duplikat (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Berapa lama sorotan tab duplikat tetap terlihat. Atur ke 0 untuk menonaktifkan auto-hide."
+  },
   "saved": {
     "message": "Disimpan"
   },
@@ -27,6 +33,6 @@
     "message": "Tunda (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Hapus sorotan saat meninggalkan jendela/panel atas"
+    "message": "Hapus sorotan saat kursor keluar dari halaman ke panel atas/samping browser"
   }
 }

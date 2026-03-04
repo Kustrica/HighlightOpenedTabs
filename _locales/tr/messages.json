@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Sekmeleri vurgulamadan önce beklenecek süre."
   },
+  "autoHideDelayLabel": {
+    "message": "Yinelenen vurgusunu otomatik gizleme gecikmesi (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Yinelenen sekme vurgusunun ne kadar süre görüneceği. Otomatik gizlemeyi kapatmak için 0 ayarlayın."
+  },
   "saved": {
     "message": "Kaydedildi"
   },
@@ -27,6 +33,6 @@
     "message": "Gecikme (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Pencereden/üst panelden ayrılırken vurgulamayı kaldır"
+    "message": "İmleç sayfadan tarayıcının üst/yan panellerine çıktığında vurguyu kaldır"
   }
 }

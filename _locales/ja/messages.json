@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "タブを強調表示するまでの待機時間。"
   },
+  "autoHideDelayLabel": {
+    "message": "重複ハイライト自動非表示の遅延 (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "重複タブのハイライトを表示し続ける時間。0で自動非表示を無効化します。"
+  },
   "saved": {
     "message": "保存しました"
   },
@@ -27,6 +33,6 @@
     "message": "ホバー遅延 (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "ウィンドウ/上部パネルから離れるときに強調表示を解除"
+    "message": "カーソルがページからブラウザーの上部/側面パネルへ移動したらハイライトを解除"
   }
 }

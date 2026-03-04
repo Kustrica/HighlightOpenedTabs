@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Wachttijd voor het markeren van tabbladen."
   },
+  "autoHideDelayLabel": {
+    "message": "Vertraging automatisch verbergen van duplicaatmarkering (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Hoe lang duplicaat-tabmarkering zichtbaar blijft. Zet op 0 om automatisch verbergen uit te schakelen."
+  },
   "saved": {
     "message": "Opgeslagen"
   },
@@ -27,6 +33,6 @@
     "message": "Vertraging (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Markering verwijderen bij verlaten venster/bovenpaneel"
+    "message": "Markering verwijderen wanneer de cursor de pagina verlaat naar de boven-/zijpanelen van de browser"
   }
 }

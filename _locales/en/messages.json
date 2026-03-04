@@ -23,10 +23,16 @@
   "hoverDelayDesc": {
     "message": "Time to wait before highlighting tabs when hovering a link."
   },
+  "autoHideDelayLabel": {
+    "message": "Auto-hide duplicate highlight delay (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "How long to keep duplicate-tab highlight visible. Set 0 to disable auto-hide."
+  },
   "saved": {
     "message": "Saved"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Remove highlight on window leave/top panel"
+    "message": "Remove highlight when cursor leaves page to browser top/side panels"
   }
 }

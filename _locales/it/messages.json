@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Tempo di attesa prima di evidenziare le schede."
   },
+  "autoHideDelayLabel": {
+    "message": "Ritardo auto-nascondi evidenziazione duplicati (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Per quanto tempo mantenere visibile l'evidenziazione delle schede duplicate. Imposta 0 per disattivare l'auto-hide."
+  },
   "saved": {
     "message": "Salvato"
   },
@@ -27,6 +33,6 @@
     "message": "Ritardo (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Rimuovi evidenziazione all'uscita dalla finestra/pannello superiore"
+    "message": "Rimuovi evidenziazione quando il cursore lascia la pagina verso i pannelli superiore/laterale del browser"
   }
 }

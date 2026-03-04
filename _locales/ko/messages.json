@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "탭을 강조 표시하기 전 대기 시간입니다."
   },
+  "autoHideDelayLabel": {
+    "message": "중복 강조 자동 숨김 지연(ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "중복 탭 강조를 표시할 시간입니다. 0으로 설정하면 자동 숨김이 꺼집니다."
+  },
   "saved": {
     "message": "저장됨"
   },
@@ -27,6 +33,6 @@
     "message": "호버 지연 (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "창/상단 패널을 벗어날 때 강조 표시 제거"
+    "message": "커서가 페이지에서 브라우저 상단/측면 패널로 이동하면 강조 제거"
   }
 }

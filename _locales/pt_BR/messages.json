@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Tempo de espera antes de destacar abas."
   },
+  "autoHideDelayLabel": {
+    "message": "Atraso de auto-ocultação do destaque de duplicatas (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Por quanto tempo manter o destaque de abas duplicadas visível. Defina 0 para desativar a auto-ocultação."
+  },
   "saved": {
     "message": "Salvo"
   },
@@ -27,6 +33,6 @@
     "message": "Atraso (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Remover destaque ao sair da janela/painel superior"
+    "message": "Remover destaque quando o cursor sair da página para os painéis superior/lateral do navegador"
   }
 }

@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Czas oczekiwania przed podświetleniem kart."
   },
+  "autoHideDelayLabel": {
+    "message": "Opóźnienie automatycznego ukrycia podświetlenia duplikatów (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Jak długo utrzymywać podświetlenie zduplikowanych kart. Ustaw 0, aby wyłączyć auto-ukrywanie."
+  },
   "saved": {
     "message": "Zapisano"
   },
@@ -27,6 +33,6 @@
     "message": "Opóźnienie (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Usuń podświetlenie po opuszczeniu okna/górnego panelu"
+    "message": "Usuwaj podświetlenie, gdy kursor opuszcza stronę do górnego/bocznego panelu przeglądarki"
   }
 }

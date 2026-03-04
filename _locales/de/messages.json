@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "Wartezeit vor dem Hervorheben von Tabs."
   },
+  "autoHideDelayLabel": {
+    "message": "Verzögerung für automatisches Ausblenden der Duplikat-Markierung (ms):"
+  },
+  "autoHideDelayDesc": {
+    "message": "Wie lange die Duplikat-Tab-Markierung sichtbar bleibt. Auf 0 setzen, um Auto-Ausblenden zu deaktivieren."
+  },
   "saved": {
     "message": "Gespeichert"
   },
@@ -27,6 +33,6 @@
     "message": "Verzögerung (ms):"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Markierung entfernen beim Verlassen des Fensters/oberen Bereichs"
+    "message": "Markierung entfernen, wenn der Cursor die Seite zu den oberen/seitlichen Browserleisten verlässt"
   }
 }

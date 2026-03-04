@@ -14,6 +14,12 @@
   "hoverDelayDesc": {
     "message": "懸停連結時突出顯示分頁之前的等待時間。"
   },
+  "autoHideDelayLabel": {
+    "message": "重複分頁高亮自動隱藏延遲（毫秒）："
+  },
+  "autoHideDelayDesc": {
+    "message": "重複分頁高亮保留顯示的時間。設為 0 可停用自動隱藏。"
+  },
   "saved": {
     "message": "已儲存"
   },
@@ -27,6 +33,6 @@
     "message": "懸停延遲 (ms)："
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "離開視窗/頂部面板時移除突出顯示"
+    "message": "當游標從頁面移到瀏覽器上方/側邊面板時移除高亮"
   }
 }
