@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         showCounter: true,
         hoverDelay: 50,
         unhighlightOnWindowLeave: true,
-        duplicateAutoHideDelay: 5000
+        duplicateAutoHideDelay: 2000
     });
 
     counterCheck.checked = data.showCounter;

@@ -6,16 +6,17 @@ const state = {
     mode: "duplicates",
     highlightedTabIds: new Set(),
     hoverSourceTabId: null,
+    restoreDuplicatesOnHoverEnd: false,
     requestId: 0
 };
 
 const suppressedSourceTabs = new Map();
 let refreshTimer = null;
 let duplicateAutoHideTimer = null;
-let duplicateAutoHideDelay = 5000;
+let duplicateAutoHideDelay = 2000;
 
-browser.storage.local.get({ duplicateAutoHideDelay: 5000 }).then(data => {
-    duplicateAutoHideDelay = Number.isFinite(data.duplicateAutoHideDelay) ? data.duplicateAutoHideDelay : 5000;
+browser.storage.local.get({ duplicateAutoHideDelay: 2000 }).then(data => {
+    duplicateAutoHideDelay = Number.isFinite(data.duplicateAutoHideDelay) ? data.duplicateAutoHideDelay : 2000;
 });
 
 function cancelDuplicateAutoHide() {
@@ -145,6 +146,7 @@ async function showDuplicatesForActiveTab() {
     const requestId = ++state.requestId;
     state.mode = "duplicates";
     state.hoverSourceTabId = null;
+    state.restoreDuplicatesOnHoverEnd = false;
 
     const activeTab = await getActiveTab();
     if (!activeTab) return;
@@ -209,6 +211,7 @@ async function showHoverMatches(sourceTabId, hoveredUrl) {
     const requestId = ++state.requestId;
     state.mode = "hover";
     state.hoverSourceTabId = sourceTabId;
+    state.restoreDuplicatesOnHoverEnd = state.highlightedTabIds.size > 0;
 
     const tabs = await browser.tabs.query({});
     if (requestId !== state.requestId) {
@@ -230,9 +233,17 @@ async function endHoverMode(sourceTabId) {
     if (state.mode !== "hover") return;
     if (sourceTabId && state.hoverSourceTabId && sourceTabId !== state.hoverSourceTabId) return;
 
+    const shouldRestoreDuplicates = state.restoreDuplicatesOnHoverEnd;
     state.mode = "duplicates";
     state.hoverSourceTabId = null;
-    scheduleDuplicateRefresh(0);
+    state.restoreDuplicatesOnHoverEnd = false;
+
+    if (shouldRestoreDuplicates) {
+        scheduleDuplicateRefresh(0);
+        return;
+    }
+
+    await syncHighlights([]);
 }
 
 async function clearAllVisuals() {
@@ -248,6 +259,7 @@ browser.tabs.onActivated.addListener(activeInfo => {
     suppressedSourceTabs.delete(activeInfo.tabId);
     state.mode = "duplicates";
     state.hoverSourceTabId = null;
+    state.restoreDuplicatesOnHoverEnd = false;
     scheduleDuplicateRefresh(80);
 });
 
@@ -275,7 +287,7 @@ browser.storage.onChanged.addListener((changes, area) => {
     }
     if (changes.duplicateAutoHideDelay) {
         const nextDelay = changes.duplicateAutoHideDelay.newValue;
-        duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 5000;
+        duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 2000;
         if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
             scheduleDuplicateAutoHide(state.requestId);
         } else {
@@ -295,7 +307,7 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
         if (message.action === "SETTINGS_UPDATED" && message.settings) {
             if (Object.prototype.hasOwnProperty.call(message.settings, "duplicateAutoHideDelay")) {
                 const nextDelay = message.settings.duplicateAutoHideDelay;
-                duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 5000;
+                duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 2000;
                 if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
                     scheduleDuplicateAutoHide(state.requestId);
                 } else {
@@ -334,6 +346,10 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
     }
 
     return undefined;
+});
+
+browser.action.onClicked.addListener(() => {
+    browser.runtime.openOptionsPage().catch(() => {});
 });
 
 showDuplicatesForActiveTab();
