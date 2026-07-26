@@ -18,9 +18,14 @@
 - [x] User-facing copy localized for all supported languages (no API-limit notes in UI)
 
 ## STEP-04 — Docs and version
-- [x] manifest version 1.5
-- [x] No host permissions / content scripts (permission page clean; link-hover removed)
+- [x] manifest version bumped with releases
 - [x] `.project/context.md` and this plan
+
+## STEP-05 — Site access on by default (no ask UI)
+- [x] Restore `<all_urls>` in `host_permissions` + `content_scripts` (as in working commits before 1.6)
+- [x] `granted_host_permissions: true` for temporary installs
+- [x] Remove grant.html / permission-request UX
+- [x] Note: Add-ons Manager may still label site access “Optional” (Firefox UI)
 
 ## STEP-06 — Early duplicate match (loading / unloaded tabs)
 - [x] Prefer `pendingUrl` then `url` for matching

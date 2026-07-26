@@ -46,5 +46,20 @@
   },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Hervorhebung entfernen, wenn der Cursor die Seite zu den Browserleisten verlässt"
+  },
+  "grantTitle": {
+    "message": "Link-Hervorhebung aktivieren"
+  },
+  "grantBody": {
+    "message": "Damit bereits geöffnete Tabs beim Überfahren eines Links hervorgehoben werden, braucht Firefox Zugriff auf Websites. Das ist für die Hauptfunktion nötig — einmal klicken."
+  },
+  "grantButton": {
+    "message": "Zugriff auf Websites erlauben"
+  },
+  "grantDone": {
+    "message": "Fertig. Offene Seiten neu laden, dann über einen Link fahren."
+  },
+  "grantDenied": {
+    "message": "Berechtigung nicht erteilt. Die Link-Hervorhebung funktioniert erst nach der Erlaubnis."
   }
 }

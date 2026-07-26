@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.7",
+  "version": "1.7.2",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "author": "Kustrica (Telegram: @kustric)",
@@ -18,9 +18,9 @@
     "storage"
   ],
   "host_permissions": [
-    "http://*/*",
-    "https://*/*"
+    "<all_urls>"
   ],
+  "granted_host_permissions": true,
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -30,10 +30,7 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_start",
       "all_frames": true

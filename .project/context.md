@@ -6,17 +6,18 @@ Firefox WebExtension: highlights already-open tabs when hovering links on a page
 
 - Manifest V3, Firefox (min 142)
 - `background.js` — URL normalization, duplicates, badge, multi-select flash, hover matching
-- `content.js` — link hover on http(s) pages
+- `content.js` — link hover (matches `<all_urls>`)
 - `options.html` / `options.js` — settings + i18n
 - Permissions: `tabs`, `storage`
-- **Required** `host_permissions`: `http://*/*`, `https://*/*` (needed for hover; declare as host_permissions so install grants them — not optional_host_permissions)
+- `host_permissions`: `["<all_urls>"]` (same as working pre-1.6 releases)
+- `granted_host_permissions: true` — auto-ON for temporary (about:debugging) installs
 - Storage: `showCounter`, `enableDuplicateHighlight`, `enableHoverHighlight`, `hoverDelay`, `unhighlightOnWindowLeave`, `duplicateAutoHideDelay`
 
 # Constraints & Rules
 
 - Firefox has no cosmetic per-tab color API; use multi-select `highlighted` briefly.
 - No tab-strip hover API.
-- Do not put site access only in `optional_host_permissions` — that makes the main feature look optional/off.
+- Firefox Add-ons Manager still lists website access under “Optional” (browser UI). Do not add a grant/ask page — use `<all_urls>` + `granted_host_permissions` so access is on after install.
 - Quiet `onUpdated` must not bump `requestId` (kills flash timers).
 - Badge page pulse: `max(2000ms, duplicateAutoHideDelay)`; idle badge empty; hover badge = open copies of hovered URL.
 

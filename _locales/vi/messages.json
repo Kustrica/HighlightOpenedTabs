@@ -46,5 +46,20 @@
   },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Xóa làm nổi khi con trỏ rời trang sang thanh trình duyệt"
+  },
+  "grantTitle": {
+    "message": "Enable link highlighting"
+  },
+  "grantBody": {
+    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+  },
+  "grantButton": {
+    "message": "Allow access to websites"
+  },
+  "grantDone": {
+    "message": "Done. Reload open pages, then hover a link."
+  },
+  "grantDenied": {
+    "message": "Permission was not granted. Link hover will not work until you allow it."
   }
 }

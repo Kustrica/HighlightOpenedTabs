@@ -46,5 +46,20 @@
   },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Quitar el resaltado cuando el cursor sale de la página hacia los paneles del navegador"
+  },
+  "grantTitle": {
+    "message": "Activar el resaltado al pasar el cursor"
+  },
+  "grantBody": {
+    "message": "Para resaltar pestañas ya abiertas al pasar el cursor por un enlace, Firefox necesita acceso a los sitios. Es necesario para la función principal: haz clic una vez."
+  },
+  "grantButton": {
+    "message": "Permitir acceso a sitios web"
+  },
+  "grantDone": {
+    "message": "Listo. Recarga las páginas abiertas y pasa el cursor por un enlace."
+  },
+  "grantDenied": {
+    "message": "No se concedió el permiso. El resaltado al pasar el cursor no funcionará hasta que lo permitas."
   }
 }

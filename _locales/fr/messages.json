@@ -46,5 +46,20 @@
   },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Retirer le surlignage quand le curseur quitte la page vers les barres du navigateur"
+  },
+  "grantTitle": {
+    "message": "Activer le surlignage au survol"
+  },
+  "grantBody": {
+    "message": "Pour surligner les onglets déjà ouverts au survol d’un lien, Firefox a besoin d’accéder aux sites. C’est indispensable pour la fonction principale — cliquez une fois."
+  },
+  "grantButton": {
+    "message": "Autoriser l’accès aux sites"
+  },
+  "grantDone": {
+    "message": "Terminé. Rechargez les pages ouvertes, puis survolez un lien."
+  },
+  "grantDenied": {
+    "message": "Autorisation refusée. Le survol ne fonctionnera pas tant que ce n’est pas autorisé."
   }
 }
