@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Krótko podświetla zduplikowane karty, gdy otwierasz kartę już otwartą gdzie indziej.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Ustawienia",
+    "message": "Opcje",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Czas oczekiwania przed podświetleniem kart."
-  },
-  "autoHideDelayLabel": {
-    "message": "Opóźnienie automatycznego ukrycia podświetlenia duplikatów (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Jak długo utrzymywać podświetlenie zduplikowanych kart. Ustaw 0, aby wyłączyć auto-ukrywanie."
-  },
-  "saved": {
-    "message": "Zapisano"
   },
   "settingsTitle": {
     "message": "Ustawienia"
   },
   "showCounterLabel": {
-    "message": "Pokaż licznik duplikatów"
+    "message": "Pokaż licznik duplikatów na ikonie"
+  },
+  "showCounterDesc": {
+    "message": "Krótko po otwarciu karty (co najmniej 2 sekundy)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Podświetlaj duplikaty przy otwarciu karty"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Jeśli strona jest już otwarta w innej karcie, kopie na chwilę się podświetlą."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Podświetlaj karty po najechaniu na link"
   },
   "hoverDelayLabel": {
-    "message": "Opóźnienie (ms):"
+    "message": "Opóźnienie najechania (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Ile czekać przed podświetleniem po najechaniu na link."
+  },
+  "autoHideDelayLabel": {
+    "message": "Czas podświetlenia duplikatów (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Jak długo podświetlać duplikaty po otwarciu karty. Licznik na ikonie świeci co najmniej 2 sekundy, lub dłużej jeśli ta wartość jest większa. 0 zostawia podświetlenie."
+  },
+  "saved": {
+    "message": "Zapisano"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Usuwaj podświetlenie, gdy kursor opuszcza stronę do górnego/bocznego panelu przeglądarki"
+    "message": "Usuń podświetlenie, gdy kursor opuszcza stronę na panele przeglądarki"
   }
 }

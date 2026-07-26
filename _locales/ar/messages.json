@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "يبرز علامات التبويب المكررة لفترة قصيرة عند فتح علامة تبويب مفتوحة بالفعل.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "الإعدادات",
+    "message": "الخيارات",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "وقت الانتظار قبل تمييز علامات التبويب عند تمرير الماوس."
-  },
-  "autoHideDelayLabel": {
-    "message": "تأخير الإخفاء التلقائي لتمييز التبويبات المكررة (مللي ثانية):"
-  },
-  "autoHideDelayDesc": {
-    "message": "مدة إبقاء تمييز التبويبات المكررة ظاهرًا. اضبطها على 0 لتعطيل الإخفاء التلقائي."
-  },
-  "saved": {
-    "message": "تم الحفظ"
   },
   "settingsTitle": {
     "message": "الإعدادات"
   },
   "showCounterLabel": {
-    "message": "عرض عداد التكرارات"
+    "message": "إظهار عدد المكررات على الأيقونة"
+  },
+  "showCounterDesc": {
+    "message": "يظهر لفترة قصيرة بعد فتح علامة تبويب (ثانيتان على الأقل)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "إبراز المكررات عند فتح علامة تبويب"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "إذا كانت الصفحة مفتوحة في علامة تبويب أخرى، تضيء النسخ للحظة."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "إبراز علامات التبويب عند تمرير المؤشر فوق رابط"
   },
   "hoverDelayLabel": {
-    "message": "تأخير التحويم (مللي ثانية):"
+    "message": "تأخير التمرير (مللي ثانية)"
+  },
+  "hoverDelayDesc": {
+    "message": "مدة الانتظار قبل الإبراز بعد تمرير المؤشر فوق رابط."
+  },
+  "autoHideDelayLabel": {
+    "message": "مدة إبراز المكررات (مللي ثانية)"
+  },
+  "autoHideDelayDesc": {
+    "message": "مدة إبراز المكررات بعد فتح علامة تبويب. يبقى العداد على الأيقونة ثانيتين على الأقل، أو أطول إذا كانت هذه القيمة أكبر. 0 يبقي الإبراز."
+  },
+  "saved": {
+    "message": "تم الحفظ"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "إزالة التمييز عند انتقال المؤشر من الصفحة إلى اللوحات العلوية/الجانبية للمتصفح"
+    "message": "إزالة التمييز عندما يغادر المؤشر الصفحة إلى لوحات المتصفح"
   }
 }

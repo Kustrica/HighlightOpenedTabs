@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "開啟已在其他分頁開啟的頁面時，短暫醒目提示重複分頁。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "設定",
+    "message": "選項",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "懸停連結時突出顯示分頁之前的等待時間。"
-  },
-  "autoHideDelayLabel": {
-    "message": "重複分頁高亮自動隱藏延遲（毫秒）："
-  },
-  "autoHideDelayDesc": {
-    "message": "重複分頁高亮保留顯示的時間。設為 0 可停用自動隱藏。"
-  },
-  "saved": {
-    "message": "已儲存"
   },
   "settingsTitle": {
     "message": "設定"
   },
   "showCounterLabel": {
-    "message": "顯示重複計數"
+    "message": "在圖示上顯示重複分頁計數"
+  },
+  "showCounterDesc": {
+    "message": "開啟分頁後短暫顯示（至少 2 秒）。"
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "開啟分頁時醒目提示重複項"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "如果該頁面已在其他分頁開啟，其他複本會短暫亮起。"
+  },
+  "enableHoverHighlightLabel": {
+    "message": "懸停連結時醒目提示對應分頁"
   },
   "hoverDelayLabel": {
-    "message": "懸停延遲 (ms)："
+    "message": "懸停延遲（毫秒）"
+  },
+  "hoverDelayDesc": {
+    "message": "滑鼠懸停在連結上後，等待多久再醒目提示。"
+  },
+  "autoHideDelayLabel": {
+    "message": "重複分頁醒目提示時長（毫秒）"
+  },
+  "autoHideDelayDesc": {
+    "message": "開啟分頁後重複項醒目提示多久。圖示計數至少顯示 2 秒；若此處更大則依該值。0 表示保持醒目提示。"
+  },
+  "saved": {
+    "message": "已儲存"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "當游標從頁面移到瀏覽器上方/側邊面板時移除高亮"
+    "message": "游標離開頁面移到瀏覽器面板時清除醒目提示"
   }
 }

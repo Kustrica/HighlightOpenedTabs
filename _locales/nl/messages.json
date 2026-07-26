@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Markeert kort duplicaten wanneer je een tabblad opent dat al ergens anders open is.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Instellingen",
+    "message": "Opties",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Wachttijd voor het markeren van tabbladen."
-  },
-  "autoHideDelayLabel": {
-    "message": "Vertraging automatisch verbergen van duplicaatmarkering (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Hoe lang duplicaat-tabmarkering zichtbaar blijft. Zet op 0 om automatisch verbergen uit te schakelen."
-  },
-  "saved": {
-    "message": "Opgeslagen"
   },
   "settingsTitle": {
     "message": "Instellingen"
   },
   "showCounterLabel": {
-    "message": "Toon duplicaatteller"
+    "message": "Duplicaatteller op het pictogram tonen"
+  },
+  "showCounterDesc": {
+    "message": "Kort na het openen van een tabblad (minstens 2 seconden)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Duplicaten markeren bij het openen van een tabblad"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Als de pagina al in een ander tabblad open is, lichten de kopieën even op."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Tabbladen markeren bij hoveren over een link"
   },
   "hoverDelayLabel": {
-    "message": "Vertraging (ms):"
+    "message": "Hoververtraging (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Hoe lang wachten vóór markeren als je over een link beweegt."
+  },
+  "autoHideDelayLabel": {
+    "message": "Duur van duplicaatmarkering (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Hoe lang duplicaten gemarkeerd blijven na het openen van een tabblad. De teller op het pictogram blijft minstens 2 seconden, of langer als deze waarde hoger is. 0 laat de markering aan."
+  },
+  "saved": {
+    "message": "Opgeslagen"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Markering verwijderen wanneer de cursor de pagina verlaat naar de boven-/zijpanelen van de browser"
+    "message": "Markering wissen als de cursor de pagina verlaat naar de browsersbalken"
   }
 }

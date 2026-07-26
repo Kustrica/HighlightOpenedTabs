@@ -2,21 +2,36 @@ if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
+const DEFAULT_SETTINGS = {
+    showCounter: true,
+    enableDuplicateHighlight: true,
+    duplicateAutoHideDelay: 200
+};
+
+const PAGE_BADGE_MIN_MS = 2000;
+
 const state = {
-    mode: "duplicates",
+    mode: "idle",
     highlightedTabIds: new Set(),
     hoverSourceTabId: null,
-    restoreDuplicatesOnHoverEnd: false,
-    requestId: 0
+    requestId: 0,
+    pageBadgeActive: false
 };
 
 const suppressedSourceTabs = new Map();
 let refreshTimer = null;
 let duplicateAutoHideTimer = null;
-let duplicateAutoHideDelay = 2000;
+let pageBadgeTimer = null;
+let settings = { ...DEFAULT_SETTINGS };
 
-browser.storage.local.get({ duplicateAutoHideDelay: 2000 }).then(data => {
-    duplicateAutoHideDelay = Number.isFinite(data.duplicateAutoHideDelay) ? data.duplicateAutoHideDelay : 2000;
+browser.storage.local.get(DEFAULT_SETTINGS).then(data => {
+    settings = {
+        showCounter: data.showCounter !== false,
+        enableDuplicateHighlight: data.enableDuplicateHighlight !== false,
+        duplicateAutoHideDelay: Number.isFinite(data.duplicateAutoHideDelay)
+            ? data.duplicateAutoHideDelay
+            : DEFAULT_SETTINGS.duplicateAutoHideDelay
+    };
 });
 
 function cancelDuplicateAutoHide() {
@@ -26,20 +41,77 @@ function cancelDuplicateAutoHide() {
     }
 }
 
+function cancelPageBadgeTimer() {
+    if (pageBadgeTimer) {
+        clearTimeout(pageBadgeTimer);
+        pageBadgeTimer = null;
+    }
+}
+
+function getPageBadgeDurationMs() {
+    const delay = settings.duplicateAutoHideDelay;
+    if (!Number.isFinite(delay) || delay <= 0) {
+        return PAGE_BADGE_MIN_MS;
+    }
+    return Math.max(PAGE_BADGE_MIN_MS, delay);
+}
+
 function scheduleDuplicateAutoHide(requestId) {
     cancelDuplicateAutoHide();
-    if (!duplicateAutoHideDelay || duplicateAutoHideDelay <= 0) return;
+    if (!settings.duplicateAutoHideDelay || settings.duplicateAutoHideDelay <= 0) return;
     duplicateAutoHideTimer = setTimeout(async () => {
-        if (state.mode !== "duplicates") return;
+        if (state.mode === "hover") return;
         if (requestId !== state.requestId) return;
         await syncHighlights([]);
-    }, duplicateAutoHideDelay);
+    }, settings.duplicateAutoHideDelay);
 }
+
+function schedulePageBadgeClear(tabId, requestId) {
+    cancelPageBadgeTimer();
+    pageBadgeTimer = setTimeout(async () => {
+        if (requestId !== state.requestId) return;
+        if (state.mode === "hover") return;
+        state.pageBadgeActive = false;
+        await setBadge(tabId, 0);
+    }, getPageBadgeDurationMs());
+}
+
+const IGNORED_ABOUT_PAGES = new Set([
+    "blank",
+    "newtab",
+    "home",
+    "privatebrowsing",
+    "welcome",
+    "logo",
+    "neon"
+]);
 
 function getNormalizedUrlKey(urlStr) {
     try {
         const url = new URL(urlStr);
-        if (!url.protocol.startsWith("http")) return null;
+        const protocol = url.protocol.toLowerCase();
+
+        // Browser system pages (about:addons, about:preferences, …).
+        // Content scripts cannot run there; duplicate matching via tabs API still can.
+        if (protocol === "about:") {
+            let page = (url.pathname || "").replace(/^\//, "").toLowerCase();
+            if (!page) {
+                page = url.href.replace(/^about:/i, "").split(/[?#]/)[0].toLowerCase();
+            }
+            page = page.split(/[?#]/)[0];
+            if (!page || IGNORED_ABOUT_PAGES.has(page)) return null;
+            const params = [];
+            url.searchParams.forEach((value, key) => {
+                params.push([key, value]);
+            });
+            params.sort(([aKey], [bKey]) => aKey.localeCompare(bKey));
+            const query = params
+                .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+                .join("&");
+            return `about:${page}${query ? `?${query}` : ""}`;
+        }
+
+        if (!protocol.startsWith("http")) return null;
 
         const hostname = url.hostname.toLowerCase();
 
@@ -92,19 +164,27 @@ function getNormalizedUrlKey(urlStr) {
     }
 }
 
+function getTabUrlCandidate(tab) {
+    if (!tab) return "";
+    return tab.pendingUrl || tab.url || "";
+}
+
+function getTabNormalizedKey(tab) {
+    return getNormalizedUrlKey(getTabUrlCandidate(tab));
+}
+
 async function getActiveTab() {
     const activeTabs = await browser.tabs.query({ active: true, currentWindow: true });
     return activeTabs.length > 0 ? activeTabs[0] : null;
 }
 
-async function setBadge(tabId, count) {
-    const { showCounter } = await browser.storage.local.get({ showCounter: true });
-    if (!showCounter || !count) {
+async function setBadge(tabId, duplicateCount) {
+    if (!settings.showCounter || !duplicateCount || duplicateCount <= 0) {
         await browser.action.setBadgeText({ text: "", tabId });
         return;
     }
 
-    await browser.action.setBadgeText({ text: String(count), tabId });
+    await browser.action.setBadgeText({ text: String(duplicateCount), tabId });
     await browser.action.setBadgeBackgroundColor({ color: "#FF4444", tabId });
 }
 
@@ -115,8 +195,38 @@ async function clearBadgeOnActiveTab() {
     }
 }
 
+async function resetMultiselectToActiveOnly() {
+    const activeTab = await getActiveTab();
+    if (!activeTab) {
+        state.highlightedTabIds = new Set();
+        return;
+    }
+
+    try {
+        await browser.tabs.highlight({
+            windowId: activeTab.windowId,
+            tabs: [activeTab.index],
+            populate: false
+        });
+    } catch (_) {
+        for (const tabId of state.highlightedTabIds) {
+            browser.tabs.update(tabId, { highlighted: false }).catch(() => {});
+        }
+    }
+
+    state.highlightedTabIds = new Set();
+}
+
 async function syncHighlights(nextTabIds) {
     const nextSet = new Set(nextTabIds);
+
+    if (nextSet.size === 0) {
+        if (state.highlightedTabIds.size > 0) {
+            await resetMultiselectToActiveOnly();
+        }
+        return;
+    }
+
     const previousSet = state.highlightedTabIds;
 
     for (const tabId of previousSet) {
@@ -134,31 +244,36 @@ async function syncHighlights(nextTabIds) {
     state.highlightedTabIds = nextSet;
 }
 
-function scheduleDuplicateRefresh(delay = 120) {
+function scheduleDuplicateRefresh(delay = 20, pulseBadge = false) {
     if (refreshTimer) clearTimeout(refreshTimer);
     refreshTimer = setTimeout(() => {
         if (state.mode === "hover") return;
-        showDuplicatesForActiveTab();
+        showDuplicatesForActiveTab({ pulseBadge });
     }, delay);
 }
 
-async function showDuplicatesForActiveTab() {
-    const requestId = ++state.requestId;
-    state.mode = "duplicates";
+async function showDuplicatesForActiveTab({ pulseBadge = false } = {}) {
+    // Quiet refreshes (loading/complete after paste) must NOT bump requestId —
+    // that was cancelling the flash timer and leaving duplicates highlighted.
+    const requestId = pulseBadge ? ++state.requestId : state.requestId;
     state.hoverSourceTabId = null;
-    state.restoreDuplicatesOnHoverEnd = false;
+    if (state.mode !== "hover") {
+        state.mode = "idle";
+    }
 
     const activeTab = await getActiveTab();
     if (!activeTab) return;
 
-    const activeKey = getNormalizedUrlKey(activeTab.url || "");
+    const activeKey = getTabNormalizedKey(activeTab);
     if (!activeKey) {
-        if (activeTab.status === "loading") {
-            scheduleDuplicateRefresh(180);
+        if (activeTab.status === "loading" || activeTab.pendingUrl) {
+            scheduleDuplicateRefresh(40, pulseBadge);
             return;
         }
         if (requestId !== state.requestId) return;
         cancelDuplicateAutoHide();
+        cancelPageBadgeTimer();
+        state.pageBadgeActive = false;
         await syncHighlights([]);
         await browser.action.setBadgeText({ text: "", tabId: activeTab.id });
         return;
@@ -167,108 +282,120 @@ async function showDuplicatesForActiveTab() {
     const tabs = await browser.tabs.query({});
     if (requestId !== state.requestId) return;
 
-    const matchedTabs = tabs.filter(tab => getNormalizedUrlKey(tab.url || "") === activeKey);
-    const highlightIds = matchedTabs
-        .filter(tab => tab.id !== activeTab.id)
-        .map(tab => tab.id);
+    const matchedTabs = tabs.filter(tab => getTabNormalizedKey(tab) === activeKey);
+    const duplicateCount = Math.max(0, matchedTabs.length - 1);
+    const highlightIds = settings.enableDuplicateHighlight
+        ? matchedTabs.filter(tab => tab.id !== activeTab.id).map(tab => tab.id)
+        : [];
 
-    await syncHighlights(highlightIds);
+    if (pulseBadge) {
+        state.pageBadgeActive = duplicateCount > 0;
+        await setBadge(activeTab.id, duplicateCount);
+        if (duplicateCount > 0) {
+            schedulePageBadgeClear(activeTab.id, requestId);
+        } else {
+            cancelPageBadgeTimer();
+        }
+    } else if (state.pageBadgeActive) {
+        await setBadge(activeTab.id, duplicateCount);
+        if (duplicateCount <= 0) {
+            cancelPageBadgeTimer();
+            state.pageBadgeActive = false;
+        }
+    } else {
+        await setBadge(activeTab.id, 0);
+    }
     if (requestId !== state.requestId) return;
 
-    await setBadge(activeTab.id, matchedTabs.length);
-    if (highlightIds.length > 0) {
-        scheduleDuplicateAutoHide(requestId);
-    } else {
+    if (settings.enableDuplicateHighlight && pulseBadge) {
+        await syncHighlights(highlightIds);
+        if (requestId !== state.requestId) return;
+        if (highlightIds.length > 0) {
+            scheduleDuplicateAutoHide(requestId);
+        } else {
+            cancelDuplicateAutoHide();
+        }
+    } else if (!settings.enableDuplicateHighlight) {
+        await syncHighlights([]);
+        cancelDuplicateAutoHide();
+    } else if (highlightIds.length === 0) {
+        await syncHighlights([]);
         cancelDuplicateAutoHide();
     }
+    // Quiet refresh with duplicates still highlighted: leave flash timer alone.
 }
 
-async function showHoverMatches(sourceTabId, hoveredUrl) {
-    if (!sourceTabId || !hoveredUrl) {
-        return { count: 0, tabIds: [] };
-    }
-
-    const suppressedUntil = suppressedSourceTabs.get(sourceTabId);
-    if (suppressedUntil && suppressedUntil > Date.now()) {
-        return { count: 0, tabIds: [] };
-    }
-    suppressedSourceTabs.delete(sourceTabId);
-
-    const hoveredKey = getNormalizedUrlKey(hoveredUrl);
-    if (!hoveredKey) {
-        return { count: 0, tabIds: [] };
-    }
-    cancelDuplicateAutoHide();
-
-    const sourceTab = await browser.tabs.get(sourceTabId).catch(() => null);
-    const sourceKey = sourceTab ? getNormalizedUrlKey(sourceTab.url || "") : null;
-    if (sourceKey && sourceKey === hoveredKey) {
-        await showDuplicatesForActiveTab();
-        const tabIds = Array.from(state.highlightedTabIds);
-        return { count: tabIds.length, tabIds };
-    }
-
-    const requestId = ++state.requestId;
-    state.mode = "hover";
-    state.hoverSourceTabId = sourceTabId;
-    state.restoreDuplicatesOnHoverEnd = state.highlightedTabIds.size > 0;
-
-    const tabs = await browser.tabs.query({});
-    if (requestId !== state.requestId) {
-        return { count: 0, tabIds: [] };
-    }
-
-    const matchedTabs = tabs.filter(tab => {
-        if (tab.id === sourceTabId) return false;
-        return getNormalizedUrlKey(tab.url || "") === hoveredKey;
-    });
-
-    const highlightIds = matchedTabs.map(tab => tab.id);
-    await syncHighlights(highlightIds);
-
-    return { count: matchedTabs.length, tabIds: highlightIds };
+async function showHoverMatches() {
+    return { count: 0, tabIds: [] };
 }
 
-async function endHoverMode(sourceTabId) {
+async function endHoverMode() {
     if (state.mode !== "hover") return;
-    if (sourceTabId && state.hoverSourceTabId && sourceTabId !== state.hoverSourceTabId) return;
-
-    const shouldRestoreDuplicates = state.restoreDuplicatesOnHoverEnd;
-    state.mode = "duplicates";
+    state.mode = "idle";
     state.hoverSourceTabId = null;
-    state.restoreDuplicatesOnHoverEnd = false;
-
-    if (shouldRestoreDuplicates) {
-        scheduleDuplicateRefresh(0);
-        return;
-    }
-
-    await syncHighlights([]);
-}
-
-async function clearAllVisuals() {
-    state.requestId++;
-    state.mode = "none";
-    state.hoverSourceTabId = null;
+    state.pageBadgeActive = false;
+    cancelPageBadgeTimer();
     cancelDuplicateAutoHide();
     await syncHighlights([]);
     await clearBadgeOnActiveTab();
 }
 
+async function clearAllVisuals() {
+    state.requestId++;
+    state.mode = "idle";
+    state.hoverSourceTabId = null;
+    state.pageBadgeActive = false;
+    cancelDuplicateAutoHide();
+    cancelPageBadgeTimer();
+    await syncHighlights([]);
+    await clearBadgeOnActiveTab();
+}
+
+function applySettingsPatch(patch) {
+    if (Object.prototype.hasOwnProperty.call(patch, "showCounter")) {
+        settings.showCounter = patch.showCounter !== false;
+    }
+    if (Object.prototype.hasOwnProperty.call(patch, "enableDuplicateHighlight")) {
+        settings.enableDuplicateHighlight = patch.enableDuplicateHighlight !== false;
+    }
+    if (Object.prototype.hasOwnProperty.call(patch, "duplicateAutoHideDelay")) {
+        const nextDelay = patch.duplicateAutoHideDelay;
+        settings.duplicateAutoHideDelay = Number.isFinite(nextDelay)
+            ? nextDelay
+            : DEFAULT_SETTINGS.duplicateAutoHideDelay;
+    }
+}
+
 browser.tabs.onActivated.addListener(activeInfo => {
     suppressedSourceTabs.delete(activeInfo.tabId);
-    state.mode = "duplicates";
     state.hoverSourceTabId = null;
-    state.restoreDuplicatesOnHoverEnd = false;
-    scheduleDuplicateRefresh(80);
+    scheduleDuplicateRefresh(0, true);
 });
 
 browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (!tab.active) return;
-    if (!changeInfo.url && changeInfo.status !== "complete") return;
+    if (state.mode === "hover") return;
 
-    state.mode = "duplicates";
-    scheduleDuplicateRefresh(120);
+    const urlChanged = Boolean(changeInfo.url);
+    const loadPhase =
+        changeInfo.status === "loading" || changeInfo.status === "complete";
+    const discardChanged = changeInfo.discarded !== undefined;
+    if (!urlChanged && !loadPhase && !discardChanged) return;
+
+    if (tab.active && urlChanged) {
+        scheduleDuplicateRefresh(0, true);
+        return;
+    }
+
+    if (tab.active || urlChanged || discardChanged) {
+        scheduleDuplicateRefresh(urlChanged ? 0 : 20, false);
+    }
+});
+
+browser.tabs.onCreated.addListener(tab => {
+    if (state.mode === "hover") return;
+    if (tab.active) {
+        scheduleDuplicateRefresh(0, true);
+    }
 });
 
 browser.tabs.onRemoved.addListener(tabId => {
@@ -276,22 +403,42 @@ browser.tabs.onRemoved.addListener(tabId => {
         state.highlightedTabIds.delete(tabId);
     }
     if (state.mode !== "hover") {
-        scheduleDuplicateRefresh(80);
+        scheduleDuplicateRefresh(0, false);
     }
 });
 
 browser.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
-    if (changes.showCounter) {
-        scheduleDuplicateRefresh(0);
+
+    const patch = {};
+    for (const key of Object.keys(DEFAULT_SETTINGS)) {
+        if (changes[key]) {
+            patch[key] = changes[key].newValue;
+        }
     }
-    if (changes.duplicateAutoHideDelay) {
-        const nextDelay = changes.duplicateAutoHideDelay.newValue;
-        duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 2000;
-        if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
+    if (Object.keys(patch).length === 0) return;
+
+    applySettingsPatch(patch);
+
+    if (
+        Object.prototype.hasOwnProperty.call(patch, "showCounter") ||
+        Object.prototype.hasOwnProperty.call(patch, "enableDuplicateHighlight")
+    ) {
+        scheduleDuplicateRefresh(0, false);
+    }
+
+    if (Object.prototype.hasOwnProperty.call(patch, "duplicateAutoHideDelay")) {
+        if (state.highlightedTabIds.size > 0 && state.mode !== "hover") {
             scheduleDuplicateAutoHide(state.requestId);
         } else {
             cancelDuplicateAutoHide();
+        }
+        if (state.pageBadgeActive) {
+            getActiveTab().then(activeTab => {
+                if (activeTab && state.pageBadgeActive) {
+                    schedulePageBadgeClear(activeTab.id, state.requestId);
+                }
+            });
         }
     }
 });
@@ -301,24 +448,35 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
         const sourceTabId = sender.tab ? sender.tab.id : null;
 
         if (message.action === "highlightTab" || message.action === "HOVER_LINK") {
-            return await showHoverMatches(sourceTabId, message.url);
+            return await showHoverMatches();
         }
 
         if (message.action === "SETTINGS_UPDATED" && message.settings) {
+            applySettingsPatch(message.settings);
+            if (
+                Object.prototype.hasOwnProperty.call(message.settings, "showCounter") ||
+                Object.prototype.hasOwnProperty.call(message.settings, "enableDuplicateHighlight")
+            ) {
+                scheduleDuplicateRefresh(0, false);
+            }
             if (Object.prototype.hasOwnProperty.call(message.settings, "duplicateAutoHideDelay")) {
-                const nextDelay = message.settings.duplicateAutoHideDelay;
-                duplicateAutoHideDelay = Number.isFinite(nextDelay) ? nextDelay : 2000;
-                if (state.mode === "duplicates" && state.highlightedTabIds.size > 0) {
+                if (state.highlightedTabIds.size > 0 && state.mode !== "hover") {
                     scheduleDuplicateAutoHide(state.requestId);
                 } else {
                     cancelDuplicateAutoHide();
+                }
+                if (state.pageBadgeActive) {
+                    const activeTab = await getActiveTab();
+                    if (activeTab) {
+                        schedulePageBadgeClear(activeTab.id, state.requestId);
+                    }
                 }
             }
             return { ok: true };
         }
 
         if (message.action === "removeHighlight" || message.action === "HOVER_END") {
-            await endHoverMode(sourceTabId);
+            await endHoverMode();
             return { ok: true };
         }
 
@@ -352,4 +510,4 @@ browser.action.onClicked.addListener(() => {
     browser.runtime.openOptionsPage().catch(() => {});
 });
 
-showDuplicatesForActiveTab();
+showDuplicatesForActiveTab({ pulseBadge: false });

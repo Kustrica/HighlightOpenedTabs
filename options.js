@@ -21,45 +21,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     localizePage();
 
     const counterCheck = document.getElementById('show-counter');
-    const unhighlightCheck = document.getElementById('unhighlight-leave');
-    const delayInput = document.getElementById('hover-delay');
-    const delayValue = document.getElementById('delay-value');
+    const duplicateHighlightCheck = document.getElementById('enable-duplicate-highlight');
     const autoHideDelayInput = document.getElementById('auto-hide-delay');
     const autoHideDelayValue = document.getElementById('auto-hide-delay-value');
-    
-    // Load settings
+
     const data = await chrome.storage.local.get({
         showCounter: true,
-        hoverDelay: 50,
-        unhighlightOnWindowLeave: true,
-        duplicateAutoHideDelay: 2000
+        enableDuplicateHighlight: true,
+        duplicateAutoHideDelay: 200
     });
 
     counterCheck.checked = data.showCounter;
-    unhighlightCheck.checked = data.unhighlightOnWindowLeave;
-    delayInput.value = data.hoverDelay;
-    delayValue.textContent = data.hoverDelay + 'ms';
+    duplicateHighlightCheck.checked = data.enableDuplicateHighlight !== false;
     autoHideDelayInput.value = data.duplicateAutoHideDelay;
     autoHideDelayValue.textContent = data.duplicateAutoHideDelay + 'ms';
 
-    // Save functions
     const save = async (obj) => {
         await chrome.storage.local.set(obj);
         showStatus(chrome.i18n.getMessage("saved") || "Saved");
-        
-        // Notify background/content scripts
         chrome.runtime.sendMessage({ action: 'SETTINGS_UPDATED', settings: obj });
     };
 
     counterCheck.addEventListener('change', () => save({ showCounter: counterCheck.checked }));
-    unhighlightCheck.addEventListener('change', () => save({ unhighlightOnWindowLeave: unhighlightCheck.checked }));
-    
-    delayInput.addEventListener('input', () => {
-        delayValue.textContent = delayInput.value + 'ms';
-    });
-    
-    delayInput.addEventListener('change', () => {
-        save({ hoverDelay: parseInt(delayInput.value, 10) });
+    duplicateHighlightCheck.addEventListener('change', () => {
+        save({ enableDuplicateHighlight: duplicateHighlightCheck.checked });
     });
 
     autoHideDelayInput.addEventListener('input', () => {

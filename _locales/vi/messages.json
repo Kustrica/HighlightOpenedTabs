@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Làm nổi ngắn các thẻ trùng khi bạn mở thẻ đã mở ở nơi khác.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Cài đặt",
+    "message": "Tùy chọn",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Thời gian chờ trước khi làm nổi bật tab."
-  },
-  "autoHideDelayLabel": {
-    "message": "Độ trễ tự ẩn làm nổi bật tab trùng lặp (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Giữ hiển thị làm nổi bật tab trùng lặp trong bao lâu. Đặt 0 để tắt tự ẩn."
-  },
-  "saved": {
-    "message": "Đã lưu"
   },
   "settingsTitle": {
     "message": "Cài đặt"
   },
   "showCounterLabel": {
-    "message": "Hiển thị bộ đếm trùng lặp"
+    "message": "Hiện số thẻ trùng trên biểu tượng"
+  },
+  "showCounterDesc": {
+    "message": "Hiện ngắn sau khi mở thẻ (ít nhất 2 giây)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Làm nổi bản trùng khi mở thẻ"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Nếu trang đã mở ở thẻ khác, các bản sao sẽ sáng lên trong giây lát."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Làm nổi thẻ khớp khi di chuột lên liên kết"
   },
   "hoverDelayLabel": {
-    "message": "Độ trễ (ms):"
+    "message": "Độ trễ khi di chuột (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Chờ bao lâu trước khi làm nổi sau khi di chuột lên liên kết."
+  },
+  "autoHideDelayLabel": {
+    "message": "Thời gian làm nổi bản trùng (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Giữ làm nổi bản trùng bao lâu sau khi mở thẻ. Số trên biểu tượng hiện ít nhất 2 giây, hoặc lâu hơn nếu giá trị này lớn hơn. 0 giữ làm nổi."
+  },
+  "saved": {
+    "message": "Đã lưu"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Xóa làm nổi bật khi con trỏ rời trang sang thanh trên/cạnh của trình duyệt"
+    "message": "Xóa làm nổi khi con trỏ rời trang sang thanh trình duyệt"
   }
 }

@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Resalta brevemente las pestañas duplicadas al abrir una pestaña que ya está abierta.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Configuración",
+    "message": "Opciones",
     "description": "Title of the options page"
   },
+  "settingsTitle": {
+    "message": "Ajustes"
+  },
+  "showCounterLabel": {
+    "message": "Mostrar el contador de duplicados en el icono"
+  },
+  "showCounterDesc": {
+    "message": "Se muestra un momento al abrir una pestaña (al menos 2 segundos)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Resaltar duplicados al abrir una pestaña"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Si la página ya está abierta en otra pestaña, las copias se iluminan un momento."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Resaltar pestañas al pasar el cursor por un enlace"
+  },
+  "hoverDelayLabel": {
+    "message": "Retraso al pasar el cursor (ms)"
+  },
   "hoverDelayDesc": {
-    "message": "Tiempo de espera antes de resaltar pestañas."
+    "message": "Cuánto esperar antes de resaltar al pasar el cursor por un enlace."
   },
   "autoHideDelayLabel": {
-    "message": "Retardo de auto-ocultación del resaltado de duplicados (ms):"
+    "message": "Duración del resaltado de duplicados (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Cuánto tiempo mantener visible el resaltado de pestañas duplicadas. Usa 0 para desactivar el auto-ocultado."
+    "message": "Cuánto tiempo resaltar duplicados tras abrir una pestaña. El contador del icono dura al menos 2 segundos, o más si este valor es mayor. 0 deja el resaltado."
   },
   "saved": {
     "message": "Guardado"
   },
-  "settingsTitle": {
-    "message": "Configuración"
-  },
-  "showCounterLabel": {
-    "message": "Mostrar contador de duplicados"
-  },
-  "hoverDelayLabel": {
-    "message": "Retardo (ms):"
-  },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Quitar resaltado cuando el cursor sale de la página hacia los paneles superior/lateral del navegador"
+    "message": "Quitar el resaltado cuando el cursor sale de la página hacia los paneles del navegador"
   }
 }

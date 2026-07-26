@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.2",
+  "version": "1.6.1",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "author": "Kustrica (Telegram: @kustric)",
@@ -17,9 +17,6 @@
     "tabs",
     "storage"
   ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -27,14 +24,6 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start",
-      "all_frames": true
-    }
-  ],
   "browser_specific_settings": {
     "gecko": {
       "id": "highlightopenedtabs@kustrica.addon",

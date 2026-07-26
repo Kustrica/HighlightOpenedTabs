@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Başka yerde zaten açık olan bir sekmeyi açtığınızda yinelenen sekmeleri kısa süre vurgular.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Ayarlar",
+    "message": "Seçenekler",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Sekmeleri vurgulamadan önce beklenecek süre."
-  },
-  "autoHideDelayLabel": {
-    "message": "Yinelenen vurgusunu otomatik gizleme gecikmesi (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Yinelenen sekme vurgusunun ne kadar süre görüneceği. Otomatik gizlemeyi kapatmak için 0 ayarlayın."
-  },
-  "saved": {
-    "message": "Kaydedildi"
   },
   "settingsTitle": {
     "message": "Ayarlar"
   },
   "showCounterLabel": {
-    "message": "Yinelenen sayacı göster"
+    "message": "Simgede yinelenen sekme sayısını göster"
+  },
+  "showCounterDesc": {
+    "message": "Bir sekme açtıktan sonra kısa süre (en az 2 saniye) gösterilir."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Sekme açınca yinelenenleri vurgula"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Sayfa başka bir sekmede zaten açıksa, kopyalar kısa süre yanıp söner."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Bağlantının üzerine gelince eşleşen sekmeleri vurgula"
   },
   "hoverDelayLabel": {
-    "message": "Gecikme (ms):"
+    "message": "Üzerine gelme gecikmesi (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Bir bağlantının üzerine geldikten sonra vurgulamadan önce ne kadar bekleneceği."
+  },
+  "autoHideDelayLabel": {
+    "message": "Yinelenen vurgu süresi (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Sekme açtıktan sonra yinelenenlerin ne kadar vurgulanacağı. Simgedeki sayaç en az 2 saniye, bu değer daha büyükse o kadar kalır. 0 vurguyu bırakır."
+  },
+  "saved": {
+    "message": "Kaydedildi"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "İmleç sayfadan tarayıcının üst/yan panellerine çıktığında vurguyu kaldır"
+    "message": "İmleç sayfadan tarayıcı panellerine çıkınca vurguyu kaldır"
   }
 }

@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Hebt Duplikate kurz hervor, wenn du einen Tab öffnest, der schon woanders offen ist.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
     "message": "Einstellungen",
     "description": "Title of the options page"
   },
-  "hoverDelayDesc": {
-    "message": "Wartezeit vor dem Hervorheben von Tabs."
-  },
-  "autoHideDelayLabel": {
-    "message": "Verzögerung für automatisches Ausblenden der Duplikat-Markierung (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Wie lange die Duplikat-Tab-Markierung sichtbar bleibt. Auf 0 setzen, um Auto-Ausblenden zu deaktivieren."
-  },
-  "saved": {
-    "message": "Gespeichert"
-  },
   "settingsTitle": {
     "message": "Einstellungen"
   },
   "showCounterLabel": {
-    "message": "Duplikat-Zähler anzeigen"
+    "message": "Duplikatzähler auf dem Symbol anzeigen"
+  },
+  "showCounterDesc": {
+    "message": "Kurz nach dem Öffnen eines Tabs (mindestens 2 Sekunden)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Duplikate beim Öffnen eines Tabs hervorheben"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Wenn du zu einem Tab wechselst, der schon eine Kopie hat, leuchten die anderen Kopien kurz auf."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Passende Tabs beim Überfahren eines Links hervorheben"
   },
   "hoverDelayLabel": {
-    "message": "Verzögerung (ms):"
+    "message": "Hover-Verzögerung (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Wartezeit, bevor beim Überfahren eines Links hervorgehoben wird."
+  },
+  "autoHideDelayLabel": {
+    "message": "Dauer der Duplikat-Hervorhebung (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Wie lange Duplikate nach dem Öffnen eines Tabs hervorgehoben bleiben. Der Zähler auf dem Symbol bleibt mindestens 2 Sekunden, oder länger wenn dieser Wert höher ist. 0 lässt die Hervorhebung an."
+  },
+  "saved": {
+    "message": "Gespeichert"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Markierung entfernen, wenn der Cursor die Seite zu den oberen/seitlichen Browserleisten verlässt"
+    "message": "Hervorhebung entfernen, wenn der Cursor die Seite zu den Browserleisten verlässt"
   }
 }

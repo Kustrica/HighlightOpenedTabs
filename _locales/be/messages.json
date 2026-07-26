@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Коратка падсвятляе дублі, калі вы пераходзіце на ўкладку, якая ўжо адкрыта.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
     "message": "Налады",
     "description": "Title of the options page"
   },
-  "hoverDelayDesc": {
-    "message": "Час чакання перад падсвятленнем укладак."
-  },
-  "autoHideDelayLabel": {
-    "message": "Затрымка аўтахавання падсветкі дублікатаў (мс):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Колькі трымаць падсветку ўкладак-дублікатаў. Усталюйце 0, каб адключыць аўтахаванне."
-  },
-  "saved": {
-    "message": "Захавана"
-  },
   "settingsTitle": {
     "message": "Налады"
   },
   "showCounterLabel": {
-    "message": "Лічыльнік дублікатаў"
+    "message": "Лічыльнік дубляў на значку"
+  },
+  "showCounterDesc": {
+    "message": "Коратка пасля пераходу на ўкладку (мінімум 2 секунды)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Падсвятляць дублі пры пераходзе на ўкладку"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Калі гэтая старонка ўжо адкрыта ў іншай укладцы, копіі коратка падсвятляцца."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Падсвятляць укладкі пры навядзенні на спасылку"
   },
   "hoverDelayLabel": {
-    "message": "Затрымка (мс):"
+    "message": "Затрымка навядзення (мс)"
+  },
+  "hoverDelayDesc": {
+    "message": "Паўза перад падсвятленнем, калі наводзіце на спасылку."
+  },
+  "autoHideDelayLabel": {
+    "message": "Працягласць падсвятлення дубляў (мс)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Колькі трымаць падсвятленне дубляў пасля пераходу на ўкладку. Лічыльнік на значку гарыць мінімум 2 секунды, або даўжэй, калі тут больш. 0 — не прыбіраць падсвятленне."
+  },
+  "saved": {
+    "message": "Захавана"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Прыбіраць вылучэнне, калі курсор сыходзіць са старонкі да верхняй/баковай панэлі браўзера"
+    "message": "Прыбіраць падсвятленне, калі курсор сыходзіць са старонкі на панэлі браўзера"
   }
 }

@@ -142,38 +142,29 @@
     </div>
 
     <div class="section">
-        <!-- <h2 data-i18n="settingsTitle">Settings</h2> -->
-        
         <div class="control-group">
             <label class="checkbox-container">
                 <input type="checkbox" id="show-counter">
-                <span data-i18n="showCounterLabel">Show Duplicate Counter</span>
+                <span data-i18n="showCounterLabel">Show duplicate count on the icon</span>
             </label>
+            <p class="info-text" data-i18n="showCounterDesc">Shows briefly after you open a tab (at least 2 seconds).</p>
         </div>
 
         <div class="control-group">
             <label class="checkbox-container">
-                <input type="checkbox" id="unhighlight-leave">
-                <span data-i18n="unhighlightOnWindowLeaveLabel">Remove highlight when cursor leaves page to browser top/side panels</span>
+                <input type="checkbox" id="enable-duplicate-highlight">
+                <span data-i18n="enableDuplicateHighlightLabel">Highlight duplicates when you open a tab</span>
             </label>
+            <p class="info-text" data-i18n="enableDuplicateHighlightDesc">When you go to a tab that already has a copy open, the other copies light up briefly.</p>
         </div>
 
         <div class="control-group">
-            <label class="control-label" data-i18n="hoverDelayLabel">Hover Delay (ms):</label>
+            <label class="control-label" data-i18n="autoHideDelayLabel">Duplicate highlight duration (ms)</label>
             <div style="display: flex; align-items: center;">
-                <input type="range" id="hover-delay" min="0" max="1000" step="50">
-                <span id="delay-value" class="range-value">50ms</span>
+                <input type="range" id="auto-hide-delay" min="0" max="5000" step="50">
+                <span id="auto-hide-delay-value" class="range-value">200ms</span>
             </div>
-            <p class="info-text" data-i18n="hoverDelayDesc">Time to wait before highlighting tabs when hovering a link.</p>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" data-i18n="autoHideDelayLabel">Auto-hide duplicate highlight delay (ms):</label>
-            <div style="display: flex; align-items: center;">
-                <input type="range" id="auto-hide-delay" min="0" max="15000" step="500">
-                <span id="auto-hide-delay-value" class="range-value">2000ms</span>
-            </div>
-            <p class="info-text" data-i18n="autoHideDelayDesc">How long to keep duplicate-tab highlight visible. Set 0 to disable auto-hide.</p>
+            <p class="info-text" data-i18n="autoHideDelayDesc">How long to highlight duplicates after opening a tab. The icon counter stays at least 2 seconds, or as long as this value if it is higher. 0 keeps the highlight on.</p>
         </div>
     </div>
 

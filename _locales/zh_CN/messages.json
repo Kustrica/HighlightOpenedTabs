@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "打开已在其他标签页打开的页面时，短暂高亮重复标签页。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "设置",
+    "message": "选项",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "悬停链接时突出显示选项卡之前的等待时间。"
-  },
-  "autoHideDelayLabel": {
-    "message": "重复标签高亮自动隐藏延迟（毫秒）："
-  },
-  "autoHideDelayDesc": {
-    "message": "重复标签高亮保留显示的时长。设置为 0 可禁用自动隐藏。"
-  },
-  "saved": {
-    "message": "已保存"
   },
   "settingsTitle": {
     "message": "设置"
   },
   "showCounterLabel": {
-    "message": "显示重复计数"
+    "message": "在图标上显示重复标签计数"
+  },
+  "showCounterDesc": {
+    "message": "打开标签页后短暂显示（至少 2 秒）。"
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "打开标签页时高亮重复项"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "如果该页面已在其他标签页打开，其他副本会短暂亮起。"
+  },
+  "enableHoverHighlightLabel": {
+    "message": "悬停链接时高亮对应标签页"
   },
   "hoverDelayLabel": {
-    "message": "悬停延迟 (ms)："
+    "message": "悬停延迟（毫秒）"
+  },
+  "hoverDelayDesc": {
+    "message": "鼠标悬停在链接上后，等待多久再高亮。"
+  },
+  "autoHideDelayLabel": {
+    "message": "重复标签高亮时长（毫秒）"
+  },
+  "autoHideDelayDesc": {
+    "message": "打开标签页后重复项高亮多久。图标计数至少显示 2 秒；若此处更大则按该值。0 表示保持高亮。"
+  },
+  "saved": {
+    "message": "已保存"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "当光标从页面移向浏览器顶部/侧边面板时移除高亮"
+    "message": "光标离开页面移到浏览器面板时清除高亮"
   }
 }

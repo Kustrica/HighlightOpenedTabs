@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Surligne brièvement les onglets en double lorsque vous ouvrez un onglet déjà ouvert ailleurs.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Paramètres",
+    "message": "Options",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Temps d'attente avant la mise en évidence."
-  },
-  "autoHideDelayLabel": {
-    "message": "Délai de masquage auto de la mise en évidence des doublons (ms) :"
-  },
-  "autoHideDelayDesc": {
-    "message": "Durée d'affichage de la mise en évidence des onglets en double. Mettez 0 pour désactiver le masquage automatique."
-  },
-  "saved": {
-    "message": "Enregistré"
   },
   "settingsTitle": {
     "message": "Paramètres"
   },
   "showCounterLabel": {
-    "message": "Afficher le compteur de doublons"
+    "message": "Afficher le compteur de doublons sur l’icône"
+  },
+  "showCounterDesc": {
+    "message": "Affiché brièvement après l’ouverture d’un onglet (au moins 2 secondes)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Surliner les doublons à l’ouverture d’un onglet"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Si la page est déjà ouverte ailleurs, les copies s’allument un instant."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Surliner les onglets au survol d’un lien"
   },
   "hoverDelayLabel": {
-    "message": "Délai de survol (ms) :"
+    "message": "Délai de survol (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Temps d’attente avant le surlignage quand vous survolez un lien."
+  },
+  "autoHideDelayLabel": {
+    "message": "Durée du surlignage des doublons (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Durée du surlignage des doublons après l’ouverture d’un onglet. Le compteur sur l’icône reste au moins 2 secondes, ou plus si cette valeur est plus élevée. 0 laisse le surlignage."
+  },
+  "saved": {
+    "message": "Enregistré"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Retirer la mise en évidence quand le curseur quitte la page vers les panneaux haut/latéraux du navigateur"
+    "message": "Retirer le surlignage quand le curseur quitte la page vers les barres du navigateur"
   }
 }

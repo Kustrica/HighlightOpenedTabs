@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Briefly highlights duplicate tabs when you open a tab that is already open elsewhere.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -15,24 +15,36 @@
     "message": "Settings"
   },
   "showCounterLabel": {
-    "message": "Show Duplicate Counter"
+    "message": "Show duplicate count on the icon"
+  },
+  "showCounterDesc": {
+    "message": "Shows briefly after you open a tab (at least 2 seconds)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Highlight duplicates when you open a tab"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "When you go to a tab that already has a copy open, the other copies light up briefly."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Highlight matching tabs when you hover a link"
   },
   "hoverDelayLabel": {
-    "message": "Hover Delay (ms):"
+    "message": "Hover delay (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Time to wait before highlighting tabs when hovering a link."
+    "message": "How long to wait before highlighting after you hover a link."
   },
   "autoHideDelayLabel": {
-    "message": "Auto-hide duplicate highlight delay (ms):"
+    "message": "Duplicate highlight duration (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "How long to keep duplicate-tab highlight visible. Set 0 to disable auto-hide."
+    "message": "How long to highlight duplicates after opening a tab. The icon counter stays at least 2 seconds, or as long as this value if it is higher. 0 keeps the highlight on."
   },
   "saved": {
     "message": "Saved"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Remove highlight when cursor leaves page to browser top/side panels"
+    "message": "Clear highlight when the cursor leaves the page for the browser panels"
   }
 }

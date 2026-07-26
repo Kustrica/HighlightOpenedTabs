@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Destaca brevemente abas duplicadas ao abrir uma aba que já está aberta em outro lugar.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Configurações",
+    "message": "Opções",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Tempo de espera antes de destacar abas."
-  },
-  "autoHideDelayLabel": {
-    "message": "Atraso de auto-ocultação do destaque de duplicatas (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Por quanto tempo manter o destaque de abas duplicadas visível. Defina 0 para desativar a auto-ocultação."
-  },
-  "saved": {
-    "message": "Salvo"
   },
   "settingsTitle": {
     "message": "Configurações"
   },
   "showCounterLabel": {
-    "message": "Mostrar contador de duplicatas"
+    "message": "Mostrar contagem de duplicatas no ícone"
+  },
+  "showCounterDesc": {
+    "message": "Aparece por um instante ao abrir uma aba (pelo menos 2 segundos)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Destacar duplicatas ao abrir uma aba"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Se a página já estiver aberta em outra aba, as cópias acendem por um instante."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Destacar abas ao passar o mouse sobre um link"
   },
   "hoverDelayLabel": {
-    "message": "Atraso (ms):"
+    "message": "Atraso ao passar o mouse (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Quanto esperar antes de destacar ao passar o mouse sobre um link."
+  },
+  "autoHideDelayLabel": {
+    "message": "Duração do destaque de duplicatas (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Por quanto tempo destacar duplicatas após abrir uma aba. O contador no ícone fica pelo menos 2 segundos, ou mais se este valor for maior. 0 mantém o destaque."
+  },
+  "saved": {
+    "message": "Salvo"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Remover destaque quando o cursor sair da página para os painéis superior/lateral do navegador"
+    "message": "Remover o destaque quando o cursor sai da página para os painéis do navegador"
   }
 }

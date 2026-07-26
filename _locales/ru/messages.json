@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Ненадолго подсвечивает дубли, когда вы переходите на вкладку, которая уже открыта.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
     "message": "Настройки",
     "description": "Title of the options page"
   },
-  "hoverDelayDesc": {
-    "message": "Время ожидания перед подсветкой вкладок при наведении."
-  },
-  "autoHideDelayLabel": {
-    "message": "Задержка автоскрытия подсветки дублей (мс):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Сколько держать подсветку вкладок-дублей. Установите 0, чтобы отключить автоскрытие."
-  },
-  "saved": {
-    "message": "Сохранено"
-  },
   "settingsTitle": {
     "message": "Настройки"
   },
   "showCounterLabel": {
-    "message": "Счетчик дублей"
+    "message": "Счётчик дублей на иконке"
+  },
+  "showCounterDesc": {
+    "message": "Кратко после перехода на вкладку (минимум 2 секунды)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Подсвечивать дубли при переходе на вкладку"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Если эта страница уже открыта в другой вкладке, копии ненадолго подсветятся."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Подсвечивать вкладки при наведении на ссылку"
   },
   "hoverDelayLabel": {
-    "message": "Задержка наведения (мс):"
+    "message": "Задержка наведения (мс)"
+  },
+  "hoverDelayDesc": {
+    "message": "Пауза перед подсветкой, когда наводите на ссылку."
+  },
+  "autoHideDelayLabel": {
+    "message": "Длительность подсветки дублей (мс)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Сколько держать подсветку дублей после перехода на вкладку. Счётчик на иконке горит минимум 2 секунды, или дольше, если здесь стоит больше. 0 — не убирать подсветку."
+  },
+  "saved": {
+    "message": "Сохранено"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Убирать выделение при уходе курсора со страницы к верхней/боковой панели браузера"
+    "message": "Убирать подсветку, когда курсор уходит со страницы на панели браузера"
   }
 }

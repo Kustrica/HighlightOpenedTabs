@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Menyoroti sebentar tab duplikat saat Anda membuka tab yang sudah terbuka di tempat lain.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Pengaturan",
+    "message": "Opsi",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Waktu tunggu sebelum menyorot tab."
-  },
-  "autoHideDelayLabel": {
-    "message": "Jeda auto-hide sorotan duplikat (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Berapa lama sorotan tab duplikat tetap terlihat. Atur ke 0 untuk menonaktifkan auto-hide."
-  },
-  "saved": {
-    "message": "Disimpan"
   },
   "settingsTitle": {
     "message": "Pengaturan"
   },
   "showCounterLabel": {
-    "message": "Tampilkan Penghitung Duplikat"
+    "message": "Tampilkan jumlah duplikat pada ikon"
+  },
+  "showCounterDesc": {
+    "message": "Muncul sebentar setelah membuka tab (minimal 2 detik)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Sorot duplikat saat membuka tab"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Jika halaman sudah terbuka di tab lain, salinannya menyala sebentar."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Sorot tab yang cocok saat mengarahkan kursor ke tautan"
   },
   "hoverDelayLabel": {
-    "message": "Tunda (ms):"
+    "message": "Tunda hover (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Berapa lama menunggu sebelum menyorot setelah mengarahkan kursor ke tautan."
+  },
+  "autoHideDelayLabel": {
+    "message": "Durasi sorotan duplikat (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Berapa lama menyorot duplikat setelah membuka tab. Penghitung di ikon bertahan minimal 2 detik, atau lebih lama jika nilai ini lebih besar. 0 menjaga sorotan."
+  },
+  "saved": {
+    "message": "Disimpan"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Hapus sorotan saat kursor keluar dari halaman ke panel atas/samping browser"
+    "message": "Hapus sorotan saat kursor meninggalkan halaman ke panel peramban"
   }
 }

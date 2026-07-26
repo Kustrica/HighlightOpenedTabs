@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Evidenzia brevemente le schede duplicate quando apri una scheda già aperta altrove.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "Impostazioni",
+    "message": "Opzioni",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "Tempo di attesa prima di evidenziare le schede."
-  },
-  "autoHideDelayLabel": {
-    "message": "Ritardo auto-nascondi evidenziazione duplicati (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Per quanto tempo mantenere visibile l'evidenziazione delle schede duplicate. Imposta 0 per disattivare l'auto-hide."
-  },
-  "saved": {
-    "message": "Salvato"
   },
   "settingsTitle": {
     "message": "Impostazioni"
   },
   "showCounterLabel": {
-    "message": "Mostra contatore duplicati"
+    "message": "Mostra il conteggio dei duplicati sull’icona"
+  },
+  "showCounterDesc": {
+    "message": "Compare per un attimo dopo aver aperto una scheda (almeno 2 secondi)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Evidenzia i duplicati quando apri una scheda"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Se la pagina è già aperta in un’altra scheda, le copie si illuminano per un attimo."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Evidenzia le schede quando passi il mouse su un link"
   },
   "hoverDelayLabel": {
-    "message": "Ritardo (ms):"
+    "message": "Ritardo al passaggio del mouse (ms)"
+  },
+  "hoverDelayDesc": {
+    "message": "Quanto aspettare prima di evidenziare dopo aver passato il mouse su un link."
+  },
+  "autoHideDelayLabel": {
+    "message": "Durata evidenziazione duplicati (ms)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Per quanto tempo evidenziare i duplicati dopo aver aperto una scheda. Il contatore sull’icona resta almeno 2 secondi, o di più se questo valore è maggiore. 0 lascia l’evidenziazione."
+  },
+  "saved": {
+    "message": "Salvato"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Rimuovi evidenziazione quando il cursore lascia la pagina verso i pannelli superiore/laterale del browser"
+    "message": "Togli l’evidenziazione quando il cursore lascia la pagina verso i pannelli del browser"
   }
 }

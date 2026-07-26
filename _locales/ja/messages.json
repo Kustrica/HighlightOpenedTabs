@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "すでに別のタブで開いているページを開いたとき、重複タブを短く強調表示します。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
-    "message": "設定",
+    "message": "オプション",
     "description": "Title of the options page"
-  },
-  "hoverDelayDesc": {
-    "message": "タブを強調表示するまでの待機時間。"
-  },
-  "autoHideDelayLabel": {
-    "message": "重複ハイライト自動非表示の遅延 (ms):"
-  },
-  "autoHideDelayDesc": {
-    "message": "重複タブのハイライトを表示し続ける時間。0で自動非表示を無効化します。"
-  },
-  "saved": {
-    "message": "保存しました"
   },
   "settingsTitle": {
     "message": "設定"
   },
   "showCounterLabel": {
-    "message": "重複カウンターを表示"
+    "message": "アイコンに重複タブ数を表示"
+  },
+  "showCounterDesc": {
+    "message": "タブを開いた直後に短く表示（最低 2 秒）。"
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "タブを開いたときに重複を強調表示"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "すでに同じページが別のタブにある場合、そのコピーが一瞬光ります。"
+  },
+  "enableHoverHighlightLabel": {
+    "message": "リンクにマウスを乗せたときに一致するタブを強調"
   },
   "hoverDelayLabel": {
-    "message": "ホバー遅延 (ms):"
+    "message": "ホバー遅延（ミリ秒）"
+  },
+  "hoverDelayDesc": {
+    "message": "リンクにマウスを乗せてから強調するまでの待ち時間。"
+  },
+  "autoHideDelayLabel": {
+    "message": "重複ハイライトの表示時間（ミリ秒）"
+  },
+  "autoHideDelayDesc": {
+    "message": "タブを開いたあと重複を強調する時間。アイコンの数字は最低 2 秒、この値がそれより大きければその時間。0 で強調を残す。"
+  },
+  "saved": {
+    "message": "保存しました"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "カーソルがページからブラウザーの上部/側面パネルへ移動したらハイライトを解除"
+    "message": "カーソルがページからブラウザーのパネルへ移ったら強調を消す"
   }
 }

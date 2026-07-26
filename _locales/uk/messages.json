@@ -4,35 +4,47 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Highlights opened tabs when hovering over a link and highlights duplicate tabs when opening a tab.",
+    "message": "Коротко підсвічує дублікати, коли ви переходите на вкладку, яка вже відкрита.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
     "message": "Налаштування",
     "description": "Title of the options page"
   },
-  "hoverDelayDesc": {
-    "message": "Час очікування перед підсвічуванням вкладок."
-  },
-  "autoHideDelayLabel": {
-    "message": "Затримка автоприховування підсвітки дублікатів (мс):"
-  },
-  "autoHideDelayDesc": {
-    "message": "Скільки часу тримати підсвітку вкладок-дублікатів. Встановіть 0, щоб вимкнути автоприховування."
-  },
-  "saved": {
-    "message": "Збережено"
-  },
   "settingsTitle": {
     "message": "Налаштування"
   },
   "showCounterLabel": {
-    "message": "Лічильник дублікатів"
+    "message": "Лічильник дублікатів на значку"
+  },
+  "showCounterDesc": {
+    "message": "Коротко після переходу на вкладку (мінімум 2 секунди)."
+  },
+  "enableDuplicateHighlightLabel": {
+    "message": "Підсвічувати дублікати при переході на вкладку"
+  },
+  "enableDuplicateHighlightDesc": {
+    "message": "Якщо ця сторінка вже відкрита в іншій вкладці, копії ненадовго підсвітяться."
+  },
+  "enableHoverHighlightLabel": {
+    "message": "Підсвічувати вкладки при наведенні на посилання"
   },
   "hoverDelayLabel": {
-    "message": "Затримка (мс):"
+    "message": "Затримка наведення (мс)"
+  },
+  "hoverDelayDesc": {
+    "message": "Пауза перед підсвіткою, коли наводите на посилання."
+  },
+  "autoHideDelayLabel": {
+    "message": "Тривалість підсвітки дублікатів (мс)"
+  },
+  "autoHideDelayDesc": {
+    "message": "Скільки тримати підсвітку дублікатів після переходу на вкладку. Лічильник на значку горить мінімум 2 секунди, або довше, якщо тут більше. 0 — не прибирати підсвітку."
+  },
+  "saved": {
+    "message": "Збережено"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Прибирати підсвітку, коли курсор залишає сторінку до верхньої/бокової панелі браузера"
+    "message": "Прибирати підсвітку, коли курсор іде зі сторінки на панелі браузера"
   }
 }

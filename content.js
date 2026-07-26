@@ -5,30 +5,67 @@ if (typeof browser === "undefined") {
 let hoverTimeout = null;
 let pendingLinkUrl = null;
 let activeHoverUrl = null;
-let hoverDelay = 50;
+let hoverDelay = 10;
 let unhighlightOnWindowLeave = true;
+let enableHoverHighlight = true;
+let showCounter = true;
 let clearLock = false;
 
-browser.storage.local.get({ hoverDelay: 50, unhighlightOnWindowLeave: true }).then(data => {
-    hoverDelay = data.hoverDelay;
+browser.storage.local.get({
+    hoverDelay: 10,
+    unhighlightOnWindowLeave: true,
+    enableHoverHighlight: true,
+    showCounter: true
+}).then(data => {
+    hoverDelay = Math.max(1, Number.isFinite(data.hoverDelay) ? data.hoverDelay : 10);
     unhighlightOnWindowLeave = data.unhighlightOnWindowLeave;
+    enableHoverHighlight = data.enableHoverHighlight !== false;
+    showCounter = data.showCounter !== false;
 });
 
+function hoverTrackingEnabled() {
+    return enableHoverHighlight || showCounter;
+}
+
 browser.storage.onChanged.addListener((changes, area) => {
-    if (area === "local") {
-        if (changes.hoverDelay) {
-            hoverDelay = changes.hoverDelay.newValue;
+    if (area !== "local") return;
+    if (changes.hoverDelay) {
+        hoverDelay = Math.max(1, Number(changes.hoverDelay.newValue) || 10);
+    }
+    if (changes.unhighlightOnWindowLeave) {
+        unhighlightOnWindowLeave = changes.unhighlightOnWindowLeave.newValue;
+    }
+    if (changes.enableHoverHighlight) {
+        enableHoverHighlight = changes.enableHoverHighlight.newValue !== false;
+        if (!hoverTrackingEnabled()) {
+            endHoverIfNeeded();
         }
-        if (changes.unhighlightOnWindowLeave) {
-            unhighlightOnWindowLeave = changes.unhighlightOnWindowLeave.newValue;
+    }
+    if (changes.showCounter) {
+        showCounter = changes.showCounter.newValue !== false;
+        if (!hoverTrackingEnabled()) {
+            endHoverIfNeeded();
         }
     }
 });
 
 browser.runtime.onMessage.addListener((message) => {
     if (message.action === "SETTINGS_UPDATED") {
-        if (message.settings.hoverDelay !== undefined) hoverDelay = message.settings.hoverDelay;
-        if (message.settings.unhighlightOnWindowLeave !== undefined) unhighlightOnWindowLeave = message.settings.unhighlightOnWindowLeave;
+        if (message.settings.hoverDelay !== undefined) {
+            hoverDelay = Math.max(1, Number(message.settings.hoverDelay) || 10);
+        }
+        if (message.settings.unhighlightOnWindowLeave !== undefined) {
+            unhighlightOnWindowLeave = message.settings.unhighlightOnWindowLeave;
+        }
+        if (message.settings.enableHoverHighlight !== undefined) {
+            enableHoverHighlight = message.settings.enableHoverHighlight !== false;
+        }
+        if (message.settings.showCounter !== undefined) {
+            showCounter = message.settings.showCounter !== false;
+        }
+        if (!hoverTrackingEnabled()) {
+            endHoverIfNeeded();
+        }
     }
 });
 
@@ -68,6 +105,7 @@ function getHttpLinkUrl(target) {
 }
 
 function scheduleHover(url) {
+    if (!hoverTrackingEnabled()) return;
     if (!url) return;
     if (url === activeHoverUrl) return;
     if (url === pendingLinkUrl && hoverTimeout) return;
@@ -76,6 +114,7 @@ function scheduleHover(url) {
     pendingLinkUrl = url;
     hoverTimeout = setTimeout(() => {
         hoverTimeout = null;
+        if (!hoverTrackingEnabled()) return;
         if (pendingLinkUrl !== url) return;
         activeHoverUrl = url;
         pendingLinkUrl = null;
@@ -93,6 +132,10 @@ function endHoverIfNeeded() {
 }
 
 document.addEventListener("mousemove", (e) => {
+    if (!hoverTrackingEnabled()) {
+        endHoverIfNeeded();
+        return;
+    }
     const url = getHttpLinkUrl(e.target);
     if (!url) {
         endHoverIfNeeded();
