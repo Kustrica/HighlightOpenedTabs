@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Briefly highlights duplicate tabs when you open a tab that is already open elsewhere.",
+    "message": "Highlights already open tabs when you hover a link, and briefly highlights duplicates when you open a tab.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Show duplicate count on the icon"
   },
   "showCounterDesc": {
-    "message": "Shows briefly after you open a tab (at least 2 seconds)."
+    "message": "Shows briefly after you open a tab (at least 2 seconds), and while you hover a link."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Highlight duplicates when you open a tab"

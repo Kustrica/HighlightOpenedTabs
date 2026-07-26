@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Resalta brevemente las pestañas duplicadas al abrir una pestaña que ya está abierta.",
+    "message": "Resalta pestañas ya abiertas al pasar el cursor por un enlace y muestra brevemente los duplicados al abrir una pestaña.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Mostrar el contador de duplicados en el icono"
   },
   "showCounterDesc": {
-    "message": "Se muestra un momento al abrir una pestaña (al menos 2 segundos)."
+    "message": "Se muestra un momento al abrir una pestaña (al menos 2 segundos) y mientras pasas el cursor por un enlace."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Resaltar duplicados al abrir una pestaña"

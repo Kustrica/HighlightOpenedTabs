@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "すでに別のタブで開いているページを開いたとき、重複タブを短く強調表示します。",
+    "message": "リンクにカーソルを合わせると既に開いているタブを強調し、タブを開いたときに重複を短く示します。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "アイコンに重複タブ数を表示"
   },
   "showCounterDesc": {
-    "message": "タブを開いた直後に短く表示（最低 2 秒）。"
+    "message": "タブを開いた直後に短く表示（最低 2 秒）。リンクにマウスを乗せている間も表示します。"
   },
   "enableDuplicateHighlightLabel": {
     "message": "タブを開いたときに重複を強調表示"

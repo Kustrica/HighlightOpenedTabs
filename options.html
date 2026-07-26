@@ -147,7 +147,7 @@
                 <input type="checkbox" id="show-counter">
                 <span data-i18n="showCounterLabel">Show duplicate count on the icon</span>
             </label>
-            <p class="info-text" data-i18n="showCounterDesc">Shows briefly after you open a tab (at least 2 seconds).</p>
+            <p class="info-text" data-i18n="showCounterDesc">Shows briefly after you open a tab (at least 2 seconds), and while you hover a link.</p>
         </div>
 
         <div class="control-group">
@@ -156,6 +156,29 @@
                 <span data-i18n="enableDuplicateHighlightLabel">Highlight duplicates when you open a tab</span>
             </label>
             <p class="info-text" data-i18n="enableDuplicateHighlightDesc">When you go to a tab that already has a copy open, the other copies light up briefly.</p>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox-container">
+                <input type="checkbox" id="enable-hover-highlight">
+                <span data-i18n="enableHoverHighlightLabel">Highlight matching tabs when you hover a link</span>
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox-container">
+                <input type="checkbox" id="unhighlight-leave">
+                <span data-i18n="unhighlightOnWindowLeaveLabel">Clear highlight when the cursor leaves the page for the browser panels</span>
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" data-i18n="hoverDelayLabel">Hover delay (ms)</label>
+            <div style="display: flex; align-items: center;">
+                <input type="range" id="hover-delay" min="1" max="1000" step="1">
+                <span id="delay-value" class="range-value">10ms</span>
+            </div>
+            <p class="info-text" data-i18n="hoverDelayDesc">How long to wait before highlighting after you hover a link.</p>
         </div>
 
         <div class="control-group">

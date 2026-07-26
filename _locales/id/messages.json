@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Menyoroti sebentar tab duplikat saat Anda membuka tab yang sudah terbuka di tempat lain.",
+    "message": "Menyoroti tab yang sudah terbuka saat mengarahkan kursor ke tautan, dan menampilkan duplikat sebentar saat membuka tab.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Tampilkan jumlah duplikat pada ikon"
   },
   "showCounterDesc": {
-    "message": "Muncul sebentar setelah membuka tab (minimal 2 detik)."
+    "message": "Muncul sebentar setelah membuka tab (minimal 2 detik), dan saat mengarahkan kursor ke tautan."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Sorot duplikat saat membuka tab"

@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Làm nổi ngắn các thẻ trùng khi bạn mở thẻ đã mở ở nơi khác.",
+    "message": "Làm nổi các thẻ đã mở khi di chuột lên liên kết và hiện bản trùng trong giây lát khi mở thẻ.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Hiện số thẻ trùng trên biểu tượng"
   },
   "showCounterDesc": {
-    "message": "Hiện ngắn sau khi mở thẻ (ít nhất 2 giây)."
+    "message": "Hiện ngắn sau khi mở thẻ (ít nhất 2 giây), và khi di chuột lên liên kết."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Làm nổi bản trùng khi mở thẻ"

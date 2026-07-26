@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Başka yerde zaten açık olan bir sekmeyi açtığınızda yinelenen sekmeleri kısa süre vurgular.",
+    "message": "Bir bağlantının üzerine gelince zaten açık sekmeleri vurgular ve bir sekme açınca kopyaları kısa süre gösterir.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Simgede yinelenen sekme sayısını göster"
   },
   "showCounterDesc": {
-    "message": "Bir sekme açtıktan sonra kısa süre (en az 2 saniye) gösterilir."
+    "message": "Bir sekme açtıktan sonra kısa süre (en az 2 saniye) ve bir bağlantının üzerindeyken gösterilir."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Sekme açınca yinelenenleri vurgula"

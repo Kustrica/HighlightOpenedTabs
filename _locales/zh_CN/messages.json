@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "打开已在其他标签页打开的页面时，短暂高亮重复标签页。",
+    "message": "将鼠标悬停在链接上时高亮已打开的标签页，打开标签页时短暂高亮重复项。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "在图标上显示重复标签计数"
   },
   "showCounterDesc": {
-    "message": "打开标签页后短暂显示（至少 2 秒）。"
+    "message": "打开标签页后短暂显示（至少 2 秒），以及将鼠标悬停在链接上时显示。"
   },
   "enableDuplicateHighlightLabel": {
     "message": "打开标签页时高亮重复项"

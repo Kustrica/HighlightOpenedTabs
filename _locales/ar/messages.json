@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "يبرز علامات التبويب المكررة لفترة قصيرة عند فتح علامة تبويب مفتوحة بالفعل.",
+    "message": "يُبرز علامات التبويب المفتوحة عند تمرير المؤشر فوق رابط، ويعرض المكررات لفترة قصيرة عند فتح علامة تبويب.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "إظهار عدد المكررات على الأيقونة"
   },
   "showCounterDesc": {
-    "message": "يظهر لفترة قصيرة بعد فتح علامة تبويب (ثانيتان على الأقل)."
+    "message": "يظهر لفترة قصيرة بعد فتح علامة تبويب (ثانيتان على الأقل) وأثناء تمرير المؤشر فوق رابط."
   },
   "enableDuplicateHighlightLabel": {
     "message": "إبراز المكررات عند فتح علامة تبويب"

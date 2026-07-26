@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "이미 다른 탭에 열린 페이지를 열면 중복 탭을 잠시 강조합니다.",
+    "message": "링크에 마우스를 올리면 이미 열린 탭을 강조하고, 탭을 열 때 중복 탭을 잠시 표시합니다.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "아이콘에 중복 탭 수 표시"
   },
   "showCounterDesc": {
-    "message": "탭을 연 직후 잠시 표시(최소 2초)."
+    "message": "탭을 연 직후 잠시 표시(최소 2초). 링크에 마우스를 올린 동안에도 표시합니다."
   },
   "enableDuplicateHighlightLabel": {
     "message": "탭을 열 때 중복 탭 강조"

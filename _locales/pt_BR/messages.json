@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Destaca brevemente abas duplicadas ao abrir uma aba que já está aberta em outro lugar.",
+    "message": "Destaca abas já abertas ao passar o mouse sobre um link e mostra brevemente as duplicatas ao abrir uma aba.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Mostrar contagem de duplicatas no ícone"
   },
   "showCounterDesc": {
-    "message": "Aparece por um instante ao abrir uma aba (pelo menos 2 segundos)."
+    "message": "Aparece por um instante ao abrir uma aba (pelo menos 2 segundos) e enquanto você passa o mouse sobre um link."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Destacar duplicatas ao abrir uma aba"

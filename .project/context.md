@@ -1,26 +1,27 @@
 # Project Overview
 
-Firefox WebExtension that briefly highlights duplicate tabs when you activate a tab (or paste a URL) that is already open elsewhere, and shows a short-lived badge count.
+Firefox WebExtension: highlights already-open tabs when hovering links on a page, and briefly highlights duplicates when activating a tab / pasting a URL. Short-lived badge shows counts.
 
 # Stack & Architecture
 
-- Manifest V3, Firefox (`browser_specific_settings.gecko`, min 142)
-- `background.js` — URL normalization, duplicate detection, badge, tab multi-select flash
-- `options.html` / `options.js` — settings UI + i18n
-- Permissions: `tabs`, `storage` only — **no** `host_permissions`, **no** `content_scripts` (avoids optional “all websites” in Add-ons Manager)
-- `content.js` kept in repo but unused (hover would require that permission again)
-- Storage keys: `showCounter`, `enableDuplicateHighlight`, `duplicateAutoHideDelay`
+- Manifest V3, Firefox (min 142)
+- `background.js` — URL normalization, duplicates, badge, multi-select flash, hover matching
+- `content.js` — link hover on http(s) pages
+- `options.html` / `options.js` — settings + i18n
+- Permissions: `tabs`, `storage`
+- **Required** `host_permissions`: `http://*/*`, `https://*/*` (needed for hover; declare as host_permissions so install grants them — not optional_host_permissions)
+- Storage: `showCounter`, `enableDuplicateHighlight`, `enableHoverHighlight`, `hoverDelay`, `unhighlightOnWindowLeave`, `duplicateAutoHideDelay`
 
 # Constraints & Rules
 
-- Firefox has no WebExtension API to color individual tabs; `highlighted` is multi-select only.
-- Firefox does not expose tab-strip hover to extensions.
-- Static `content_scripts` on http(s)/* always creates optional “Access your data for all websites” in Firefox MV3 — do not re-add unless product accepts that UI.
-- Flash duration default is 200ms; page badge pulses for `max(2000ms, duplicateAutoHideDelay)`.
-- Quiet `onUpdated` (loading/complete) must not bump `requestId` (would cancel flash timers).
-- Duplicate matching uses `pendingUrl || url` and includes `about:` (except blank/newtab/home/…).
+- Firefox has no cosmetic per-tab color API; use multi-select `highlighted` briefly.
+- No tab-strip hover API.
+- Do not put site access only in `optional_host_permissions` — that makes the main feature look optional/off.
+- Quiet `onUpdated` must not bump `requestId` (kills flash timers).
+- Badge page pulse: `max(2000ms, duplicateAutoHideDelay)`; idle badge empty; hover badge = open copies of hovered URL.
 
 # Glossary
 
-- **Дубль / duplicate** — другая вкладка с тем же нормализованным URL. Счётчик — импульс после перехода (мин. 2 с); в покое пусто.
-- **Вспышка / flash** — краткое multi-select выделение дублей при активации вкладки / вставке URL.
+- **Дубль** — другая вкладка с тем же нормализованным URL.
+- **Вспышка** — краткое выделение дублей при переходе / вставке URL.
+- **Hover** — подсветка при наведении на ссылку на странице.

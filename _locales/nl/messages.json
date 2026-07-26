@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Markeert kort duplicaten wanneer je een tabblad opent dat al ergens anders open is.",
+    "message": "Markeert al geopende tabbladen als je over een link beweegt en toont kort duplicaten als je een tabblad opent.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Duplicaatteller op het pictogram tonen"
   },
   "showCounterDesc": {
-    "message": "Kort na het openen van een tabblad (minstens 2 seconden)."
+    "message": "Kort na het openen van een tabblad (minstens 2 seconden) en terwijl je over een link beweegt."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Duplicaten markeren bij het openen van een tabblad"

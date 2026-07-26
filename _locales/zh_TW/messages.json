@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "開啟已在其他分頁開啟的頁面時，短暫醒目提示重複分頁。",
+    "message": "將滑鼠懸停在連結上時醒目提示已開啟的分頁，開啟分頁時短暫醒目提示重複項。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "在圖示上顯示重複分頁計數"
   },
   "showCounterDesc": {
-    "message": "開啟分頁後短暫顯示（至少 2 秒）。"
+    "message": "開啟分頁後短暫顯示（至少 2 秒），以及將滑鼠懸停在連結上時顯示。"
   },
   "enableDuplicateHighlightLabel": {
     "message": "開啟分頁時醒目提示重複項"

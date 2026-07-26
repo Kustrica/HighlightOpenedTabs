@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Krótko podświetla zduplikowane karty, gdy otwierasz kartę już otwartą gdzie indziej.",
+    "message": "Podświetla już otwarte karty po najechaniu na link i krótko pokazuje duplikaty po otwarciu karty.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Pokaż licznik duplikatów na ikonie"
   },
   "showCounterDesc": {
-    "message": "Krótko po otwarciu karty (co najmniej 2 sekundy)."
+    "message": "Krótko po otwarciu karty (co najmniej 2 sekundy) oraz gdy najedziesz na link."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Podświetlaj duplikaty przy otwarciu karty"

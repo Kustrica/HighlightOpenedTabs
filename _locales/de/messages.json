@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Hebt Duplikate kurz hervor, wenn du einen Tab öffnest, der schon woanders offen ist.",
+    "message": "Hebt bereits geöffnete Tabs hervor, wenn du über einen Link fährst, und markiert Duplikate kurz, wenn du einen Tab öffnest.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Duplikatzähler auf dem Symbol anzeigen"
   },
   "showCounterDesc": {
-    "message": "Kurz nach dem Öffnen eines Tabs (mindestens 2 Sekunden)."
+    "message": "Kurz nach dem Öffnen eines Tabs (mindestens 2 Sekunden) und während du über einen Link fährst."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Duplikate beim Öffnen eines Tabs hervorheben"

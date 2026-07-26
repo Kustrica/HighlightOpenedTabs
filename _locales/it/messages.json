@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Evidenzia brevemente le schede duplicate quando apri una scheda già aperta altrove.",
+    "message": "Evidenzia le schede già aperte quando passi il mouse su un link e mostra brevemente i duplicati quando apri una scheda.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -18,7 +18,7 @@
     "message": "Mostra il conteggio dei duplicati sull’icona"
   },
   "showCounterDesc": {
-    "message": "Compare per un attimo dopo aver aperto una scheda (almeno 2 secondi)."
+    "message": "Compare per un attimo dopo aver aperto una scheda (almeno 2 secondi) e mentre passi il mouse su un link."
   },
   "enableDuplicateHighlightLabel": {
     "message": "Evidenzia i duplicati quando apri una scheda"
