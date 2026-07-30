@@ -22,22 +22,25 @@ let accentPaletteState = null;
 function localizePage() {
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        const msg = chrome.i18n.getMessage(key);
+        const msg = getMessage(key);
         if (msg) el.textContent = msg;
     });
     document.querySelectorAll("[data-i18n-title]").forEach(el => {
         const key = el.getAttribute("data-i18n-title");
-        const msg = chrome.i18n.getMessage(key);
+        const msg = getMessage(key);
         if (msg) {
             el.title = msg;
             el.setAttribute("aria-label", msg);
         }
     });
-    const titleMsg = chrome.i18n.getMessage("optionsTitle");
+    const titleMsg = getMessage("optionsTitle");
     if (titleMsg) document.title = titleMsg;
-    if (browser.i18n?.getUILanguage) {
-        document.documentElement.lang = browser.i18n.getUILanguage().split("-")[0];
-    }
+    const langSelect = document.getElementById("ui-language-select");
+    const uiLang = langSelect?.value || "auto";
+    const resolved = uiLang === "auto"
+        ? (browser.i18n?.getUILanguage?.() || "en")
+        : uiLang.replace("_", "-");
+    document.documentElement.lang = resolved.split("-")[0];
 }
 
 function refreshLocalizedDynamicUI() {
@@ -48,13 +51,6 @@ function refreshLocalizedDynamicUI() {
             accentPaletteState.onPick
         );
     }
-}
-
-if (browser.i18n?.onLanguageChanged) {
-    browser.i18n.onLanguageChanged.addListener(() => {
-        localizePage();
-        refreshLocalizedDynamicUI();
-    });
 }
 
 const DEFAULT_APPEARANCE = {
@@ -104,7 +100,7 @@ function setSubgroupEnabled(enabled) {
 }
 
 function buildAccentPalette(paletteEl, activeColor, onPick) {
-    const pickLabel = chrome.i18n.getMessage("highlightChooseColor") || "Choose color";
+    const pickLabel = getMessage("highlightChooseColor") || "Choose color";
     paletteEl.replaceChildren();
     for (const color of ACCENT_PRESETS) {
         const btn = document.createElement("button");
@@ -191,7 +187,8 @@ async function requestSiteAccess() {
         await chrome.storage.local.set({ siteAccessDeclined: false });
         if (fallback) fallback.classList.add("hidden");
         await updateSiteAccessUI();
-        showStatus(chrome.i18n.getMessage("saved") || "Saved");
+        browser.runtime.sendMessage({ action: "RELOAD_ACTIVE_TAB" }).catch(() => {});
+        showStatus(getMessage("saved") || "Saved");
         return true;
     }
     if (fallback) fallback.classList.remove("hidden");
@@ -228,8 +225,27 @@ function bindSiteAccessControls() {
     }
 }
 
+function bindLanguageSelect() {
+    const langSelect = document.getElementById("ui-language-select");
+    if (!langSelect) return;
+
+    langSelect.addEventListener("change", () => {
+        const newLang = langSelect.value;
+        browser.storage.local.set({ ui_language: newLang }).then(() => {
+            showStatus(getMessage("languageUpdated") || "Language updated. Reloading...");
+            setTimeout(() => location.reload(), 800);
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
+    const { ui_language } = await browser.storage.local.get({ ui_language: "auto" });
+    const langSelect = document.getElementById("ui-language-select");
+    if (langSelect) langSelect.value = ui_language || "auto";
+
+    if (window.initI18n) await window.initI18n();
     localizePage();
+    bindLanguageSelect();
     bindSiteAccessControls();
     await updateSiteAccessUI();
 
@@ -328,7 +344,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const save = async (obj) => {
         await chrome.storage.local.set(obj);
-        showStatus(chrome.i18n.getMessage("saved") || "Saved");
+        showStatus(getMessage("saved") || "Saved");
         chrome.runtime.sendMessage({ action: "SETTINGS_UPDATED", settings: obj });
     };
 

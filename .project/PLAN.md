@@ -23,7 +23,7 @@
 
 ## STEP-05 — Site access (MV3, FF 127+ / FF 153)
 - [x] `*://*/*` in `host_permissions` + `content_scripts` (not `<all_urls>` — FF 153 file:// toggle)
-- [x] Runtime: badge `!`, onInstalled → options if access missing, `tabs.reload` after grant
+- [x] Runtime: badge `!`, onInstalled → options if access missing; reload active tab only after manual grant
 - [x] Options banner + fallback for manual about:addons
 
 ## STEP-06 — Early duplicate match (loading / unloaded tabs)

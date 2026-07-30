@@ -53,6 +53,9 @@
   "saved": {
     "message": "Сохранено"
   },
+  "languageUpdated": {
+    "message": "Язык изменён. Перезагрузка..."
+  },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Снимать подсветку, когда курсор уходит со страницы"
   },

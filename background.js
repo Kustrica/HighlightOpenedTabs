@@ -556,6 +556,11 @@ browser.runtime.onMessage.addListener(async (message, sender) => {
             return await showHoverMatches(sourceTabId, message.url);
         }
 
+        if (message.action === "RELOAD_ACTIVE_TAB") {
+            await reloadActiveTabIfGranted();
+            return { ok: true };
+        }
+
         if (message.action === "SETTINGS_UPDATED" && message.settings) {
             applySettingsPatch(message.settings);
             if (
@@ -639,15 +644,15 @@ async function updatePermissionState() {
     return true;
 }
 
-async function activateOnOpenTabs() {
+async function reloadActiveTabIfGranted() {
     if (!(await hasSiteAccess())) return;
-    const tabs = await browser.tabs.query({ url: ["http://*/*", "https://*/*"] });
-    for (const tab of tabs) {
-        try {
-            await browser.tabs.reload(tab.id);
-        } catch (_) {
-            // about:, view-source:, PDF viewer, etc.
-        }
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    const tab = tabs[0];
+    if (!tab?.id) return;
+    try {
+        await browser.tabs.reload(tab.id);
+    } catch (_) {
+        // about:, view-source:, PDF viewer, etc.
     }
 }
 
@@ -663,9 +668,8 @@ browser.runtime.onStartup.addListener(() => {
 });
 
 if (browser.permissions?.onAdded) {
-    browser.permissions.onAdded.addListener(async () => {
-        await updatePermissionState();
-        await activateOnOpenTabs();
+    browser.permissions.onAdded.addListener(() => {
+        updatePermissionState();
     });
 }
 

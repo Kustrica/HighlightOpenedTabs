@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.9.3",
+  "version": "1.9.5",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "author": "Kustrica (Telegram: @kustric)",

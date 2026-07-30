@@ -53,6 +53,9 @@
   "saved": {
     "message": "Saved"
   },
+  "languageUpdated": {
+    "message": "Language updated. Reloading..."
+  },
   "unhighlightOnWindowLeaveLabel": {
     "message": "Clear highlights when the cursor leaves the page"
   },

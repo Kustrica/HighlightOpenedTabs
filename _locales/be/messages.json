@@ -172,5 +172,8 @@
   },
   "permissionMissingTooltip": {
     "message": "Site access is off — hover highlighting is disabled. Click to fix."
+  },
+  "languageUpdated": {
+    "message": "Language updated. Reloading..."
   }
 }
