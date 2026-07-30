@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.9.1",
+  "version": "1.9.3",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
   "author": "Kustrica (Telegram: @kustric)",
@@ -18,7 +18,7 @@
     "storage"
   ],
   "host_permissions": [
-    "<all_urls>"
+    "*://*/*"
   ],
   "options_ui": {
     "page": "options.html",
@@ -29,7 +29,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["*://*/*"],
       "js": ["content.js"],
       "run_at": "document_start",
       "all_frames": true

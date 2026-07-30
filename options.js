@@ -1,3 +1,7 @@
+if (typeof browser === "undefined") {
+    var browser = chrome;
+}
+
 const ACCENT_PRESETS = [
     "#ff9400",
     "#ff5a36",
@@ -11,16 +15,9 @@ const ACCENT_PRESETS = [
     "#f8fafc"
 ];
 
-const DEFAULT_APPEARANCE = {
-    highlightColor: "#ff9400",
-    highlightCardColor: "",
-    highlightUnderlineColor: "",
-    highlightGlowColor: "",
-    highlightCardWidth: 1,
-    highlightUnderlineWidth: 1,
-    highlightGlowStrength: 40,
-    highlightGlowRingWidth: 1
-};
+const SITE_ACCESS_ORIGINS = ["*://*/*"];
+
+let accentPaletteState = null;
 
 function localizePage() {
     document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -36,7 +33,40 @@ function localizePage() {
             el.setAttribute("aria-label", msg);
         }
     });
+    const titleMsg = chrome.i18n.getMessage("optionsTitle");
+    if (titleMsg) document.title = titleMsg;
+    if (browser.i18n?.getUILanguage) {
+        document.documentElement.lang = browser.i18n.getUILanguage().split("-")[0];
+    }
 }
+
+function refreshLocalizedDynamicUI() {
+    if (accentPaletteState) {
+        buildAccentPalette(
+            accentPaletteState.el,
+            accentPaletteState.color,
+            accentPaletteState.onPick
+        );
+    }
+}
+
+if (browser.i18n?.onLanguageChanged) {
+    browser.i18n.onLanguageChanged.addListener(() => {
+        localizePage();
+        refreshLocalizedDynamicUI();
+    });
+}
+
+const DEFAULT_APPEARANCE = {
+    highlightColor: "#ff9400",
+    highlightCardColor: "",
+    highlightUnderlineColor: "",
+    highlightGlowColor: "",
+    highlightCardWidth: 1,
+    highlightUnderlineWidth: 1,
+    highlightGlowStrength: 40,
+    highlightGlowRingWidth: 1
+};
 
 function showStatus(msg, type = "success") {
     const el = document.getElementById("status-msg");
@@ -119,8 +149,89 @@ function setAccentDisplay(color) {
     return normalized;
 }
 
+async function hasSiteAccess() {
+    if (!browser.permissions?.contains) return true;
+    return browser.permissions.contains({ origins: SITE_ACCESS_ORIGINS });
+}
+
+async function updateSiteAccessUI() {
+    const prompt = document.getElementById("site-access-prompt");
+    const inline = document.getElementById("site-access-inline");
+    const fallback = document.getElementById("site-access-fallback");
+    if (!prompt || !inline || !browser.permissions?.contains) return;
+
+    const granted = await hasSiteAccess();
+    const { siteAccessDeclined } = await chrome.storage.local.get({ siteAccessDeclined: false });
+
+    if (granted) {
+        prompt.classList.add("hidden");
+        inline.classList.add("hidden");
+        if (fallback) fallback.classList.add("hidden");
+        if (siteAccessDeclined) {
+            await chrome.storage.local.set({ siteAccessDeclined: false });
+        }
+        return;
+    }
+
+    if (siteAccessDeclined) {
+        prompt.classList.add("hidden");
+        inline.classList.remove("hidden");
+        if (fallback) fallback.classList.add("hidden");
+    } else {
+        inline.classList.add("hidden");
+        prompt.classList.remove("hidden");
+    }
+}
+
+async function requestSiteAccess() {
+    if (!browser.permissions?.request) return false;
+    const granted = await browser.permissions.request({ origins: SITE_ACCESS_ORIGINS });
+    const fallback = document.getElementById("site-access-fallback");
+    if (granted) {
+        await chrome.storage.local.set({ siteAccessDeclined: false });
+        if (fallback) fallback.classList.add("hidden");
+        await updateSiteAccessUI();
+        showStatus(chrome.i18n.getMessage("saved") || "Saved");
+        return true;
+    }
+    if (fallback) fallback.classList.remove("hidden");
+    await updateSiteAccessUI();
+    return false;
+}
+
+function bindSiteAccessControls() {
+    for (const id of ["site-access-enable", "site-access-inline-enable"]) {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener("click", () => requestSiteAccess());
+    }
+
+    const skipBtn = document.getElementById("site-access-skip");
+    if (skipBtn) {
+        skipBtn.addEventListener("click", async () => {
+            await chrome.storage.local.set({ siteAccessDeclined: true });
+            const fallback = document.getElementById("site-access-fallback");
+            if (fallback) fallback.classList.add("hidden");
+            await updateSiteAccessUI();
+        });
+    }
+
+    if (browser.permissions?.onAdded) {
+        browser.permissions.onAdded.addListener(updateSiteAccessUI);
+    }
+    if (browser.permissions?.onRemoved) {
+        browser.permissions.onRemoved.addListener(async () => {
+            await chrome.storage.local.set({ siteAccessDeclined: false });
+            const fallback = document.getElementById("site-access-fallback");
+            if (fallback) fallback.classList.add("hidden");
+            await updateSiteAccessUI();
+        });
+    }
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     localizePage();
+    bindSiteAccessControls();
+    await updateSiteAccessUI();
 
     const counterCheck = document.getElementById("show-counter");
     const duplicateHighlightCheck = document.getElementById("enable-duplicate-highlight");
@@ -208,6 +319,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     buildAccentPalette(accentPalette, currentAccent, (color) => {
         applyAccentColor(color, true);
     });
+    accentPaletteState = {
+        el: accentPalette,
+        color: currentAccent,
+        onPick: (color) => applyAccentColor(color, true)
+    };
     updatePaletteActive(accentPalette, currentAccent);
 
     const save = async (obj) => {
@@ -219,6 +335,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     function applyAccentColor(color, syncChildren) {
         const normalized = setAccentDisplay(color);
         currentAccent = normalized;
+        if (accentPaletteState) accentPaletteState.color = normalized;
         updatePaletteActive(accentPalette, normalized);
 
         const patch = { highlightColor: normalized };

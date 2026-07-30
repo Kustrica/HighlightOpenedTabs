@@ -2,6 +2,10 @@ if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
+(function () {
+    if (globalThis.__highlightOpenedTabsInjected) return;
+    globalThis.__highlightOpenedTabsInjected = true;
+
 let hoverTimeout = null;
 let pendingLinkUrl = null;
 let pendingLinkEl = null;
@@ -646,3 +650,4 @@ document.addEventListener("mouseout", (e) => {
         clearHighlights(e.clientY <= 0 ? "SUPPRESS_HIGHLIGHT_FOR_TAB" : "UNHIGHLIGHT_ALL");
     }
 }, { passive: true, capture: true });
+})();

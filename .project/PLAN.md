@@ -21,10 +21,10 @@
 - [x] manifest version bumped with releases
 - [x] `.project/context.md` and this plan
 
-## STEP-05 — Site access on by default (no ask UI)
-- [x] Restore `<all_urls>` in `host_permissions` + `content_scripts` (as in working commits before 1.6)
-- [x] Remove grant.html / permission-request UX
-- [x] Note: Add-ons Manager may still label site access “Optional” (Firefox UI)
+## STEP-05 — Site access (MV3, FF 127+ / FF 153)
+- [x] `*://*/*` in `host_permissions` + `content_scripts` (not `<all_urls>` — FF 153 file:// toggle)
+- [x] Runtime: badge `!`, onInstalled → options if access missing, `tabs.reload` after grant
+- [x] Options banner + fallback for manual about:addons
 
 ## STEP-06 — Early duplicate match (loading / unloaded tabs)
 - [x] Prefer `pendingUrl` then `url` for matching

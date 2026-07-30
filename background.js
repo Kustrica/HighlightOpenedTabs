@@ -2,6 +2,8 @@ if (typeof browser === "undefined") {
     var browser = chrome;
 }
 
+const REQUIRED_ORIGINS = ["*://*/*"];
+
 const DEFAULT_SETTINGS = {
     showCounter: true,
     enableDuplicateHighlight: true,
@@ -208,7 +210,14 @@ async function getActiveTab() {
     return activeTabs.length > 0 ? activeTabs[0] : null;
 }
 
+async function hasSiteAccess() {
+    if (!browser.permissions?.contains) return true;
+    return browser.permissions.contains({ origins: REQUIRED_ORIGINS });
+}
+
 async function setBadge(tabId, duplicateCount) {
+    if (!(await hasSiteAccess())) return;
+
     if (!settings.showCounter || !duplicateCount || duplicateCount <= 0) {
         await browser.action.setBadgeText({ text: "", tabId });
         return;
@@ -219,6 +228,7 @@ async function setBadge(tabId, duplicateCount) {
 }
 
 async function clearBadgeOnActiveTab() {
+    if (!(await hasSiteAccess())) return;
     const activeTab = await getActiveTab();
     if (activeTab) {
         await browser.action.setBadgeText({ text: "", tabId: activeTab.id });
@@ -310,6 +320,7 @@ async function showDuplicatesForActiveTab({ pulseBadge = false } = {}) {
         cancelPageBadgeTimer();
         state.pageBadgeActive = false;
         await syncHighlights([]);
+        if (!(await hasSiteAccess())) return;
         await browser.action.setBadgeText({ text: "", tabId: activeTab.id });
         return;
     }
@@ -611,4 +622,57 @@ browser.action.onClicked.addListener(() => {
     browser.runtime.openOptionsPage().catch(() => {});
 });
 
-showDuplicatesForActiveTab({ pulseBadge: false });
+async function updatePermissionState() {
+    if (!(await hasSiteAccess())) {
+        await browser.action.setBadgeText({ text: "!" });
+        await browser.action.setBadgeBackgroundColor({ color: "#d70022" });
+        const tooltip = browser.i18n.getMessage("permissionMissingTooltip");
+        await browser.action.setTitle({
+            title: tooltip || "Site access is off — hover highlighting is disabled. Click to fix."
+        });
+        return false;
+    }
+
+    await browser.action.setTitle({ title: "Highlight Opened Tabs" });
+    await browser.action.setBadgeText({ text: "" });
+    await showDuplicatesForActiveTab({ pulseBadge: false });
+    return true;
+}
+
+async function activateOnOpenTabs() {
+    if (!(await hasSiteAccess())) return;
+    const tabs = await browser.tabs.query({ url: ["http://*/*", "https://*/*"] });
+    for (const tab of tabs) {
+        try {
+            await browser.tabs.reload(tab.id);
+        } catch (_) {
+            // about:, view-source:, PDF viewer, etc.
+        }
+    }
+}
+
+browser.runtime.onInstalled.addListener(async () => {
+    const ok = await updatePermissionState();
+    if (!ok) {
+        await browser.runtime.openOptionsPage();
+    }
+});
+
+browser.runtime.onStartup.addListener(() => {
+    updatePermissionState();
+});
+
+if (browser.permissions?.onAdded) {
+    browser.permissions.onAdded.addListener(async () => {
+        await updatePermissionState();
+        await activateOnOpenTabs();
+    });
+}
+
+if (browser.permissions?.onRemoved) {
+    browser.permissions.onRemoved.addListener(() => {
+        updatePermissionState();
+    });
+}
+
+updatePermissionState();

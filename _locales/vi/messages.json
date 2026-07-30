@@ -142,5 +142,35 @@
   },
   "highlightChooseColor": {
     "message": "Chọn màu"
+  },
+  "siteAccessBannerTitle": {
+    "message": "Site access is required"
+  },
+  "siteAccessBannerBody": {
+    "message": "The extension reads links on web pages when you hover them. Firefox lists this as an optional permission, but the main feature does not work without it. Click the button below, or enable “Access to your data for all websites” in the extension permissions."
+  },
+  "siteAccessEnableButton": {
+    "message": "Enable site access"
+  },
+  "siteAccessDenied": {
+    "message": "Permission was not granted. Enable it in Add-ons → Permissions."
+  },
+  "siteAccessPromptBody": {
+    "message": "To highlight links when you hover them, the extension needs access to web pages."
+  },
+  "siteAccessSkipHint": {
+    "message": "You can continue without this — tab-bar features stay available, but on-page link highlighting will not work."
+  },
+  "siteAccessSkipButton": {
+    "message": "Use without page highlighting"
+  },
+  "siteAccessInlineBody": {
+    "message": "On-page link highlighting is off — site access was not granted. Grant access to enable it."
+  },
+  "siteAccessFallback": {
+    "message": "Click “Grant access” above and allow in the dialog, or open about:addons → Highlight Opened Tabs → Permissions and enable “Access your data for all websites”."
+  },
+  "permissionMissingTooltip": {
+    "message": "Site access is off — hover highlighting is disabled. Click to fix."
   }
 }

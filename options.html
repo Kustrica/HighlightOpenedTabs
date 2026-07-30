@@ -350,6 +350,113 @@
         .social-links a { display: flex; align-items: center; text-decoration: none; opacity: 0.8; transition: opacity 0.2s, transform 0.2s; }
         .social-links a:hover { opacity: 1; transform: scale(1.1); }
         .social-links img { height: 32px; width: 32px; object-fit: contain; }
+
+        .permission-banner {
+            background: #3a2f1f;
+            border: 1px solid #ff9400;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
+        }
+
+        .permission-banner.hidden,
+        .permission-inline.hidden {
+            display: none;
+        }
+
+        .permission-banner-title {
+            font-weight: 600;
+            color: #ff9400;
+            margin: 0 0 6px 0;
+        }
+
+        .permission-banner-text {
+            color: #d8d8e0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .permission-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .permission-banner-btn {
+            padding: 8px 14px;
+            background: #ff9400;
+            color: #1c1b22;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .permission-banner-btn:hover {
+            background: #ffb347;
+        }
+
+        .permission-skip-btn {
+            padding: 8px 14px;
+            background: transparent;
+            color: #d8d8e0;
+            border: 1px solid #555;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .permission-skip-btn:hover {
+            border-color: #777;
+            color: #fbfbfe;
+        }
+
+        .permission-fallback {
+            color: #a8a8b3;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 12px 0 0 0;
+        }
+
+        .permission-inline {
+            background: #25242c;
+            border: 1px solid #3d3c45;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 14px;
+        }
+
+        .permission-inline-text {
+            color: #a8a8b3;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .permission-inline-btn {
+            margin-top: 8px;
+            padding: 5px 12px;
+            background: transparent;
+            color: #ff9400;
+            border: 1px solid #6b4f1a;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .permission-inline-btn:hover {
+            background: #3a2f1f;
+            border-color: #ff9400;
+        }
+
+        .permission-inline .permission-fallback {
+            margin-top: 10px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -362,6 +469,17 @@
             <a href="https://www.patreon.com/kustrica" target="_blank" title="Patreon"><img src="icons/patreon-128-140.png"></a>
             <a href="https://boosty.to/kustrica" target="_blank" title="Boosty"><img src="icons/boosty-128-154.png"></a>
         </div>
+    </div>
+
+    <div id="site-access-prompt" class="permission-banner hidden" role="status">
+        <p class="permission-banner-title" data-i18n="siteAccessBannerTitle">Site access is required</p>
+        <p class="permission-banner-text" data-i18n="siteAccessPromptBody">To highlight links when you hover them, the extension needs access to web pages.</p>
+        <p class="permission-banner-text" style="margin-top:8px" data-i18n="siteAccessSkipHint">You can continue without this — tab-bar features stay available, but on-page link highlighting will not work.</p>
+        <div class="permission-actions">
+            <button type="button" id="site-access-enable" class="permission-banner-btn" data-i18n="siteAccessEnableButton">Grant access</button>
+            <button type="button" id="site-access-skip" class="permission-skip-btn" data-i18n="siteAccessSkipButton">Use without page highlighting</button>
+        </div>
+        <p id="site-access-fallback" class="permission-fallback hidden" data-i18n="siteAccessFallback">Click “Grant access” above and allow in the dialog, or open about:addons → Highlight Opened Tabs → Permissions and enable “Access your data for all websites”.</p>
     </div>
 
     <div class="section">
@@ -438,6 +556,12 @@
 
     <div class="section">
         <h2 data-i18n="sectionLinkHighlightTitle">On-page link highlight</h2>
+
+        <div id="site-access-inline" class="permission-inline hidden" role="status">
+            <p class="permission-inline-text" data-i18n="siteAccessInlineBody">On-page link highlighting is off — site access was not granted.</p>
+            <button type="button" id="site-access-inline-enable" class="permission-inline-btn" data-i18n="siteAccessEnableButton">Grant access</button>
+            <p class="permission-fallback" data-i18n="siteAccessFallback">Click “Grant access” above and allow in the dialog, or open about:addons → Highlight Opened Tabs → Permissions and enable “Access your data for all websites”.</p>
+        </div>
 
         <div class="control-group">
             <div class="field-row">

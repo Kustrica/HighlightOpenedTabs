@@ -9,15 +9,15 @@ Firefox WebExtension: highlights already-open tabs when hovering links on a page
 - `content.js` — link hover (matches `<all_urls>`)
 - `options.html` / `options.js` — settings + i18n
 - Permissions: `tabs`, `storage`
-- `host_permissions`: `["<all_urls>"]` (same as working pre-1.6 releases)
-- `granted_host_permissions` removed — Firefox ignores it for non-privileged add-ons and warns in the validator; site access still comes from `host_permissions` + `content_scripts`
+- `host_permissions` + `content_scripts`: `*://*/*` (http/https only; avoids FF 153 separate file:// toggle)
+- Firefox MV3: host access is revocable ("Optional" in UI) but granted on install (FF 127+). Badge `!` + options banner when revoked.
 - Storage: `showCounter`, `enableDuplicateHighlight`, `enableHoverHighlight`, `hoverDelay`, `unhighlightOnWindowLeave`, `duplicateAutoHideDelay`, `linkHighlightEnabled`, `linkHighlightScope`, `linkHighlightCard`, `linkHighlightUnderline`, `linkHighlightGlow` (defaults: glow on, card off)
 
 # Constraints & Rules
 
 - Firefox has no cosmetic per-tab color API; use multi-select `highlighted` briefly.
 - No tab-strip hover API.
-- Firefox Add-ons Manager may still list website access under “Optional” (browser UI). Do not add a grant/ask page — use `<all_urls>` in `host_permissions` and `content_scripts`.
+- Firefox MV3: host access is revocable; runtime check via badge `!`, options banner, `permissions.request`. Use `*://*/*` not `<all_urls>` (FF 153 file:// split).
 - Quiet `onUpdated` must not bump `requestId` (kills flash timers).
 - Badge page pulse: `max(2000ms, duplicateAutoHideDelay)`; idle badge empty; hover badge = open copies of hovered URL.
 - Hidden tabs (`tab.hidden`) reject tab-bar highlight. On-page highlight: combinable styles (card, underline, dot, glow). Scope `hidden_only` (default) or `always`. Card = scored ancestor (Google `.g`, YouTube renderers, articles); underline/dot use link text bounds only.
