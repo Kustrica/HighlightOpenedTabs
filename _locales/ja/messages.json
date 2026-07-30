@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "リンクにカーソルを合わせると既に開いているタブを強調し、タブを開いたときに重複を短く示します。",
+    "message": "リンクにカーソルを合わせると既に開いているタブを強調表示し、タブを開いたときに重複を短く表示します。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "設定"
   },
+  "sectionTabsTitle": {
+    "message": "タブの選択"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "ページ上のリンク強調"
+  },
   "showCounterLabel": {
-    "message": "アイコンに重複タブ数を表示"
+    "message": "アイコンの重複数"
   },
   "showCounterDesc": {
-    "message": "タブを開いた直後に短く表示（最低 2 秒）。リンクにマウスを乗せている間も表示します。"
+    "message": "リンクにカーソルを合わせている間、およびタブ切り替え直後に拡張機能アイコンに数字を表示します。"
   },
   "enableDuplicateHighlightLabel": {
-    "message": "タブを開いたときに重複を強調表示"
+    "message": "タブ切り替え時に重複タブをフラッシュ"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "すでに同じページが別のタブにある場合、そのコピーが一瞬光ります。"
+    "message": "他の開いているコピーがタブバーで短時間選択されます（複数選択スタイル）。"
   },
   "enableHoverHighlightLabel": {
-    "message": "リンクにマウスを乗せたときに一致するタブを強調"
+    "message": "リンクにカーソルを合わせたとき重複タブを選択"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "カーソルがリンク上にある間、タブバーの一致するタブが強調表示されます。下のページ強調と併用できます。"
   },
   "hoverDelayLabel": {
     "message": "ホバー遅延（ミリ秒）"
   },
   "hoverDelayDesc": {
-    "message": "リンクにマウスを乗せてから強調するまでの待ち時間。"
+    "message": "ホバー反応が始まるまでの待ち時間。"
   },
   "autoHideDelayLabel": {
-    "message": "重複ハイライトの表示時間（ミリ秒）"
+    "message": "タブフラッシュ時間（ミリ秒）"
   },
   "autoHideDelayDesc": {
-    "message": "タブを開いたあと重複を強調する時間。アイコンの数字は最低 2 秒、この値がそれより大きければその時間。0 で強調を残す。"
+    "message": "タブ切り替え後、重複タブが選択されたままになる時間。"
   },
   "saved": {
     "message": "保存しました"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "カーソルがページからブラウザーのパネルへ移ったら強調を消す"
+    "message": "カーソルがページを離れたら強調を解除"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "カーソルをタブバーやサイドパネルに移しても強調を残す場合はオフにしてください。"
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "ページ上のリンクを強調表示"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "ページ自体に枠、下線、またはグローを描画します（タブバー選択に加えて）。"
+  },
+  "linkHighlightScopeLabel": {
+    "message": "ページ強調を表示するタイミング"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "コピーが非表示のときのみ"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "非表示タブをタブバーで選択できない場合に便利です。"
+  },
+  "linkHighlightScopeAlways": {
+    "message": "重複があるときは常に（デフォルト）"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "タブバー選択と一緒にページ強調を表示します。"
+  },
+  "linkHighlightStylesLabel": {
+    "message": "強調スタイル（組み合わせ可）"
+  },
+  "linkHighlightCardLabel": {
+    "message": "カード枠"
+  },
+  "linkHighlightCardDesc": {
+    "message": "結果ブロックの周りに細い枠。"
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "リンク下線"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "リンクテキストの各行の下に線 — プレーンテキストリンク向け。"
+  },
+  "linkHighlightGlowLabel": {
+    "message": "ソフトグロー"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "リンク領域またはカードの周りにやわらかい外側の光。"
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "リンク強調を有効化"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "リンクにカーソルを合わせたときに既に開いているタブを強調するには、Firefoxがウェブサイトへのアクセスが必要です。主要機能に必須 — 下のボタンを一度クリックしてください。"
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "ウェブサイトへのアクセスを許可"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "完了。開いているページを再読み込みし、リンクにカーソルを合わせてください。"
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "権限が付与されませんでした。許可するまでリンクホバーは動作しません。"
+  },
+  "highlightAppearanceLabel": {
+    "message": "色と太さ"
+  },
+  "highlightAccentLabel": {
+    "message": "共通の色"
+  },
+  "highlightAccentDesc": {
+    "message": "すべてのスタイルの既定色。プリセットを選ぶか、パレットアイコンをタップして色を選んでください。"
+  },
+  "highlightCardWidthLabel": {
+    "message": "枠の太さ"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "線の太さ"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "グローの強さ"
+  },
+  "highlightGlowRingLabel": {
+    "message": "リングの太さ"
+  },
+  "highlightResetDefault": {
+    "message": "既定に戻す"
+  },
+  "highlightChooseColor": {
+    "message": "色を選ぶ"
   }
 }

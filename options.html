@@ -9,77 +9,329 @@
             color: #fbfbfe;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             padding: 40px;
-            max-width: 700px;
+            max-width: 760px;
             margin: 0 auto;
         }
-        
-        h1 { 
-            border-bottom: 1px solid #444; 
-            padding-bottom: 15px; 
+
+        h1 {
+            border-bottom: 1px solid #444;
+            padding-bottom: 15px;
             margin-bottom: 30px;
             font-size: 24px;
             font-weight: 600;
         }
-        
-        h2 { 
-            font-size: 18px; 
-            margin-bottom: 15px; 
+
+        h2 {
+            font-size: 17px;
+            margin: 0 0 14px 0;
             color: #ff9400;
+            font-weight: 600;
         }
-        
-        .section { 
+
+        .section {
             background: #2b2a33;
             border-radius: 8px;
-            padding: 10px 20px 20px 20px; 
-            margin-bottom: 25px;
+            padding: 16px 20px 20px 20px;
+            margin-bottom: 22px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        
+
         .control-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
-        
-        .control-label {
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 18px 10px minmax(0, 1fr);
+            align-items: start;
+        }
+
+        .field-control {
+            grid-column: 1;
+            margin-top: 2px;
+        }
+
+        .field-spacer {
+            grid-column: 1 / 3;
+        }
+
+        .field-body {
+            grid-column: 3;
+            min-width: 0;
+        }
+
+        .field-label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            font-size: 15px;
+            line-height: 1.4;
+            font-weight: 400;
+            cursor: pointer;
         }
-        
-        .checkbox-container {
+
+        .field-label--heading {
+            font-weight: 500;
+            cursor: default;
+            margin-bottom: 8px;
+        }
+
+        .field-hint {
+            color: #b8b8c0;
+            font-size: 13px;
+            margin: 6px 0 0 0;
+            line-height: 1.5;
+        }
+
+        .range-row {
             display: flex;
             align-items: center;
             gap: 10px;
-            cursor: pointer;
-            font-size: 16px;
+            max-width: 320px;
+            margin-top: 8px;
         }
-        
-        input[type="checkbox"] {
+
+        input[type="range"] {
+            flex: 1;
+            min-width: 0;
+            height: 3px;
+            margin: 0;
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 3px;
+            background: #4a4954;
+            border-radius: 2px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 10px;
+            height: 10px;
+            margin-top: -3.5px;
+            border-radius: 50%;
+            background: #ff9400;
+            border: 1px solid #c97400;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-track {
+            height: 3px;
+            background: #4a4954;
+            border-radius: 2px;
+            border: none;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff9400;
+            border: 1px solid #c97400;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+        }
+
+        .range-value {
+            display: inline-block;
+            min-width: 40px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 13px;
+            color: #ff9400;
+            flex-shrink: 0;
+        }
+
+        .nested-block {
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            margin-top: 10px;
+        }
+
+        .accent-block {
+            padding-bottom: 16px;
+        }
+
+        .accent-header {
+            margin-bottom: 10px;
+        }
+
+        .accent-controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.06);
+        }
+
+        .color-swatch.active {
+            border-color: #fbfbfe;
+            box-shadow: 0 0 0 2px #ff9400;
+        }
+
+        .color-picker-btn--custom {
+            background: #4a4954;
+            border-color: #6b6a75;
+        }
+
+        .color-picker-btn--custom .picker-icon {
+            color: #c8c8d0;
+        }
+
+        .style-block {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #3d3c46;
+        }
+
+        .style-settings {
+            margin-top: 10px;
+        }
+
+        .style-control-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .style-control-row + .style-control-row {
+            margin-top: 10px;
+        }
+
+        .style-control-row .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+            max-width: 300px;
+        }
+
+        .style-control-row input[type="range"] {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .slider-label {
+            font-size: 13px;
+            color: #b8b8c0;
+            width: 108px;
+            flex-shrink: 0;
+        }
+
+        .color-picker-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #5a5964;
+            background: #4a4954;
+            cursor: pointer;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .color-picker-btn input[type="color"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+        }
+
+        .color-picker-btn .picker-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            color: #b8b8c0;
+        }
+
+        .color-picker-btn .picker-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .color-picker-btn.has-color .picker-icon {
+            opacity: 0.45;
+        }
+
+        .color-picker-btn--custom.has-color .picker-icon {
+            opacity: 1;
+        }
+
+        .reset-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background: #35343d;
+            color: #b8b8c0;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: color 0.15s, border-color 0.15s, background 0.15s;
+        }
+
+        .reset-btn:hover {
+            color: #ff9400;
+            border-color: #ff9400;
+            background: #3f3e48;
+        }
+
+        .reset-btn svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
             width: 18px;
             height: 18px;
             accent-color: #ff9400;
             cursor: pointer;
         }
 
-        input[type="range"] {
-            width: 100%;
-            max-width: 300px;
-            accent-color: #ff9400;
-        }
-
-        .range-value {
-            display: inline-block;
-            margin-left: 10px;
-            font-family: monospace;
-            color: #ff9400;
-        }
-
-        .info-text {
-            color: #ccc;
-            font-size: 14px;
-            margin-top: 5px;
-            line-height: 1.5;
-        }
-        
         #status-msg {
             position: fixed;
             bottom: 20px;
@@ -87,107 +339,245 @@
             z-index: 1000;
             padding: 12px 20px;
             border-radius: 8px;
-            margin-top: 0;
-            text-align: center;
             opacity: 0;
             transition: opacity 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            pointer-events: none; 
+            pointer-events: none;
         }
         #status-msg.success { background: rgba(20, 30, 20, 0.95); color: #4caf50; border: 1px solid #4caf50; opacity: 1; }
-        
-        .social-links {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.2s, transform 0.2s;
-        }
-        .social-links a:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        .social-links img {
-            height: 32px;
-            width: 32px;
-            object-fit: contain;
-        }
+
+        .social-links { display: flex; align-items: center; gap: 15px; }
+        .social-links a { display: flex; align-items: center; text-decoration: none; opacity: 0.8; transition: opacity 0.2s, transform 0.2s; }
+        .social-links a:hover { opacity: 1; transform: scale(1.1); }
+        .social-links img { height: 32px; width: 32px; object-fit: contain; }
     </style>
 </head>
 <body>
     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 15px; margin-bottom: 30px;">
         <h1 data-i18n="optionsTitle" style="border: none; padding: 0; margin: 0;">Options</h1>
         <div class="social-links">
-             <a href="https://github.com/Kustrica/HighlightOpenedTabs" target="_blank" title="GitHub">
-                <img src="icons/github-64.png">
-            </a>
-            <a href="https://t.me/kustric" target="_blank" title="Telegram">
-                <img src="icons/telegram-1000-1000.png">
-            </a>
-            <a href="https://ko-fi.com/kustrica" target="_blank" title="Ko-fi">
-                <img src="icons/kofi-321-258.png">
-            </a>
-            <a href="https://www.patreon.com/kustrica" target="_blank" title="Patreon">
-                <img src="icons/patreon-128-140.png">
-            </a>
-            <a href="https://boosty.to/kustrica" target="_blank" title="Boosty">
-                <img src="icons/boosty-128-154.png">
-            </a>
+            <a href="https://github.com/Kustrica/HighlightOpenedTabs" target="_blank" title="GitHub"><img src="icons/github-64.png"></a>
+            <a href="https://t.me/kustric" target="_blank" title="Telegram"><img src="icons/telegram-1000-1000.png"></a>
+            <a href="https://ko-fi.com/kustrica" target="_blank" title="Ko-fi"><img src="icons/kofi-321-258.png"></a>
+            <a href="https://www.patreon.com/kustrica" target="_blank" title="Patreon"><img src="icons/patreon-128-140.png"></a>
+            <a href="https://boosty.to/kustrica" target="_blank" title="Boosty"><img src="icons/boosty-128-154.png"></a>
         </div>
     </div>
 
     <div class="section">
-        <div class="control-group">
-            <label class="checkbox-container">
-                <input type="checkbox" id="show-counter">
-                <span data-i18n="showCounterLabel">Show duplicate count on the icon</span>
-            </label>
-            <p class="info-text" data-i18n="showCounterDesc">Shows briefly after you open a tab (at least 2 seconds), and while you hover a link.</p>
-        </div>
+        <h2 data-i18n="sectionTabsTitle">Tab selection</h2>
 
         <div class="control-group">
-            <label class="checkbox-container">
-                <input type="checkbox" id="enable-duplicate-highlight">
-                <span data-i18n="enableDuplicateHighlightLabel">Highlight duplicates when you open a tab</span>
-            </label>
-            <p class="info-text" data-i18n="enableDuplicateHighlightDesc">When you go to a tab that already has a copy open, the other copies light up briefly.</p>
-        </div>
-
-        <div class="control-group">
-            <label class="checkbox-container">
-                <input type="checkbox" id="enable-hover-highlight">
-                <span data-i18n="enableHoverHighlightLabel">Highlight matching tabs when you hover a link</span>
-            </label>
-        </div>
-
-        <div class="control-group">
-            <label class="checkbox-container">
-                <input type="checkbox" id="unhighlight-leave">
-                <span data-i18n="unhighlightOnWindowLeaveLabel">Clear highlight when the cursor leaves the page for the browser panels</span>
-            </label>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" data-i18n="hoverDelayLabel">Hover delay (ms)</label>
-            <div style="display: flex; align-items: center;">
-                <input type="range" id="hover-delay" min="1" max="1000" step="1">
-                <span id="delay-value" class="range-value">10ms</span>
+            <div class="field-row">
+                <input type="checkbox" id="show-counter" class="field-control">
+                <div class="field-body">
+                    <label for="show-counter" class="field-label" data-i18n="showCounterLabel">Duplicate count on the icon</label>
+                    <p class="field-hint" data-i18n="showCounterDesc">Shows a number on the extension icon while you hover a link, and briefly after you switch to a tab.</p>
+                </div>
             </div>
-            <p class="info-text" data-i18n="hoverDelayDesc">How long to wait before highlighting after you hover a link.</p>
         </div>
 
         <div class="control-group">
-            <label class="control-label" data-i18n="autoHideDelayLabel">Duplicate highlight duration (ms)</label>
-            <div style="display: flex; align-items: center;">
-                <input type="range" id="auto-hide-delay" min="0" max="5000" step="50">
-                <span id="auto-hide-delay-value" class="range-value">200ms</span>
+            <div class="field-row">
+                <input type="checkbox" id="enable-duplicate-highlight" class="field-control">
+                <div class="field-body">
+                    <label for="enable-duplicate-highlight" class="field-label" data-i18n="enableDuplicateHighlightLabel">Flash duplicate tabs when you switch to a tab</label>
+                    <p class="field-hint" data-i18n="enableDuplicateHighlightDesc">Other open copies are briefly selected in the tab bar (multi-select style).</p>
+                </div>
             </div>
-            <p class="info-text" data-i18n="autoHideDelayDesc">How long to highlight duplicates after opening a tab. The icon counter stays at least 2 seconds, or as long as this value if it is higher. 0 keeps the highlight on.</p>
+        </div>
+
+        <div class="control-group">
+            <div class="field-row">
+                <input type="checkbox" id="enable-hover-highlight" class="field-control">
+                <div class="field-body">
+                    <label for="enable-hover-highlight" class="field-label" data-i18n="enableHoverHighlightLabel">Select duplicate tabs when you hover a link</label>
+                    <p class="field-hint" data-i18n="enableHoverHighlightDesc">Matching tabs in the tab bar are highlighted while the cursor is on the link. Works alongside the on-page highlight below.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="field-row">
+                <input type="checkbox" id="unhighlight-leave" class="field-control">
+                <div class="field-body">
+                    <label for="unhighlight-leave" class="field-label" data-i18n="unhighlightOnWindowLeaveLabel">Clear highlights when the cursor leaves the page</label>
+                    <p class="field-hint" data-i18n="unhighlightOnWindowLeaveDesc">Turn off if highlights should stay while you move the cursor to the tab bar or side panel.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="field-row">
+                <span class="field-spacer" aria-hidden="true"></span>
+                <div class="field-body">
+                    <div class="field-label field-label--heading" data-i18n="hoverDelayLabel">Hover delay (ms)</div>
+                    <div class="range-row">
+                        <input type="range" id="hover-delay" min="1" max="1000" step="1">
+                        <span id="delay-value" class="range-value">10ms</span>
+                    </div>
+                    <p class="field-hint" data-i18n="hoverDelayDesc">Wait time before any hover reaction starts.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="field-row">
+                <span class="field-spacer" aria-hidden="true"></span>
+                <div class="field-body">
+                    <div class="field-label field-label--heading" data-i18n="autoHideDelayLabel">Tab flash duration (ms)</div>
+                    <div class="range-row">
+                        <input type="range" id="auto-hide-delay" min="0" max="5000" step="50">
+                        <span id="auto-hide-delay-value" class="range-value">200ms</span>
+                    </div>
+                    <p class="field-hint" data-i18n="autoHideDelayDesc">How long duplicate tabs stay selected after you switch to a tab.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 data-i18n="sectionLinkHighlightTitle">On-page link highlight</h2>
+
+        <div class="control-group">
+            <div class="field-row">
+                <input type="checkbox" id="link-highlight-enabled" class="field-control">
+                <div class="field-body">
+                    <label for="link-highlight-enabled" class="field-label" data-i18n="linkHighlightEnabledLabel">Highlight the hovered link on the page</label>
+                    <p class="field-hint" data-i18n="linkHighlightEnabledDesc">Draws a frame, underline, or glow on the page itself (in addition to tab-bar selection).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group nested-block" id="link-highlight-options">
+            <div class="field-label field-label--heading" data-i18n="linkHighlightScopeLabel">When to show on-page highlight</div>
+            <div class="radio-option">
+                <div class="field-row">
+                    <input type="radio" name="link-highlight-scope" id="link-scope-always" value="always" class="field-control" checked>
+                    <div class="field-body">
+                        <label for="link-scope-always" class="field-label" data-i18n="linkHighlightScopeAlways">Whenever a duplicate exists (default)</label>
+                        <p class="field-hint" data-i18n="linkHighlightScopeAlwaysDesc">Shows on-page highlight together with tab-bar selection.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="radio-option">
+                <div class="field-row">
+                    <input type="radio" name="link-highlight-scope" id="link-scope-hidden" value="hidden_only" class="field-control">
+                    <div class="field-body">
+                        <label for="link-scope-hidden" class="field-label" data-i18n="linkHighlightScopeHiddenOnly">Only when copies are hidden</label>
+                        <p class="field-hint" data-i18n="linkHighlightScopeHiddenDesc">Useful when hidden tabs cannot be selected in the tab bar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group nested-block" id="link-highlight-styles">
+            <div class="accent-block" id="accent-appearance">
+                <div class="accent-header">
+                    <div class="field-label field-label--heading" data-i18n="highlightAccentLabel">General color</div>
+                    <p class="field-hint" data-i18n="highlightAccentDesc">Default color for all styles. Tap the circle to pick a custom color.</p>
+                </div>
+                <div class="accent-controls">
+                    <div class="color-palette" id="accent-palette" aria-label="Accent presets"></div>
+                    <label class="color-picker-btn color-picker-btn--custom" id="accent-color-trigger" data-i18n-title="highlightChooseColor">
+                        <input type="color" id="highlight-accent-color" value="#ff9400">
+                        <span class="picker-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c1.38 0 2.5-1.12 2.5-2.5 0-.61-.22-1.17-.59-1.61-.36-.43-.59-1-.59-1.61 0-1.38 1.12-2.5 2.5-2.5H16c2.76 0 5-2.24 5-5 0-5.51-4.49-10-10-10zm-4.5 11c-.83 0-1.5-.67-1.5-1.5S6.67 10 7.5 10 9 10.67 9 11.5 8.33 13 7.5 13zm3-4C8.67 9 8 8.33 8 7.5S8.67 6 9.5 6s1.5.67 1.5 1.5S10.33 9 9.5 9zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 6 14.5 6s1.5.67 1.5 1.5S15.33 9 14.5 9zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 10 17.5 10s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                        </span>
+                    </label>
+                    <button type="button" class="reset-btn" id="reset-accent" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="style-block" id="card-style-block">
+                <div class="field-row">
+                    <input type="checkbox" id="link-highlight-card" class="field-control">
+                    <div class="field-body">
+                        <label for="link-highlight-card" class="field-label" data-i18n="linkHighlightCardLabel">Card frame</label>
+                        <p class="field-hint" data-i18n="linkHighlightCardDesc">Thin frame around the result block.</p>
+                        <div class="style-settings" id="card-settings">
+                            <div class="style-control-row">
+                                <label class="color-picker-btn has-color" id="card-color-trigger" style="background-color:#ff9400" data-i18n-title="highlightChooseColor">
+                                    <input type="color" id="highlight-card-color" value="#ff9400">
+                                </label>
+                                <div class="slider-group">
+                                    <input type="range" id="highlight-card-width" min="1" max="6" step="1" aria-labelledby="highlight-card-width-value">
+                                    <span id="highlight-card-width-value" class="range-value">1px</span>
+                                </div>
+                                <button type="button" class="reset-btn" id="reset-card" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="style-block" id="underline-style-block">
+                <div class="field-row">
+                    <input type="checkbox" id="link-highlight-underline" class="field-control">
+                    <div class="field-body">
+                        <label for="link-highlight-underline" class="field-label" data-i18n="linkHighlightUnderlineLabel">Link underline</label>
+                        <p class="field-hint" data-i18n="linkHighlightUnderlineDesc">Line under each line of link text — good for plain text links.</p>
+                        <div class="style-settings" id="underline-settings">
+                            <div class="style-control-row">
+                                <label class="color-picker-btn has-color" id="underline-color-trigger" style="background-color:#ff9400" data-i18n-title="highlightChooseColor">
+                                    <input type="color" id="highlight-underline-color" value="#ff9400">
+                                </label>
+                                <div class="slider-group">
+                                    <input type="range" id="highlight-underline-width" min="1" max="6" step="1" aria-labelledby="highlight-underline-width-value">
+                                    <span id="highlight-underline-width-value" class="range-value">1px</span>
+                                </div>
+                                <button type="button" class="reset-btn" id="reset-underline" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="style-block" id="glow-style-block">
+                <div class="field-row">
+                    <input type="checkbox" id="link-highlight-glow" class="field-control">
+                    <div class="field-body">
+                        <label for="link-highlight-glow" class="field-label" data-i18n="linkHighlightGlowLabel">Soft glow</label>
+                        <p class="field-hint" data-i18n="linkHighlightGlowDesc">Gentle outer glow around the link area or card.</p>
+                        <div class="style-settings" id="glow-settings">
+                            <div class="style-control-row">
+                                <label class="color-picker-btn has-color" id="glow-color-trigger" style="background-color:#ff9400" data-i18n-title="highlightChooseColor">
+                                    <input type="color" id="highlight-glow-color" value="#ff9400">
+                                </label>
+                                <button type="button" class="reset-btn" id="reset-glow-color" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                                </button>
+                            </div>
+                            <div class="style-control-row">
+                                <span class="slider-label" data-i18n="highlightGlowStrengthLabel">Glow strength</span>
+                                <div class="slider-group">
+                                    <input type="range" id="highlight-glow-strength" min="0" max="100" step="1">
+                                    <span id="highlight-glow-strength-value" class="range-value">40</span>
+                                </div>
+                                <button type="button" class="reset-btn" id="reset-glow-strength" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                                </button>
+                            </div>
+                            <div class="style-control-row">
+                                <span class="slider-label" data-i18n="highlightGlowRingLabel">Ring width</span>
+                                <div class="slider-group">
+                                    <input type="range" id="highlight-glow-ring" min="0" max="4" step="1">
+                                    <span id="highlight-glow-ring-value" class="range-value">1px</span>
+                                </div>
+                                <button type="button" class="reset-btn" id="reset-glow-ring" data-i18n-title="highlightResetDefault" aria-label="Reset to default">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5 8c-2.65 0-5.05 1.28-6.5 3.25V7H4.5v7h7v-2.5H7.75C8.85 10.9 10.58 10 12.5 10c2.76 0 5 2.24 5 5s-2.24 5-5 5c-2.13 0-3.94-1.28-4.73-3.1l-2.27.74C7.13 20.55 9.68 22 12.5 22c4.14 0 7.5-3.36 7.5-7.5S16.64 8 12.5 8z"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

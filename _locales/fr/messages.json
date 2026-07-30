@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Surligne les onglets déjà ouverts au survol d’un lien et montre brièvement les doublons quand vous ouvrez un onglet.",
+    "message": "Met en évidence les onglets déjà ouverts lorsque vous survolez un lien, et signale brièvement les doublons lorsque vous ouvrez un onglet.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Paramètres"
   },
+  "sectionTabsTitle": {
+    "message": "Sélection d'onglets"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Surbrillance du lien sur la page"
+  },
   "showCounterLabel": {
-    "message": "Afficher le compteur de doublons sur l’icône"
+    "message": "Nombre de doublons sur l'icône"
   },
   "showCounterDesc": {
-    "message": "Affiché brièvement après l’ouverture d’un onglet (au moins 2 secondes) et pendant le survol d’un lien."
+    "message": "Affiche un nombre sur l'icône de l'extension pendant que vous survolez un lien, et brièvement après avoir changé d'onglet."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Surliner les doublons à l’ouverture d’un onglet"
+    "message": "Flash des onglets en double lors du changement d'onglet"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Si la page est déjà ouverte ailleurs, les copies s’allument un instant."
+    "message": "Les autres copies ouvertes sont brièvement sélectionnées dans la barre d'onglets (style multi-sélection)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Surliner les onglets au survol d’un lien"
+    "message": "Sélectionner les onglets en double au survol d'un lien"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Les onglets correspondants dans la barre d'onglets sont mis en surbrillance tant que le curseur est sur le lien. Fonctionne avec la surbrillance sur la page ci-dessous."
   },
   "hoverDelayLabel": {
     "message": "Délai de survol (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Temps d’attente avant le surlignage quand vous survolez un lien."
+    "message": "Temps d'attente avant le début de toute réaction au survol."
   },
   "autoHideDelayLabel": {
-    "message": "Durée du surlignage des doublons (ms)"
+    "message": "Durée du flash des onglets (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Durée du surlignage des doublons après l’ouverture d’un onglet. Le compteur sur l’icône reste au moins 2 secondes, ou plus si cette valeur est plus élevée. 0 laisse le surlignage."
+    "message": "Durée pendant laquelle les onglets en double restent sélectionnés après un changement d'onglet."
   },
   "saved": {
     "message": "Enregistré"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Retirer le surlignage quand le curseur quitte la page vers les barres du navigateur"
+    "message": "Effacer la surbrillance quand le curseur quitte la page"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Désactivez si la surbrillance doit rester lorsque vous déplacez le curseur vers la barre d'onglets ou le panneau latéral."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Mettre en surbrillance le lien survolé sur la page"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Dessine un cadre, un soulignement ou une lueur sur la page elle-même (en plus de la sélection dans la barre d'onglets)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Quand afficher la surbrillance sur la page"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Uniquement quand les copies sont masquées"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Utile lorsque les onglets masqués ne peuvent pas être sélectionnés dans la barre d'onglets."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Dès qu'un doublon existe (par défaut)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Affiche la surbrillance sur la page avec la sélection dans la barre d'onglets."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Styles de surbrillance (combiner librement)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Cadre de carte"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Fin cadre autour du bloc de résultat."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Soulignement du lien"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Ligne sous chaque ligne du texte du lien — idéal pour les liens texte simples."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Lueur douce"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Lueur extérieure douce autour de la zone du lien ou de la carte."
   },
   "grantTitle": {
-    "message": "Activer le surlignage au survol"
+    "message": "Activer la surbrillance des liens"
   },
   "grantBody": {
-    "message": "Pour surligner les onglets déjà ouverts au survol d’un lien, Firefox a besoin d’accéder aux sites. C’est indispensable pour la fonction principale — cliquez une fois."
+    "message": "Pour mettre en surbrillance les onglets déjà ouverts lorsque vous survolez un lien, Firefox a besoin d'accéder aux sites web. C'est nécessaire pour la fonction principale — cliquez une fois sur le bouton ci-dessous."
   },
   "grantButton": {
-    "message": "Autoriser l’accès aux sites"
+    "message": "Autoriser l'accès aux sites web"
   },
   "grantDone": {
     "message": "Terminé. Rechargez les pages ouvertes, puis survolez un lien."
   },
   "grantDenied": {
-    "message": "Autorisation refusée. Le survol ne fonctionnera pas tant que ce n’est pas autorisé."
+    "message": "Autorisation refusée. Le survol des liens ne fonctionnera pas tant que vous ne l'autorisez pas."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Couleurs et épaisseur"
+  },
+  "highlightAccentLabel": {
+    "message": "Couleur générale"
+  },
+  "highlightAccentDesc": {
+    "message": "Couleur par défaut pour tous les styles. Choisissez un préréglage ou appuyez sur l'icône palette pour une couleur personnalisée."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Épaisseur du cadre"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Épaisseur de la ligne"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Intensité de la lueur"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Épaisseur de l'anneau"
+  },
+  "highlightResetDefault": {
+    "message": "Réinitialiser"
+  },
+  "highlightChooseColor": {
+    "message": "Choisir une couleur"
   }
 }

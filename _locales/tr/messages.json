@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Bir bağlantının üzerine gelince zaten açık sekmeleri vurgular ve bir sekme açınca kopyaları kısa süre gösterir.",
+    "message": "Bir bağlantının üzerine geldiğinizde zaten açık sekmeleri vurgular ve bir sekmeye geçtiğinizde kısa süreliğine yinelenenleri gösterir.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Ayarlar"
   },
+  "sectionTabsTitle": {
+    "message": "Sekme seçimi"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Sayfadaki bağlantı vurgusu"
+  },
   "showCounterLabel": {
-    "message": "Simgede yinelenen sekme sayısını göster"
+    "message": "Simgede yinelenen sayısı"
   },
   "showCounterDesc": {
-    "message": "Bir sekme açtıktan sonra kısa süre (en az 2 saniye) ve bir bağlantının üzerindeyken gösterilir."
+    "message": "Bir bağlantının üzerine gelirken ve sekmeye geçtikten kısa süre sonra uzantı simgesinde bir sayı gösterir."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Sekme açınca yinelenenleri vurgula"
+    "message": "Sekme değişince yinelenen sekmeleri yanıp söndür"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Sayfa başka bir sekmede zaten açıksa, kopyalar kısa süre yanıp söner."
+    "message": "Diğer açık kopyalar sekme çubuğunda kısa süreliğine seçilir (çoklu seçim tarzı)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Bağlantının üzerine gelince eşleşen sekmeleri vurgula"
+    "message": "Bağlantının üzerine gelince yinelenen sekmeleri seç"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "İmleç bağlantıdayken sekme çubuğundaki eşleşen sekmeler vurgulanır. Aşağıdaki sayfa vurgusuyla birlikte çalışır."
   },
   "hoverDelayLabel": {
     "message": "Üzerine gelme gecikmesi (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Bir bağlantının üzerine geldikten sonra vurgulamadan önce ne kadar bekleneceği."
+    "message": "Herhangi bir hover tepkisinin başlamadan önceki bekleme süresi."
   },
   "autoHideDelayLabel": {
-    "message": "Yinelenen vurgu süresi (ms)"
+    "message": "Sekme flaş süresi (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Sekme açtıktan sonra yinelenenlerin ne kadar vurgulanacağı. Simgedeki sayaç en az 2 saniye, bu değer daha büyükse o kadar kalır. 0 vurguyu bırakır."
+    "message": "Sekmeye geçtikten sonra yinelenen sekmelerin ne kadar seçili kalacağı."
   },
   "saved": {
     "message": "Kaydedildi"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "İmleç sayfadan tarayıcı panellerine çıkınca vurguyu kaldır"
+    "message": "İmleç sayfadan ayrılınca vurguyu kaldır"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "İmleci sekme çubuğuna veya yan panele taşırken vurgu kalmalıysa kapatın."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Sayfadaki bağlantıyı vurgula"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Sayfanın kendisinde çerçeve, alt çizgi veya parıltı çizer (sekme çubuğu seçimine ek olarak)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Sayfa vurgusunu ne zaman göster"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Yalnızca kopyalar gizliyken"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Gizli sekmeler sekme çubuğunda seçilemediğinde kullanışlıdır."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Yinelenen sekme varken her zaman (varsayılan)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Sayfa vurgusunu sekme çubuğu seçimiyle birlikte gösterir."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Vurgu stilleri (birleştirin)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Kart çerçevesi"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Sonuç bloğunun etrafında ince çerçeve."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Bağlantı alt çizgisi"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Bağlantı metninin her satırının altında çizgi — düz metin bağlantılar için."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Yumuşak parıltı"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Bağlantı alanı veya kartın etrafında hafif dış parıltı."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Bağlantı vurgusunu etkinleştir"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Bir bağlantının üzerine geldiğinizde zaten açık sekmeleri vurgulamak için Firefox'un web sitelerine erişmesi gerekir. Ana özellik için gereklidir — aşağıdaki düğmeye bir kez tıklayın."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Web sitelerine erişime izin ver"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Tamam. Açık sayfaları yenileyin, ardından bir bağlantının üzerine gelin."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "İzin verilmedi. Bağlantı hover'ı izin verene kadar çalışmaz."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Renkler ve kalınlık"
+  },
+  "highlightAccentLabel": {
+    "message": "Genel renk"
+  },
+  "highlightAccentDesc": {
+    "message": "Tüm stiller için varsayılan renk. Hazır renk seçin veya özel renk için palet simgesine dokunun."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Çerçeve kalınlığı"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Çizgi kalınlığı"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Parıltı gücü"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Halka kalınlığı"
+  },
+  "highlightResetDefault": {
+    "message": "Varsayılana sıfırla"
+  },
+  "highlightChooseColor": {
+    "message": "Renk seç"
   }
 }

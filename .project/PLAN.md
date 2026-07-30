@@ -31,3 +31,12 @@
 - [x] Prefer `pendingUrl` then `url` for matching
 - [x] Refresh on create / url / loading / discarded, not only `complete`
 
+## STEP-07 — On-page link highlight (combinable styles)
+- [x] Styles: card frame, link underline, soft glow (combinable); dot removed
+- [x] Defaults: glow on, card off; underline uses per-line Range rects
+- [x] Scroll: rAF reposition via transform3d (no DOM rebuild on scroll)
+- [x] Scope: hidden copies only (default) or always when duplicate exists
+- [x] Tab-bar multi-select unchanged; on-page highlight is additive
+- [x] Smart card detection (Google `.g`, YouTube, articles) — full card rect, underline on link text only
+- [x] Options page reorganized + i18n (en, ru full; other locales synced)
+

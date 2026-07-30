@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Підсвічує вже відкриті вкладки при наведенні на посилання й коротко показує дублікати при переході на вкладку.",
+    "message": "Підсвічує вже відкриті вкладки при наведенні на посилання та коротко показує дублікати при переході на вкладку.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Налаштування"
   },
+  "sectionTabsTitle": {
+    "message": "Виділення вкладок"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Підсвітка посилання на сторінці"
+  },
   "showCounterLabel": {
-    "message": "Лічильник дублікатів на значку"
+    "message": "Лічильник дублікатів на іконці"
   },
   "showCounterDesc": {
-    "message": "Коротко після переходу на вкладку (мінімум 2 секунди) і поки наводите на посилання."
+    "message": "Показує число на іконці розширення при наведенні на посилання та коротко після переходу на вкладку."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Підсвічувати дублікати при переході на вкладку"
+    "message": "Спалах дублікатів при переході на вкладку"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Якщо ця сторінка вже відкрита в іншій вкладці, копії ненадовго підсвітяться."
+    "message": "Інші відкриті копії коротко виділяються на панелі вкладок (як при multi-select)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Підсвічувати вкладки при наведенні на посилання"
+    "message": "Виділяти дублікати при наведенні на посилання"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Відповідні вкладки на панелі підсвічуються, поки курсор на посиланні. Працює разом із підсвіткою на сторінці нижче."
   },
   "hoverDelayLabel": {
     "message": "Затримка наведення (мс)"
   },
   "hoverDelayDesc": {
-    "message": "Пауза перед підсвіткою, коли наводите на посилання."
+    "message": "Пауза перед будь-якою реакцією на наведення."
   },
   "autoHideDelayLabel": {
-    "message": "Тривалість підсвітки дублікатів (мс)"
+    "message": "Тривалість спалаху вкладок (мс)"
   },
   "autoHideDelayDesc": {
-    "message": "Скільки тримати підсвітку дублікатів після переходу на вкладку. Лічильник на значку горить мінімум 2 секунди, або довше, якщо тут більше. 0 — не прибирати підсвітку."
+    "message": "Скільки тримати виділення дублікатів після переходу на вкладку."
   },
   "saved": {
     "message": "Збережено"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Прибирати підсвітку, коли курсор іде зі сторінки на панелі браузера"
+    "message": "Знімати підсвітку, коли курсор покидає сторінку"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Вимкніть, якщо підсвітка має залишатися при переході курсора на панель вкладок або бічну панель."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Підсвічувати посилання на сторінці"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Малює рамку, підкреслення або свічення на самій сторінці (додатково до виділення вкладок)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Коли показувати підсвітку на сторінці"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Лише коли копії приховані"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Корисно, коли приховані вкладки не можна виділити на панелі."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Завжди, коли є дубль (за замовчуванням)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Підсвітка на сторінці разом із виділенням вкладок на панелі."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Стилі підсвітки (можна комбінувати)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Рамка картки"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Тонка рамка навколо блоку результату."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Підкреслення посилання"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Лінія під кожним рядком тексту посилання — для звичайних текстових посилань."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "М'яке свічення"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Легке свічення навколо області посилання або картки."
   },
   "grantTitle": {
-    "message": "Увімкнути підсвітку за посиланнями"
+    "message": "Увімкнути підсвітку посилань"
   },
   "grantBody": {
-    "message": "Щоб при наведенні на посилання підсвічувались уже відкриті вкладки, Firefox потрібен доступ до сайтів. Це потрібно для головної функції — натисніть кнопку один раз."
+    "message": "Щоб при наведенні на посилання підсвічувалися вже відкриті вкладки, Firefox потрібен доступ до сайтів. Це потрібно для головної функції — натисніть кнопку один раз."
   },
   "grantButton": {
     "message": "Дозволити доступ до сайтів"
   },
   "grantDone": {
-    "message": "Готово. Оновіть відкриті сторінки й наведіть на посилання."
+    "message": "Готово. Оновіть відкриті сторінки та наведіть на посилання."
   },
   "grantDenied": {
     "message": "Дозвіл не надано. Наведення на посилання не працюватиме, доки не дозволите."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Кольори та товщина"
+  },
+  "highlightAccentLabel": {
+    "message": "Загальний колір"
+  },
+  "highlightAccentDesc": {
+    "message": "Колір за замовчуванням для всіх стилів. Оберіть пресет або натисніть значок палітри для свого кольору."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Товщина рамки"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Товщина лінії"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Сила свічення"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Товщина кільця"
+  },
+  "highlightResetDefault": {
+    "message": "Скинути за замовчуванням"
+  },
+  "highlightChooseColor": {
+    "message": "Вибрати колір"
   }
 }

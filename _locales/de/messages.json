@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Einstellungen"
   },
+  "sectionTabsTitle": {
+    "message": "Tab-Auswahl"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Link-Hervorhebung auf der Seite"
+  },
   "showCounterLabel": {
-    "message": "Duplikatzähler auf dem Symbol anzeigen"
+    "message": "Duplikat-Anzahl am Symbol"
   },
   "showCounterDesc": {
-    "message": "Kurz nach dem Öffnen eines Tabs (mindestens 2 Sekunden) und während du über einen Link fährst."
+    "message": "Zeigt eine Zahl am Erweiterungssymbol, während du über einen Link fährst, und kurz nach dem Wechsel zu einem Tab."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Duplikate beim Öffnen eines Tabs hervorheben"
+    "message": "Duplikat-Tabs beim Tab-Wechsel kurz hervorheben"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Wenn du zu einem Tab wechselst, der schon eine Kopie hat, leuchten die anderen Kopien kurz auf."
+    "message": "Andere offene Kopien werden kurz in der Tab-Leiste ausgewählt (Mehrfachauswahl-Stil)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Passende Tabs beim Überfahren eines Links hervorheben"
+    "message": "Duplikat-Tabs beim Überfahren eines Links auswählen"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Passende Tabs in der Tab-Leiste werden hervorgehoben, solange der Cursor auf dem Link ist. Funktioniert zusammen mit der Seiten-Hervorhebung unten."
   },
   "hoverDelayLabel": {
     "message": "Hover-Verzögerung (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Wartezeit, bevor beim Überfahren eines Links hervorgehoben wird."
+    "message": "Wartezeit, bevor eine Hover-Reaktion beginnt."
   },
   "autoHideDelayLabel": {
-    "message": "Dauer der Duplikat-Hervorhebung (ms)"
+    "message": "Tab-Blitz-Dauer (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Wie lange Duplikate nach dem Öffnen eines Tabs hervorgehoben bleiben. Der Zähler auf dem Symbol bleibt mindestens 2 Sekunden, oder länger wenn dieser Wert höher ist. 0 lässt die Hervorhebung an."
+    "message": "Wie lange Duplikat-Tabs nach dem Wechsel ausgewählt bleiben."
   },
   "saved": {
     "message": "Gespeichert"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Hervorhebung entfernen, wenn der Cursor die Seite zu den Browserleisten verlässt"
+    "message": "Hervorhebung entfernen, wenn der Cursor die Seite verlässt"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Deaktivieren, wenn die Hervorhebung bleiben soll, während du den Cursor zur Tab-Leiste oder Seitenleiste bewegst."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Den überfahrenen Link auf der Seite hervorheben"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Zeichnet einen Rahmen, eine Unterstreichung oder ein Leuchten auf der Seite selbst (zusätzlich zur Tab-Leisten-Auswahl)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Wann die Seiten-Hervorhebung anzeigen"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Nur wenn Kopien ausgeblendet sind"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Nützlich, wenn ausgeblendete Tabs in der Tab-Leiste nicht ausgewählt werden können."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Immer wenn ein Duplikat existiert (Standard)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Zeigt die Seiten-Hervorhebung zusammen mit der Tab-Leisten-Auswahl."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Hervorhebungsstile (beliebig kombinieren)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Kartenrahmen"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Dünner Rahmen um den Ergebnisblock."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Link-Unterstreichung"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Linie unter jeder Zeile des Linktexts — gut für einfache Textlinks."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Sanftes Leuchten"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Sanftes äußeres Leuchten um den Link-Bereich oder die Karte."
   },
   "grantTitle": {
     "message": "Link-Hervorhebung aktivieren"
   },
   "grantBody": {
-    "message": "Damit bereits geöffnete Tabs beim Überfahren eines Links hervorgehoben werden, braucht Firefox Zugriff auf Websites. Das ist für die Hauptfunktion nötig — einmal klicken."
+    "message": "Damit bereits geöffnete Tabs beim Überfahren eines Links hervorgehoben werden, benötigt Firefox Zugriff auf Websites. Das ist für die Hauptfunktion nötig — klicke einmal auf die Schaltfläche unten."
   },
   "grantButton": {
     "message": "Zugriff auf Websites erlauben"
   },
   "grantDone": {
-    "message": "Fertig. Offene Seiten neu laden, dann über einen Link fahren."
+    "message": "Fertig. Lade offene Seiten neu und fahre dann über einen Link."
   },
   "grantDenied": {
-    "message": "Berechtigung nicht erteilt. Die Link-Hervorhebung funktioniert erst nach der Erlaubnis."
+    "message": "Berechtigung nicht erteilt. Link-Hover funktioniert erst nach Erlaubnis."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Farben & Stärke"
+  },
+  "highlightAccentLabel": {
+    "message": "Allgemeine Farbe"
+  },
+  "highlightAccentDesc": {
+    "message": "Standardfarbe für alle Stile. Wähle ein Preset oder tippe auf das Palettensymbol für eine eigene Farbe."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Rahmenbreite"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Linienstärke"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Leuchtstärke"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Ringbreite"
+  },
+  "highlightResetDefault": {
+    "message": "Auf Standard zurücksetzen"
+  },
+  "highlightChooseColor": {
+    "message": "Farbe wählen"
   }
 }

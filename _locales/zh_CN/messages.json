@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "将鼠标悬停在链接上时高亮已打开的标签页，打开标签页时短暂高亮重复项。",
+    "message": "悬停链接时高亮已打开的标签页，打开标签页时短暂显示重复项。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "设置"
   },
+  "sectionTabsTitle": {
+    "message": "标签页选择"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "页面链接高亮"
+  },
   "showCounterLabel": {
-    "message": "在图标上显示重复标签计数"
+    "message": "图标上的重复计数"
   },
   "showCounterDesc": {
-    "message": "打开标签页后短暂显示（至少 2 秒），以及将鼠标悬停在链接上时显示。"
+    "message": "悬停链接时及切换标签页后短暂在扩展图标上显示数字。"
   },
   "enableDuplicateHighlightLabel": {
-    "message": "打开标签页时高亮重复项"
+    "message": "切换标签页时闪烁重复标签"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "如果该页面已在其他标签页打开，其他副本会短暂亮起。"
+    "message": "其他已打开副本会在标签栏中短暂选中（多选样式）。"
   },
   "enableHoverHighlightLabel": {
-    "message": "悬停链接时高亮对应标签页"
+    "message": "悬停链接时选中重复标签页"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "光标在链接上时，标签栏中匹配的标签页会高亮。可与下方页面高亮配合使用。"
   },
   "hoverDelayLabel": {
     "message": "悬停延迟（毫秒）"
   },
   "hoverDelayDesc": {
-    "message": "鼠标悬停在链接上后，等待多久再高亮。"
+    "message": "任何悬停反应开始前的等待时间。"
   },
   "autoHideDelayLabel": {
-    "message": "重复标签高亮时长（毫秒）"
+    "message": "标签闪烁时长（毫秒）"
   },
   "autoHideDelayDesc": {
-    "message": "打开标签页后重复项高亮多久。图标计数至少显示 2 秒；若此处更大则按该值。0 表示保持高亮。"
+    "message": "切换标签页后重复标签保持选中的时长。"
   },
   "saved": {
     "message": "已保存"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "光标离开页面移到浏览器面板时清除高亮"
+    "message": "光标离开页面时清除高亮"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "若将光标移到标签栏或侧边栏时仍需保持高亮，请关闭此项。"
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "在页面上高亮悬停的链接"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "在页面本身绘制边框、下划线或光晕（除标签栏选中外）。"
+  },
+  "linkHighlightScopeLabel": {
+    "message": "何时显示页面高亮"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "仅当副本被隐藏时"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "当隐藏标签无法在标签栏选中时很有用。"
+  },
+  "linkHighlightScopeAlways": {
+    "message": "只要存在重复（默认）"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "与标签栏选中一起显示页面高亮。"
+  },
+  "linkHighlightStylesLabel": {
+    "message": "高亮样式（可任意组合）"
+  },
+  "linkHighlightCardLabel": {
+    "message": "卡片边框"
+  },
+  "linkHighlightCardDesc": {
+    "message": "结果块周围的细边框。"
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "链接下划线"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "链接文本每行下方的线 — 适合纯文本链接。"
+  },
+  "linkHighlightGlowLabel": {
+    "message": "柔和光晕"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "链接区域或卡片周围的柔和外发光。"
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "启用链接高亮"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "要在悬停链接时高亮已打开的标签页，Firefox 需要访问网站。这是主要功能所必需的 — 请点击下方按钮一次。"
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "允许访问网站"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "完成。重新加载已打开的页面，然后悬停链接。"
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "未授予权限。允许之前链接悬停将无法工作。"
+  },
+  "highlightAppearanceLabel": {
+    "message": "颜色与粗细"
+  },
+  "highlightAccentLabel": {
+    "message": "通用颜色"
+  },
+  "highlightAccentDesc": {
+    "message": "所有样式的默认颜色。选择预设，或点击调色板图标选择自定义颜色。"
+  },
+  "highlightCardWidthLabel": {
+    "message": "边框粗细"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "线条粗细"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "光晕强度"
+  },
+  "highlightGlowRingLabel": {
+    "message": "环粗细"
+  },
+  "highlightResetDefault": {
+    "message": "恢复默认"
+  },
+  "highlightChooseColor": {
+    "message": "选择颜色"
   }
 }

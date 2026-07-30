@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "설정"
   },
+  "sectionTabsTitle": {
+    "message": "탭 선택"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "페이지 내 링크 강조"
+  },
   "showCounterLabel": {
-    "message": "아이콘에 중복 탭 수 표시"
+    "message": "아이콘의 중복 개수"
   },
   "showCounterDesc": {
-    "message": "탭을 연 직후 잠시 표시(최소 2초). 링크에 마우스를 올린 동안에도 표시합니다."
+    "message": "링크에 마우스를 올리는 동안 및 탭 전환 직후 확장 프로그램 아이콘에 숫자를 표시합니다."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "탭을 열 때 중복 탭 강조"
+    "message": "탭 전환 시 중복 탭 깜빡임"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "같은 페이지가 이미 다른 탭에 있으면 복사본이 잠깐 빛납니다."
+    "message": "다른 열린 복사본이 탭 바에서 잠시 선택됩니다(다중 선택 스타일)."
   },
   "enableHoverHighlightLabel": {
-    "message": "링크에 마우스를 올리면 일치하는 탭 강조"
+    "message": "링크에 마우스를 올릴 때 중복 탭 선택"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "커서가 링크 위에 있는 동안 탭 바의 일치하는 탭이 강조됩니다. 아래 페이지 강조와 함께 작동합니다."
   },
   "hoverDelayLabel": {
-    "message": "마우스 오버 지연(ms)"
+    "message": "호버 지연(밀리초)"
   },
   "hoverDelayDesc": {
-    "message": "링크에 마우스를 올린 뒤 강조하기까지 기다리는 시간."
+    "message": "호버 반응이 시작되기 전 대기 시간."
   },
   "autoHideDelayLabel": {
-    "message": "중복 강조 표시 시간(ms)"
+    "message": "탭 깜빡임 지속 시간(밀리초)"
   },
   "autoHideDelayDesc": {
-    "message": "탭을 연 뒤 중복을 강조하는 시간. 아이콘 숫자는 최소 2초, 이 값이 더 크면 그 시간. 0이면 강조를 유지."
+    "message": "탭 전환 후 중복 탭이 선택된 상태로 유지되는 시간."
   },
   "saved": {
     "message": "저장됨"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "커서가 페이지에서 브라우저 패널로 나가면 강조 지우기"
+    "message": "커서가 페이지를 벗어나면 강조 해제"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "커서를 탭 바나 사이드 패널로 옮겨도 강조를 유지하려면 끄세요."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "페이지에서 링크 강조"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "페이지 자체에 테두리, 밑줄 또는 글로우를 그립니다(탭 바 선택에 추가)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "페이지 강조 표시 시점"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "복사본이 숨겨진 경우에만"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "숨겨진 탭을 탭 바에서 선택할 수 없을 때 유용합니다."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "중복이 있을 때 항상 (기본값)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "탭 바 선택과 함께 페이지 강조를 표시합니다."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "강조 스타일(자유롭게 조합)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "카드 테두리"
+  },
+  "linkHighlightCardDesc": {
+    "message": "결과 블록 주위의 얇은 테두리."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "링크 밑줄"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "링크 텍스트 각 줄 아래 선 — 일반 텍스트 링크에 적합."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "부드러운 글로우"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "링크 영역 또는 카드 주위의 은은한 외부 빛."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "링크 강조 활성화"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "링크에 마우스를 올릴 때 이미 열린 탭을 강조하려면 Firefox가 웹사이트 접근 권한이 필요합니다. 주요 기능에 필수 — 아래 버튼을 한 번 클릭하세요."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "웹사이트 접근 허용"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "완료. 열린 페이지를 새로고침한 뒤 링크에 마우스를 올리세요."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "권한이 부여되지 않았습니다. 허용할 때까지 링크 호버가 작동하지 않습니다."
+  },
+  "highlightAppearanceLabel": {
+    "message": "색상 및 두께"
+  },
+  "highlightAccentLabel": {
+    "message": "공통 색상"
+  },
+  "highlightAccentDesc": {
+    "message": "모든 스타일의 기본 색상. 프리셋을 선택하거나 팔레트 아이콘을 눌러 색상을 선택하세요."
+  },
+  "highlightCardWidthLabel": {
+    "message": "테두리 두께"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "선 두께"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "글로우 강도"
+  },
+  "highlightGlowRingLabel": {
+    "message": "링 두께"
+  },
+  "highlightResetDefault": {
+    "message": "기본값으로 재설정"
+  },
+  "highlightChooseColor": {
+    "message": "색상 선택"
   }
 }

@@ -14,38 +14,119 @@
   "settingsTitle": {
     "message": "Настройки"
   },
+  "sectionTabsTitle": {
+    "message": "Выделение вкладок"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Подсветка ссылки на странице"
+  },
   "showCounterLabel": {
     "message": "Счётчик дублей на иконке"
   },
   "showCounterDesc": {
-    "message": "Кратко после перехода на вкладку (минимум 2 секунды) и пока наводите на ссылку."
+    "message": "Показывает число на иконке расширения при наведении на ссылку и кратко после перехода на вкладку."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Подсвечивать дубли при переходе на вкладку"
+    "message": "Вспышка дублей при переходе на вкладку"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Если эта страница уже открыта в другой вкладке, копии ненадолго подсветятся."
+    "message": "Другие открытые копии ненадолго выделяются в панели вкладок (как при multi-select)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Подсвечивать вкладки при наведении на ссылку"
+    "message": "Выделять дубли при наведении на ссылку"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Совпадающие вкладки в панели подсвечиваются, пока курсор на ссылке. Работает вместе с подсветкой на странице ниже."
   },
   "hoverDelayLabel": {
     "message": "Задержка наведения (мс)"
   },
   "hoverDelayDesc": {
-    "message": "Пауза перед подсветкой, когда наводите на ссылку."
+    "message": "Пауза перед любой реакцией на наведение."
   },
   "autoHideDelayLabel": {
-    "message": "Длительность подсветки дублей (мс)"
+    "message": "Длительность вспышки вкладок (мс)"
   },
   "autoHideDelayDesc": {
-    "message": "Сколько держать подсветку дублей после перехода на вкладку. Счётчик на иконке горит минимум 2 секунды, или дольше, если здесь стоит больше. 0 — не убирать подсветку."
+    "message": "Сколько держать выделение дублей после перехода на вкладку."
   },
   "saved": {
     "message": "Сохранено"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Убирать подсветку, когда курсор уходит со страницы на панели браузера"
+    "message": "Снимать подсветку, когда курсор уходит со страницы"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Выключите, если подсветка должна оставаться при переходе курсора на панель вкладок или боковую панель."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Подсвечивать ссылку на странице"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Рисует рамку, подчёркивание или свечение на самой странице (дополнительно к выделению вкладок)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Когда показывать подсветку на странице"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Только если копии скрыты"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Полезно, когда скрытые вкладки нельзя выделить в панели."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Всегда, когда есть дубль (по умолчанию)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Подсветка на странице вместе с выделением вкладок в панели."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Стили подсветки (можно комбинировать)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Рамка карточки"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Тонкая рамка вокруг блока результата."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Подчёркивание ссылки"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Линия под каждой строкой текста ссылки — для обычных текстовых ссылок."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Мягкое свечение"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Лёгкое свечение вокруг области ссылки или карточки."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Цвета и толщина"
+  },
+  "highlightAccentLabel": {
+    "message": "Общий цвет"
+  },
+  "highlightAccentDesc": {
+    "message": "Цвет по умолчанию для всех стилей. Выберите пресет или нажмите на значок палитры для своего цвета."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Толщина рамки"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Толщина линии"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Сила свечения"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Толщина кольца"
+  },
+  "highlightResetDefault": {
+    "message": "Сбросить по умолчанию"
+  },
+  "highlightChooseColor": {
+    "message": "Выбрать цвет"
   },
   "grantTitle": {
     "message": "Включить подсветку по ссылкам"

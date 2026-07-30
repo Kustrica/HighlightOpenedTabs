@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Markeert al geopende tabbladen als je over een link beweegt en toont kort duplicaten als je een tabblad opent.",
+    "message": "Markeert al geopende tabbladen wanneer je over een link beweegt en toont kort duplicaten wanneer je een tabblad opent.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Instellingen"
   },
+  "sectionTabsTitle": {
+    "message": "Tabselectie"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Linkmarkering op de pagina"
+  },
   "showCounterLabel": {
-    "message": "Duplicaatteller op het pictogram tonen"
+    "message": "Duplicaatteller op het pictogram"
   },
   "showCounterDesc": {
-    "message": "Kort na het openen van een tabblad (minstens 2 seconden) en terwijl je over een link beweegt."
+    "message": "Toont een getal op het extensiepictogram terwijl je over een link beweegt, en kort na het wisselen van tabblad."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Duplicaten markeren bij het openen van een tabblad"
+    "message": "Duplicaattabbladen laten flitsen bij tabbladwissel"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Als de pagina al in een ander tabblad open is, lichten de kopieën even op."
+    "message": "Andere open kopieën worden kort geselecteerd in de tabbladbalk (multiselect-stijl)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Tabbladen markeren bij hoveren over een link"
+    "message": "Duplicaattabbladen selecteren bij hover over een link"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Overeenkomende tabbladen in de balk worden gemarkeerd zolang de cursor op de link staat. Werkt samen met de paginamarkering hieronder."
   },
   "hoverDelayLabel": {
     "message": "Hoververtraging (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Hoe lang wachten vóór markeren als je over een link beweegt."
+    "message": "Wachttijd voordat een hoverreactie begint."
   },
   "autoHideDelayLabel": {
-    "message": "Duur van duplicaatmarkering (ms)"
+    "message": "Duur tabbladflits (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Hoe lang duplicaten gemarkeerd blijven na het openen van een tabblad. De teller op het pictogram blijft minstens 2 seconden, of langer als deze waarde hoger is. 0 laat de markering aan."
+    "message": "Hoe lang duplicaattabbladen geselecteerd blijven na een tabbladwissel."
   },
   "saved": {
     "message": "Opgeslagen"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Markering wissen als de cursor de pagina verlaat naar de browsersbalken"
+    "message": "Markering wissen wanneer de cursor de pagina verlaat"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Schakel uit als markering moet blijven wanneer je de cursor naar de tabbladbalk of zijpaneel beweegt."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "De link onder de cursor op de pagina markeren"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Tekent een kader, onderstreping of gloed op de pagina zelf (naast selectie in de tabbladbalk)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Wanneer paginamarkering tonen"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Alleen wanneer kopieën verborgen zijn"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Handig wanneer verborgen tabbladen niet in de balk geselecteerd kunnen worden."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Altijd wanneer er een duplicaat is (standaard)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Toont paginamarkering samen met selectie in de tabbladbalk."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Markeringsstijlen (vrij combineren)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Kaartkader"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Dun kader rond het resultaatblok."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Linkonderstreping"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Lijn onder elke regel van de linktekst — goed voor platte tekstlinks."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Zachte gloed"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Zachte buitengloed rond het linkgebied of de kaart."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Linkmarkering inschakelen"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Om al geopende tabbladen te markeren wanneer je over een link beweegt, heeft Firefox toegang tot websites nodig. Dit is vereist voor de hoofdfunctie — klik eenmaal op de knop hieronder."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Toegang tot websites toestaan"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Klaar. Herlaad open pagina's en beweeg dan over een link."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "Toestemming niet verleend. Link-hover werkt pas na toestemming."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Kleuren en dikte"
+  },
+  "highlightAccentLabel": {
+    "message": "Algemene kleur"
+  },
+  "highlightAccentDesc": {
+    "message": "Standaardkleur voor alle stijlen. Kies een preset of tik op het paleticoon voor een eigen kleur."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Kaderdikte"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Lijndikte"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Gloedsterkte"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Ringdikte"
+  },
+  "highlightResetDefault": {
+    "message": "Standaard herstellen"
+  },
+  "highlightChooseColor": {
+    "message": "Kleur kiezen"
   }
 }

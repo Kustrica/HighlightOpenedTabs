@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Podświetla już otwarte karty po najechaniu na link i krótko pokazuje duplikaty po otwarciu karty.",
+    "message": "Podświetla już otwarte karty po najechaniu na link i na chwilę pokazuje duplikaty po otwarciu karty.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Ustawienia"
   },
+  "sectionTabsTitle": {
+    "message": "Zaznaczanie kart"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Podświetlenie linku na stronie"
+  },
   "showCounterLabel": {
-    "message": "Pokaż licznik duplikatów na ikonie"
+    "message": "Licznik duplikatów na ikonie"
   },
   "showCounterDesc": {
-    "message": "Krótko po otwarciu karty (co najmniej 2 sekundy) oraz gdy najedziesz na link."
+    "message": "Pokazuje liczbę na ikonie rozszerzenia podczas najechania na link i krótko po przejściu do karty."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Podświetlaj duplikaty przy otwarciu karty"
+    "message": "Błysk duplikatów kart przy przełączeniu"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Jeśli strona jest już otwarta w innej karcie, kopie na chwilę się podświetlą."
+    "message": "Inne otwarte kopie są na chwilę zaznaczane na pasku kart (styl wielokrotnego wyboru)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Podświetlaj karty po najechaniu na link"
+    "message": "Zaznaczaj duplikaty kart przy najechaniu na link"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Pasujące karty na pasku są podświetlone, dopóki kursor jest na linku. Działa razem z podświetleniem na stronie poniżej."
   },
   "hoverDelayLabel": {
     "message": "Opóźnienie najechania (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Ile czekać przed podświetleniem po najechaniu na link."
+    "message": "Czas oczekiwania przed rozpoczęciem reakcji na najechanie."
   },
   "autoHideDelayLabel": {
-    "message": "Czas podświetlenia duplikatów (ms)"
+    "message": "Czas trwania błysku kart (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Jak długo podświetlać duplikaty po otwarciu karty. Licznik na ikonie świeci co najmniej 2 sekundy, lub dłużej jeśli ta wartość jest większa. 0 zostawia podświetlenie."
+    "message": "Jak długo duplikaty pozostają zaznaczone po przejściu do karty."
   },
   "saved": {
     "message": "Zapisano"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Usuń podświetlenie, gdy kursor opuszcza stronę na panele przeglądarki"
+    "message": "Usuń podświetlenie, gdy kursor opuszcza stronę"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Wyłącz, jeśli podświetlenie ma zostać przy przeniesieniu kursora na pasek kart lub panel boczny."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Podświetlaj link pod kursorem na stronie"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Rysuje ramkę, podkreślenie lub poświatę na samej stronie (oprócz zaznaczenia na pasku kart)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Kiedy pokazywać podświetlenie na stronie"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Tylko gdy kopie są ukryte"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Przydatne, gdy ukrytych kart nie można zaznaczyć na pasku."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Zawsze, gdy istnieje duplikat (domyślnie)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Pokazuje podświetlenie na stronie razem ze zaznaczeniem na pasku kart."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Style podświetlenia (łącz dowolnie)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Ramka karty"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Cienka ramka wokół bloku wyniku."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Podkreślenie linku"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Linia pod każdą linią tekstu linku — do zwykłych linków tekstowych."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Miękka poświata"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Delikatna zewnętrzna poświata wokół obszaru linku lub karty."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Włącz podświetlanie linków"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Aby podświetlać już otwarte karty po najechaniu na link, Firefox potrzebuje dostępu do stron. Jest to wymagane dla głównej funkcji — kliknij przycisk poniżej raz."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Zezwól na dostęp do stron"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Gotowe. Odśwież otwarte strony, a następnie najedź na link."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "Nie udzielono uprawnienia. Najechanie na linki nie zadziała, dopóki go nie zezwolisz."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Kolory i grubość"
+  },
+  "highlightAccentLabel": {
+    "message": "Kolor ogólny"
+  },
+  "highlightAccentDesc": {
+    "message": "Domyślny kolor dla wszystkich stylów. Wybierz preset lub dotknij ikony palety, aby wybrać własny kolor."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Grubość ramki"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Grubość linii"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Siła poświaty"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Grubość pierścienia"
+  },
+  "highlightResetDefault": {
+    "message": "Przywróć domyślne"
+  },
+  "highlightChooseColor": {
+    "message": "Wybierz kolor"
   }
 }

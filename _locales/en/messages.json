@@ -14,38 +14,119 @@
   "settingsTitle": {
     "message": "Settings"
   },
+  "sectionTabsTitle": {
+    "message": "Tab selection"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "On-page link highlight"
+  },
   "showCounterLabel": {
-    "message": "Show duplicate count on the icon"
+    "message": "Duplicate count on the icon"
   },
   "showCounterDesc": {
-    "message": "Shows briefly after you open a tab (at least 2 seconds), and while you hover a link."
+    "message": "Shows a number on the extension icon while you hover a link, and briefly after you switch to a tab."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Highlight duplicates when you open a tab"
+    "message": "Flash duplicate tabs when you switch to a tab"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "When you go to a tab that already has a copy open, the other copies light up briefly."
+    "message": "Other open copies are briefly selected in the tab bar (multi-select style)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Highlight matching tabs when you hover a link"
+    "message": "Select duplicate tabs when you hover a link"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Matching tabs in the tab bar are highlighted while the cursor is on the link. Works alongside the on-page highlight below."
   },
   "hoverDelayLabel": {
     "message": "Hover delay (ms)"
   },
   "hoverDelayDesc": {
-    "message": "How long to wait before highlighting after you hover a link."
+    "message": "Wait time before any hover reaction starts."
   },
   "autoHideDelayLabel": {
-    "message": "Duplicate highlight duration (ms)"
+    "message": "Tab flash duration (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "How long to highlight duplicates after opening a tab. The icon counter stays at least 2 seconds, or as long as this value if it is higher. 0 keeps the highlight on."
+    "message": "How long duplicate tabs stay selected after you switch to a tab."
   },
   "saved": {
     "message": "Saved"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Clear highlight when the cursor leaves the page for the browser panels"
+    "message": "Clear highlights when the cursor leaves the page"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Turn off if highlights should stay while you move the cursor to the tab bar or side panel."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Highlight the hovered link on the page"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Draws a frame, underline, or glow on the page itself (in addition to tab-bar selection)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "When to show on-page highlight"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Only when copies are hidden"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Useful when hidden tabs cannot be selected in the tab bar."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Whenever a duplicate exists (default)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Shows on-page highlight together with tab-bar selection."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Highlight styles (combine any)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Card frame"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Thin frame around the result block."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Link underline"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Line under each line of link text — good for plain text links."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Soft glow"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Gentle outer glow around the link area or card."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Colors & thickness"
+  },
+  "highlightAccentLabel": {
+    "message": "General color"
+  },
+  "highlightAccentDesc": {
+    "message": "Default color for all styles. Pick a preset or tap the palette icon for a custom color."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Border width"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Line thickness"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Glow strength"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Ring width"
+  },
+  "highlightResetDefault": {
+    "message": "Reset to default"
+  },
+  "highlightChooseColor": {
+    "message": "Choose color"
   },
   "grantTitle": {
     "message": "Enable link highlighting"

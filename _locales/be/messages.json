@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Падсвятляе ўжо адкрытыя ўкладкі пры навядзенні на спасылку і коратка паказвае дублі пры пераходзе на ўкладку.",
+    "message": "Падсвечвае ўжо адкрытыя укладкі пры на навядзенні на спасылку і каротка паказвае дублі пры пераходзе на ўкладку.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,44 +14,98 @@
   "settingsTitle": {
     "message": "Налады"
   },
+  "sectionTabsTitle": {
+    "message": "Вылучэнне ўкладак"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Падсветка спасылкі на старонцы"
+  },
   "showCounterLabel": {
     "message": "Лічыльнік дубляў на значку"
   },
   "showCounterDesc": {
-    "message": "Коратка пасля пераходу на ўкладку (мінімум 2 секунды) і пакуль наводзіце на спасылку."
+    "message": "Паказвае лік на значку пашырэння пры на навядзенні на спасылку і каротка пасля пераходу на ўкладку."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Падсвятляць дублі пры пераходзе на ўкладку"
+    "message": "Успышка дубляў пры пераходзе на ўкладку"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Калі гэтая старонка ўжо адкрыта ў іншай укладцы, копіі коратка падсвятляцца."
+    "message": "Іншыя адкрытыя копіі каротка вылучаюцца на панелі ўкладак (як пры multi-select)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Падсвятляць укладкі пры навядзенні на спасылку"
+    "message": "Вылучаць дублі пры на навядзенні на спасылку"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Супадаючыя ўкладкі на панелі падсвечваюцца, пакуль курсор на спасылцы. Працуе разам з падсветкай на старонцы ніжэй."
   },
   "hoverDelayLabel": {
-    "message": "Затрымка навядзення (мс)"
+    "message": "Затрымка на навядзенні (мс)"
   },
   "hoverDelayDesc": {
-    "message": "Паўза перад падсвятленнем, калі наводзіце на спасылку."
+    "message": "Паўза перад любой рэакцыяй на на навядзенне."
   },
   "autoHideDelayLabel": {
-    "message": "Працягласць падсвятлення дубляў (мс)"
+    "message": "Працягласць успышкі ўкладак (мс)"
   },
   "autoHideDelayDesc": {
-    "message": "Колькі трымаць падсвятленне дубляў пасля пераходу на ўкладку. Лічыльнік на значку гарыць мінімум 2 секунды, або даўжэй, калі тут больш. 0 — не прыбіраць падсвятленне."
+    "message": "Колькі трымаць вылучэнне дубляў пасля пераходу на ўкладку."
   },
   "saved": {
     "message": "Захавана"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Прыбіраць падсвятленне, калі курсор сыходзіць са старонкі на панэлі браўзера"
+    "message": "Знімаць падсветку, калі курсор пакідае старонку"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Выключыце, калі падсветка павінна заставацца пры пераходзе курсора на панель укладак або бакавую панэль."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Падсвечваць спасылку на старонцы"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Малюе рамку, падкрэсліванне або свячэнне на самой старонцы (дадаткова да вылучэння ўкладак)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Калі паказваць падсветку на старонцы"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Толькі калі копіі схаваны"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Карысна, калі схаваныя ўкладкі нельга вылучыць на панелі."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Заўсёды, калі ёсць дубль (па змаўчанні)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Падсветка на старонцы разам з вылучэннем укладак на панелі."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Стылі падсветкі (можна спалучаць)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Рамка карткі"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Тонкая рамка вакол блока выніку."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Падкрэсліванне спасылкі"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Лінія пад кожным радком тэксту спасылкі — для звычайных тэкставых спасылак."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Мяккае свячэнне"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Лёгкае свячэнне вакол вобласці спасылкі або карткі."
   },
   "grantTitle": {
-    "message": "Уключыць падсвятленне па спасылках"
+    "message": "Уключыць падсветку спасылак"
   },
   "grantBody": {
-    "message": "Каб пры навядзенні на спасылку падсвятляліся ўжо адкрытыя ўкладкі, Firefox патрэбны доступ да сайтаў. Гэта трэба для галоўнай функцыі — націсніце кнопку адзін раз."
+    "message": "Каб пры на навядзенні на спасылку падсвечваліся ўжо адкрытыя ўкладкі, Firefox патрабуе доступ да сайтаў. Гэта неабходна для галоўнай функцыі — націсніце кнопку адзін раз."
   },
   "grantButton": {
     "message": "Дазволіць доступ да сайтаў"
@@ -61,5 +115,32 @@
   },
   "grantDenied": {
     "message": "Дазвол не выдадзены. Навядзенне на спасылкі не будзе працаваць, пакуль не дазволіце."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Колеры і таўшчыня"
+  },
+  "highlightAccentLabel": {
+    "message": "Агульны колер"
+  },
+  "highlightAccentDesc": {
+    "message": "Колер па змаўчанні для ўсіх стыляў. Абярыце прэсет або націсніце значок палітры для свайго колеру."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Таўшчыня рамкі"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Таўшчыня лініі"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Сіла свячэння"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Таўшчыня кольца"
+  },
+  "highlightResetDefault": {
+    "message": "Скінуць па змаўчанні"
+  },
+  "highlightChooseColor": {
+    "message": "Выбраць колер"
   }
 }

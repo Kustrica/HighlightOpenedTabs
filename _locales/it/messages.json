@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Impostazioni"
   },
+  "sectionTabsTitle": {
+    "message": "Selezione schede"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Evidenziazione del link nella pagina"
+  },
   "showCounterLabel": {
-    "message": "Mostra il conteggio dei duplicati sull’icona"
+    "message": "Conteggio duplicati sull'icona"
   },
   "showCounterDesc": {
-    "message": "Compare per un attimo dopo aver aperto una scheda (almeno 2 secondi) e mentre passi il mouse su un link."
+    "message": "Mostra un numero sull'icona dell'estensione mentre passi il mouse su un link, e brevemente dopo il cambio scheda."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Evidenzia i duplicati quando apri una scheda"
+    "message": "Flash delle schede duplicate al cambio scheda"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Se la pagina è già aperta in un’altra scheda, le copie si illuminano per un attimo."
+    "message": "Le altre copie aperte vengono brevemente selezionate nella barra delle schede (stile multiselezione)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Evidenzia le schede quando passi il mouse su un link"
+    "message": "Seleziona schede duplicate al passaggio del mouse su un link"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Le schede corrispondenti nella barra sono evidenziate finché il cursore è sul link. Funziona insieme all'evidenziazione nella pagina sotto."
   },
   "hoverDelayLabel": {
     "message": "Ritardo al passaggio del mouse (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Quanto aspettare prima di evidenziare dopo aver passato il mouse su un link."
+    "message": "Tempo di attesa prima che inizi qualsiasi reazione al passaggio del mouse."
   },
   "autoHideDelayLabel": {
-    "message": "Durata evidenziazione duplicati (ms)"
+    "message": "Durata flash schede (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Per quanto tempo evidenziare i duplicati dopo aver aperto una scheda. Il contatore sull’icona resta almeno 2 secondi, o di più se questo valore è maggiore. 0 lascia l’evidenziazione."
+    "message": "Per quanto tempo le schede duplicate restano selezionate dopo il cambio scheda."
   },
   "saved": {
     "message": "Salvato"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Togli l’evidenziazione quando il cursore lascia la pagina verso i pannelli del browser"
+    "message": "Rimuovi evidenziazione quando il cursore esce dalla pagina"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Disattiva se l'evidenziazione deve restare quando sposti il cursore sulla barra delle schede o sul pannello laterale."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Evidenzia il link sotto il cursore nella pagina"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Disegna una cornice, sottolineatura o bagliore sulla pagina stessa (oltre alla selezione nella barra delle schede)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Quando mostrare l'evidenziazione nella pagina"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Solo quando le copie sono nascoste"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Utile quando le schede nascoste non possono essere selezionate nella barra."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Ogni volta che esiste un duplicato (predefinito)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Mostra l'evidenziazione nella pagina insieme alla selezione nella barra delle schede."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Stili di evidenziazione (combinabili)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Cornice scheda"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Sottile cornice intorno al blocco risultato."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Sottolineatura del link"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Linea sotto ogni riga del testo del link — ideale per link di testo semplice."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Bagliore morbido"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Leggero bagliore esterno intorno all'area del link o della scheda."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Attiva evidenziazione link"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Per evidenziare le schede già aperte quando passi il mouse su un link, Firefox necessita dell'accesso ai siti web. È richiesto per la funzione principale — clicca il pulsante sotto una volta."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Consenti accesso ai siti web"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Fatto. Ricarica le pagine aperte, poi passa il mouse su un link."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "Permesso non concesso. Il passaggio del mouse sui link non funzionerà finché non lo consenti."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Colori e spessore"
+  },
+  "highlightAccentLabel": {
+    "message": "Colore generale"
+  },
+  "highlightAccentDesc": {
+    "message": "Colore predefinito per tutti gli stili. Scegli un preset o tocca l'icona palette per un colore personalizzato."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Spessore cornice"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Spessore linea"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Intensità bagliore"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Spessore anello"
+  },
+  "highlightResetDefault": {
+    "message": "Ripristina predefiniti"
+  },
+  "highlightChooseColor": {
+    "message": "Scegli colore"
   }
 }

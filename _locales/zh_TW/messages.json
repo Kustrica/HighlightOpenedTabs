@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "將滑鼠懸停在連結上時醒目提示已開啟的分頁，開啟分頁時短暫醒目提示重複項。",
+    "message": "游標懸停連結時突顯已開啟的分頁，開啟分頁時短暫顯示重複項目。",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "設定"
   },
+  "sectionTabsTitle": {
+    "message": "分頁選取"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "頁面連結突顯"
+  },
   "showCounterLabel": {
-    "message": "在圖示上顯示重複分頁計數"
+    "message": "圖示上的重複計數"
   },
   "showCounterDesc": {
-    "message": "開啟分頁後短暫顯示（至少 2 秒），以及將滑鼠懸停在連結上時顯示。"
+    "message": "懸停連結時及切換分頁後短暫在擴充功能圖示上顯示數字。"
   },
   "enableDuplicateHighlightLabel": {
-    "message": "開啟分頁時醒目提示重複項"
+    "message": "切換分頁時閃爍重複分頁"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "如果該頁面已在其他分頁開啟，其他複本會短暫亮起。"
+    "message": "其他已開啟副本會在分頁列中短暫選取（多選樣式）。"
   },
   "enableHoverHighlightLabel": {
-    "message": "懸停連結時醒目提示對應分頁"
+    "message": "懸停連結時選取重複分頁"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "游標在連結上時，分頁列中符合的分頁會突顯。可與下方頁面突顯搭配使用。"
   },
   "hoverDelayLabel": {
     "message": "懸停延遲（毫秒）"
   },
   "hoverDelayDesc": {
-    "message": "滑鼠懸停在連結上後，等待多久再醒目提示。"
+    "message": "任何懸停反應開始前的等待時間。"
   },
   "autoHideDelayLabel": {
-    "message": "重複分頁醒目提示時長（毫秒）"
+    "message": "分頁閃爍時長（毫秒）"
   },
   "autoHideDelayDesc": {
-    "message": "開啟分頁後重複項醒目提示多久。圖示計數至少顯示 2 秒；若此處更大則依該值。0 表示保持醒目提示。"
+    "message": "切換分頁後重複分頁保持選取的時長。"
   },
   "saved": {
     "message": "已儲存"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "游標離開頁面移到瀏覽器面板時清除醒目提示"
+    "message": "游標離開頁面時清除突顯"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "若將游標移到分頁列或側邊面板時仍需保持突顯，請關閉此項。"
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "在頁面上突顯懸停的連結"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "在頁面本身繪製外框、底線或光暈（除分頁列選取外）。"
+  },
+  "linkHighlightScopeLabel": {
+    "message": "何時顯示頁面突顯"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "僅當副本被隱藏時"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "當隱藏分頁無法在分頁列選取時很有用。"
+  },
+  "linkHighlightScopeAlways": {
+    "message": "只要存在重複（預設）"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "與分頁列選取一起顯示頁面突顯。"
+  },
+  "linkHighlightStylesLabel": {
+    "message": "突顯樣式（可任意組合）"
+  },
+  "linkHighlightCardLabel": {
+    "message": "卡片外框"
+  },
+  "linkHighlightCardDesc": {
+    "message": "結果區塊周圍的細外框。"
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "連結底線"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "連結文字每行下方的線 — 適合純文字連結。"
+  },
+  "linkHighlightGlowLabel": {
+    "message": "柔和光暈"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "連結區域或卡片周圍的柔和外發光。"
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "啟用連結突顯"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "要在懸停連結時突顯已開啟的分頁，Firefox 需要存取網站。這是主要功能所必需的 — 請點一下下方按鈕。"
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "允許存取網站"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "完成。重新載入已開啟的頁面，然後懸停連結。"
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "未授予權限。允許之前連結懸停將無法運作。"
+  },
+  "highlightAppearanceLabel": {
+    "message": "顏色與粗細"
+  },
+  "highlightAccentLabel": {
+    "message": "通用顏色"
+  },
+  "highlightAccentDesc": {
+    "message": "所有樣式的預設顏色。選擇預設，或點擊調色盤圖示選擇自訂顏色。"
+  },
+  "highlightCardWidthLabel": {
+    "message": "外框粗細"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "線條粗細"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "光暈強度"
+  },
+  "highlightGlowRingLabel": {
+    "message": "環粗細"
+  },
+  "highlightResetDefault": {
+    "message": "恢復預設"
+  },
+  "highlightChooseColor": {
+    "message": "選擇顏色"
   }
 }

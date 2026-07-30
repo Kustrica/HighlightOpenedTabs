@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Resalta pestañas ya abiertas al pasar el cursor por un enlace y muestra brevemente los duplicados al abrir una pestaña.",
+    "message": "Resalta las pestañas ya abiertas al pasar el cursor sobre un enlace y muestra brevemente los duplicados al abrir una pestaña.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Ajustes"
   },
+  "sectionTabsTitle": {
+    "message": "Selección de pestañas"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Resaltado del enlace en la página"
+  },
   "showCounterLabel": {
-    "message": "Mostrar el contador de duplicados en el icono"
+    "message": "Recuento de duplicados en el icono"
   },
   "showCounterDesc": {
-    "message": "Se muestra un momento al abrir una pestaña (al menos 2 segundos) y mientras pasas el cursor por un enlace."
+    "message": "Muestra un número en el icono de la extensión mientras pasas el cursor sobre un enlace, y brevemente después de cambiar de pestaña."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Resaltar duplicados al abrir una pestaña"
+    "message": "Destellar pestañas duplicadas al cambiar de pestaña"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Si la página ya está abierta en otra pestaña, las copias se iluminan un momento."
+    "message": "Otras copias abiertas se seleccionan brevemente en la barra de pestañas (estilo multiselección)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Resaltar pestañas al pasar el cursor por un enlace"
+    "message": "Seleccionar pestañas duplicadas al pasar el cursor sobre un enlace"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Las pestañas coincidentes en la barra se resaltan mientras el cursor está sobre el enlace. Funciona junto con el resaltado en la página de abajo."
   },
   "hoverDelayLabel": {
-    "message": "Retraso al pasar el cursor (ms)"
+    "message": "Retardo al pasar el cursor (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Cuánto esperar antes de resaltar al pasar el cursor por un enlace."
+    "message": "Tiempo de espera antes de que comience cualquier reacción al pasar el cursor."
   },
   "autoHideDelayLabel": {
-    "message": "Duración del resaltado de duplicados (ms)"
+    "message": "Duración del destello de pestañas (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Cuánto tiempo resaltar duplicados tras abrir una pestaña. El contador del icono dura al menos 2 segundos, o más si este valor es mayor. 0 deja el resaltado."
+    "message": "Cuánto tiempo permanecen seleccionadas las pestañas duplicadas tras cambiar de pestaña."
   },
   "saved": {
     "message": "Guardado"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Quitar el resaltado cuando el cursor sale de la página hacia los paneles del navegador"
+    "message": "Quitar resaltado cuando el cursor sale de la página"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Desactiva si el resaltado debe permanecer al mover el cursor a la barra de pestañas o al panel lateral."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Resaltar el enlace sobre el que pasa el cursor en la página"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Dibuja un marco, subrayado o brillo en la propia página (además de la selección en la barra de pestañas)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Cuándo mostrar el resaltado en la página"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Solo cuando las copias están ocultas"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Útil cuando las pestañas ocultas no se pueden seleccionar en la barra."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Siempre que exista un duplicado (predeterminado)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Muestra el resaltado en la página junto con la selección en la barra de pestañas."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Estilos de resaltado (combinar libremente)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Marco de tarjeta"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Marco fino alrededor del bloque de resultado."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Subrayado del enlace"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Línea bajo cada línea del texto del enlace — ideal para enlaces de texto plano."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Brillo suave"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Brillo exterior suave alrededor del área del enlace o la tarjeta."
   },
   "grantTitle": {
-    "message": "Activar el resaltado al pasar el cursor"
+    "message": "Activar resaltado de enlaces"
   },
   "grantBody": {
-    "message": "Para resaltar pestañas ya abiertas al pasar el cursor por un enlace, Firefox necesita acceso a los sitios. Es necesario para la función principal: haz clic una vez."
+    "message": "Para resaltar las pestañas ya abiertas al pasar el cursor sobre un enlace, Firefox necesita acceso a los sitios web. Es necesario para la función principal — haz clic en el botón de abajo una vez."
   },
   "grantButton": {
     "message": "Permitir acceso a sitios web"
   },
   "grantDone": {
-    "message": "Listo. Recarga las páginas abiertas y pasa el cursor por un enlace."
+    "message": "Listo. Recarga las páginas abiertas y pasa el cursor sobre un enlace."
   },
   "grantDenied": {
-    "message": "No se concedió el permiso. El resaltado al pasar el cursor no funcionará hasta que lo permitas."
+    "message": "No se concedió el permiso. El hover sobre enlaces no funcionará hasta que lo permitas."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Colores y grosor"
+  },
+  "highlightAccentLabel": {
+    "message": "Color general"
+  },
+  "highlightAccentDesc": {
+    "message": "Color predeterminado para todos los estilos. Elige un preset o toca el icono de paleta para un color personalizado."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Grosor del marco"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Grosor de la línea"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Intensidad del brillo"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Grosor del anillo"
+  },
+  "highlightResetDefault": {
+    "message": "Restablecer valores"
+  },
+  "highlightChooseColor": {
+    "message": "Elegir color"
   }
 }

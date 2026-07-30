@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Làm nổi các thẻ đã mở khi di chuột lên liên kết và hiện bản trùng trong giây lát khi mở thẻ.",
+    "message": "Làm nổi bật các tab đã mở khi bạn di chuột qua liên kết và hiển thị ngắn các bản trùng khi mở tab.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Cài đặt"
   },
+  "sectionTabsTitle": {
+    "message": "Chọn tab"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Làm nổi bật liên kết trên trang"
+  },
   "showCounterLabel": {
-    "message": "Hiện số thẻ trùng trên biểu tượng"
+    "message": "Số bản trùng trên biểu tượng"
   },
   "showCounterDesc": {
-    "message": "Hiện ngắn sau khi mở thẻ (ít nhất 2 giây), và khi di chuột lên liên kết."
+    "message": "Hiển thị số trên biểu tượng tiện ích khi di chuột qua liên kết và ngắn sau khi chuyển tab."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Làm nổi bản trùng khi mở thẻ"
+    "message": "Nhấp nháy tab trùng khi chuyển tab"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Nếu trang đã mở ở thẻ khác, các bản sao sẽ sáng lên trong giây lát."
+    "message": "Các bản sao mở khác được chọn ngắn trên thanh tab (kiểu chọn nhiều)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Làm nổi thẻ khớp khi di chuột lên liên kết"
+    "message": "Chọn tab trùng khi di chuột qua liên kết"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Tab khớp trên thanh tab được làm nổi bật khi con trỏ ở trên liên kết. Hoạt động cùng làm nổi bật trang bên dưới."
   },
   "hoverDelayLabel": {
-    "message": "Độ trễ khi di chuột (ms)"
+    "message": "Độ trễ di chuột (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Chờ bao lâu trước khi làm nổi sau khi di chuột lên liên kết."
+    "message": "Thời gian chờ trước khi phản ứng hover bắt đầu."
   },
   "autoHideDelayLabel": {
-    "message": "Thời gian làm nổi bản trùng (ms)"
+    "message": "Thời lượng nhấp nháy tab (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Giữ làm nổi bản trùng bao lâu sau khi mở thẻ. Số trên biểu tượng hiện ít nhất 2 giây, hoặc lâu hơn nếu giá trị này lớn hơn. 0 giữ làm nổi."
+    "message": "Tab trùng giữ được chọn bao lâu sau khi chuyển tab."
   },
   "saved": {
     "message": "Đã lưu"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Xóa làm nổi khi con trỏ rời trang sang thanh trình duyệt"
+    "message": "Xóa làm nổi bật khi con trỏ rời trang"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Tắt nếu làm nổi bật cần giữ khi di chuyển con trỏ sang thanh tab hoặc bảng bên."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Làm nổi bật liên kết đang hover trên trang"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Vẽ khung, gạch chân hoặc phát sáng trên trang (ngoài việc chọn trên thanh tab)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Khi nào hiển thị làm nổi bật trên trang"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Chỉ khi bản sao bị ẩn"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Hữu ích khi tab ẩn không thể chọn trên thanh tab."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Luôn khi có bản trùng (mặc định)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Hiển thị làm nổi bật trang cùng với chọn trên thanh tab."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Kiểu làm nổi bật (kết hợp tùy ý)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Khung thẻ"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Khung mỏng quanh khối kết quả."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Gạch chân liên kết"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Đường dưới mỗi dòng văn bản liên kết — phù hợp liên kết văn bản thuần."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Phát sáng nhẹ"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Ánh sáng ngoài nhẹ quanh vùng liên kết hoặc thẻ."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Bật làm nổi bật liên kết"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Để làm nổi bật tab đã mở khi di chuột qua liên kết, Firefox cần quyền truy cập trang web. Cần cho tính năng chính — nhấp nút bên dưới một lần."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Cho phép truy cập trang web"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Xong. Tải lại các trang đang mở, rồi di chuột qua liên kết."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "Không được cấp quyền. Hover liên kết sẽ không hoạt động cho đến khi bạn cho phép."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Màu sắc và độ dày"
+  },
+  "highlightAccentLabel": {
+    "message": "Màu chung"
+  },
+  "highlightAccentDesc": {
+    "message": "Màu mặc định cho mọi kiểu. Chọn preset hoặc chạm biểu tượng bảng màu để chọn màu tùy chỉnh."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Độ dày khung"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Độ dày đường"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Cường độ phát sáng"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Độ dày vòng"
+  },
+  "highlightResetDefault": {
+    "message": "Đặt lại mặc định"
+  },
+  "highlightChooseColor": {
+    "message": "Chọn màu"
   }
 }

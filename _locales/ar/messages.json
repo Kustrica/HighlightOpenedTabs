@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "يُبرز علامات التبويب المفتوحة عند تمرير المؤشر فوق رابط، ويعرض المكررات لفترة قصيرة عند فتح علامة تبويب.",
+    "message": "يُبرز علامات التبويب المفتوحة عند تمرير المؤشر فوق رابط، ويُظهر المكررات لفترة وجيزة عند فتح علامة تبويب.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "الإعدادات"
   },
+  "sectionTabsTitle": {
+    "message": "تحديد علامات التبويب"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "تمييز الرابط في الصفحة"
+  },
   "showCounterLabel": {
-    "message": "إظهار عدد المكررات على الأيقونة"
+    "message": "عدد المكررات على الأيقونة"
   },
   "showCounterDesc": {
-    "message": "يظهر لفترة قصيرة بعد فتح علامة تبويب (ثانيتان على الأقل) وأثناء تمرير المؤشر فوق رابط."
+    "message": "يعرض رقمًا على أيقونة الامتداد أثناء تمرير المؤشر فوق رابط، وبعد التبديل إلى علامة تبويب لفترة وجيزة."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "إبراز المكررات عند فتح علامة تبويب"
+    "message": "وميض علامات التبويب المكررة عند التبديل"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "إذا كانت الصفحة مفتوحة في علامة تبويب أخرى، تضيء النسخ للحظة."
+    "message": "يتم تحديد النسخ المفتوحة الأخرى لفترة وجيزة في شريط علامات التبويب (نمط التحديد المتعدد)."
   },
   "enableHoverHighlightLabel": {
-    "message": "إبراز علامات التبويب عند تمرير المؤشر فوق رابط"
+    "message": "تحديد علامات التبويب المكررة عند تمرير المؤشر فوق رابط"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "تُبرز علامات التبويب المطابقة في الشريط طالما المؤشر على الرابط. يعمل مع تمييز الصفحة أدناه."
   },
   "hoverDelayLabel": {
     "message": "تأخير التمرير (مللي ثانية)"
   },
   "hoverDelayDesc": {
-    "message": "مدة الانتظار قبل الإبراز بعد تمرير المؤشر فوق رابط."
+    "message": "وقت الانتظار قبل بدء أي رد فعل للتمرير."
   },
   "autoHideDelayLabel": {
-    "message": "مدة إبراز المكررات (مللي ثانية)"
+    "message": "مدة وميض علامات التبويب (مللي ثانية)"
   },
   "autoHideDelayDesc": {
-    "message": "مدة إبراز المكررات بعد فتح علامة تبويب. يبقى العداد على الأيقونة ثانيتين على الأقل، أو أطول إذا كانت هذه القيمة أكبر. 0 يبقي الإبراز."
+    "message": "مدة بقاء علامات التبويب المكررة محددة بعد التبديل."
   },
   "saved": {
     "message": "تم الحفظ"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "إزالة التمييز عندما يغادر المؤشر الصفحة إلى لوحات المتصفح"
+    "message": "إزالة التمييز عند مغادرة المؤشر للصفحة"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "أوقف التشغيل إذا كان التمييز يجب أن يبقى عند نقل المؤشر إلى شريط علامات التبويب أو اللوحة الجانبية."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "تمييز الرابط المُمرَّر فوقه في الصفحة"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "يرسم إطارًا أو خطًا سفليًا أو توهجًا على الصفحة نفسها (بالإضافة إلى التحديد في شريط علامات التبويب)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "متى يُعرض تمييز الصفحة"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "فقط عندما تكون النسخ مخفية"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "مفيد عندما لا يمكن تحديد علامات التبويب المخفية في الشريط."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "عند وجود نسخة مكررة دائمًا (افتراضي)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "يعرض تمييز الصفحة مع التحديد في شريط علامات التبويب."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "أنماط التمييز (اجمع بينها)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "إطار البطاقة"
+  },
+  "linkHighlightCardDesc": {
+    "message": "إطار رفيع حول كتلة النتيجة."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "خط سفلي للرابط"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "خط تحت كل سطر من نص الرابط — مناسب للروابط النصية البسيطة."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "توهج ناعم"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "توهج خارجي خفيف حول منطقة الرابط أو البطاقة."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "تفعيل تمييز الروابط"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "لتمييز علامات التبويب المفتوحة عند تمرير المؤشر فوق رابط، يحتاج Firefox إلى الوصول إلى مواقع الويب. مطلوب للميزة الرئيسية — انقر الزر أدناه مرة واحدة."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "السماح بالوصول إلى مواقع الويب"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "تم. أعد تحميل الصفحات المفتوحة، ثم مرّر المؤشر فوق رابط."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "لم يُمنح الإذن. لن يعمل التمرير فوق الروابط حتى تسمح بذلك."
+  },
+  "highlightAppearanceLabel": {
+    "message": "الألوان والسُمك"
+  },
+  "highlightAccentLabel": {
+    "message": "اللون العام"
+  },
+  "highlightAccentDesc": {
+    "message": "اللون الافتراضي لجميع الأنماط. اختر لونًا جاهزًا أو اضغط على أيقونة لوحة الألوان للون مخصص."
+  },
+  "highlightCardWidthLabel": {
+    "message": "سمك الإطار"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "سمك الخط"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "قوة التوهج"
+  },
+  "highlightGlowRingLabel": {
+    "message": "سمك الحلقة"
+  },
+  "highlightResetDefault": {
+    "message": "إعادة التعيين"
+  },
+  "highlightChooseColor": {
+    "message": "اختيار لون"
   }
 }

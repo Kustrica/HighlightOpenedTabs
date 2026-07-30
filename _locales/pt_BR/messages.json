@@ -4,7 +4,7 @@
     "description": "Name of the extension"
   },
   "extensionDescription": {
-    "message": "Destaca abas já abertas ao passar o mouse sobre um link e mostra brevemente as duplicatas ao abrir uma aba.",
+    "message": "Destaca abas já abertas ao passar o mouse sobre um link e mostra brevemente duplicatas ao abrir uma aba.",
     "description": "Description of the extension"
   },
   "optionsTitle": {
@@ -14,52 +14,133 @@
   "settingsTitle": {
     "message": "Configurações"
   },
+  "sectionTabsTitle": {
+    "message": "Seleção de abas"
+  },
+  "sectionLinkHighlightTitle": {
+    "message": "Destaque do link na página"
+  },
   "showCounterLabel": {
-    "message": "Mostrar contagem de duplicatas no ícone"
+    "message": "Contagem de duplicatas no ícone"
   },
   "showCounterDesc": {
-    "message": "Aparece por um instante ao abrir uma aba (pelo menos 2 segundos) e enquanto você passa o mouse sobre um link."
+    "message": "Mostra um número no ícone da extensão enquanto você passa o mouse sobre um link, e brevemente após mudar de aba."
   },
   "enableDuplicateHighlightLabel": {
-    "message": "Destacar duplicatas ao abrir uma aba"
+    "message": "Piscar abas duplicadas ao mudar de aba"
   },
   "enableDuplicateHighlightDesc": {
-    "message": "Se a página já estiver aberta em outra aba, as cópias acendem por um instante."
+    "message": "Outras cópias abertas são brevemente selecionadas na barra de abas (estilo multiseleção)."
   },
   "enableHoverHighlightLabel": {
-    "message": "Destacar abas ao passar o mouse sobre um link"
+    "message": "Selecionar abas duplicadas ao passar o mouse sobre um link"
+  },
+  "enableHoverHighlightDesc": {
+    "message": "Abas correspondentes na barra são destacadas enquanto o cursor está no link. Funciona junto com o destaque na página abaixo."
   },
   "hoverDelayLabel": {
     "message": "Atraso ao passar o mouse (ms)"
   },
   "hoverDelayDesc": {
-    "message": "Quanto esperar antes de destacar ao passar o mouse sobre um link."
+    "message": "Tempo de espera antes de qualquer reação ao passar o mouse."
   },
   "autoHideDelayLabel": {
-    "message": "Duração do destaque de duplicatas (ms)"
+    "message": "Duração do flash das abas (ms)"
   },
   "autoHideDelayDesc": {
-    "message": "Por quanto tempo destacar duplicatas após abrir uma aba. O contador no ícone fica pelo menos 2 segundos, ou mais se este valor for maior. 0 mantém o destaque."
+    "message": "Por quanto tempo abas duplicadas permanecem selecionadas após mudar de aba."
   },
   "saved": {
     "message": "Salvo"
   },
   "unhighlightOnWindowLeaveLabel": {
-    "message": "Remover o destaque quando o cursor sai da página para os painéis do navegador"
+    "message": "Remover destaque quando o cursor sai da página"
+  },
+  "unhighlightOnWindowLeaveDesc": {
+    "message": "Desative se o destaque deve permanecer ao mover o cursor para a barra de abas ou painel lateral."
+  },
+  "linkHighlightEnabledLabel": {
+    "message": "Destacar o link sob o cursor na página"
+  },
+  "linkHighlightEnabledDesc": {
+    "message": "Desenha uma moldura, sublinhado ou brilho na própria página (além da seleção na barra de abas)."
+  },
+  "linkHighlightScopeLabel": {
+    "message": "Quando mostrar o destaque na página"
+  },
+  "linkHighlightScopeHiddenOnly": {
+    "message": "Somente quando as cópias estão ocultas"
+  },
+  "linkHighlightScopeHiddenDesc": {
+    "message": "Útil quando abas ocultas não podem ser selecionadas na barra."
+  },
+  "linkHighlightScopeAlways": {
+    "message": "Sempre que existir uma duplicata (padrão)"
+  },
+  "linkHighlightScopeAlwaysDesc": {
+    "message": "Mostra o destaque na página junto com a seleção na barra de abas."
+  },
+  "linkHighlightStylesLabel": {
+    "message": "Estilos de destaque (combine à vontade)"
+  },
+  "linkHighlightCardLabel": {
+    "message": "Moldura de card"
+  },
+  "linkHighlightCardDesc": {
+    "message": "Moldura fina ao redor do bloco de resultado."
+  },
+  "linkHighlightUnderlineLabel": {
+    "message": "Sublinhado do link"
+  },
+  "linkHighlightUnderlineDesc": {
+    "message": "Linha sob cada linha do texto do link — bom para links de texto simples."
+  },
+  "linkHighlightGlowLabel": {
+    "message": "Brilho suave"
+  },
+  "linkHighlightGlowDesc": {
+    "message": "Brilho externo suave ao redor da área do link ou do card."
   },
   "grantTitle": {
-    "message": "Enable link highlighting"
+    "message": "Ativar destaque de links"
   },
   "grantBody": {
-    "message": "To highlight already open tabs when you hover a link, Firefox needs access to websites. This is required for the main feature — click the button below once."
+    "message": "Para destacar abas já abertas ao passar o mouse sobre um link, o Firefox precisa de acesso aos sites. Isso é necessário para a função principal — clique no botão abaixo uma vez."
   },
   "grantButton": {
-    "message": "Allow access to websites"
+    "message": "Permitir acesso aos sites"
   },
   "grantDone": {
-    "message": "Done. Reload open pages, then hover a link."
+    "message": "Pronto. Recarregue as páginas abertas e passe o mouse sobre um link."
   },
   "grantDenied": {
-    "message": "Permission was not granted. Link hover will not work until you allow it."
+    "message": "Permissão não concedida. O hover em links não funcionará até você permitir."
+  },
+  "highlightAppearanceLabel": {
+    "message": "Cores e espessura"
+  },
+  "highlightAccentLabel": {
+    "message": "Cor geral"
+  },
+  "highlightAccentDesc": {
+    "message": "Cor padrão para todos os estilos. Escolha um preset ou toque no ícone de paleta para uma cor personalizada."
+  },
+  "highlightCardWidthLabel": {
+    "message": "Espessura da moldura"
+  },
+  "highlightUnderlineWidthLabel": {
+    "message": "Espessura da linha"
+  },
+  "highlightGlowStrengthLabel": {
+    "message": "Intensidade do brilho"
+  },
+  "highlightGlowRingLabel": {
+    "message": "Espessura do anel"
+  },
+  "highlightResetDefault": {
+    "message": "Restaurar padrão"
+  },
+  "highlightChooseColor": {
+    "message": "Escolher cor"
   }
 }

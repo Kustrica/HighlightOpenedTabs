@@ -6,7 +6,20 @@ const DEFAULT_SETTINGS = {
     showCounter: true,
     enableDuplicateHighlight: true,
     enableHoverHighlight: true,
-    duplicateAutoHideDelay: 200
+    duplicateAutoHideDelay: 200,
+    linkHighlightEnabled: true,
+    linkHighlightScope: "always",
+    linkHighlightCard: false,
+    linkHighlightUnderline: false,
+    linkHighlightGlow: true,
+    highlightColor: "#ff9400",
+    highlightCardColor: "",
+    highlightUnderlineColor: "",
+    highlightGlowColor: "",
+    highlightCardWidth: 1,
+    highlightUnderlineWidth: 1,
+    highlightGlowStrength: 40,
+    highlightGlowRingWidth: 1
 };
 
 const PAGE_BADGE_MIN_MS = 2000;
@@ -26,15 +39,30 @@ let pageBadgeTimer = null;
 let settings = { ...DEFAULT_SETTINGS };
 
 browser.storage.local.get(DEFAULT_SETTINGS).then(data => {
-    settings = {
+    settings = normalizeSettings(data);
+});
+
+function normalizeSettings(data) {
+    return {
         showCounter: data.showCounter !== false,
         enableDuplicateHighlight: data.enableDuplicateHighlight !== false,
         enableHoverHighlight: data.enableHoverHighlight !== false,
         duplicateAutoHideDelay: Number.isFinite(data.duplicateAutoHideDelay)
             ? data.duplicateAutoHideDelay
-            : DEFAULT_SETTINGS.duplicateAutoHideDelay
+            : DEFAULT_SETTINGS.duplicateAutoHideDelay,
+        linkHighlightEnabled: data.linkHighlightEnabled !== false,
+        linkHighlightScope: data.linkHighlightScope === "hidden_only" ? "hidden_only" : "always",
+        linkHighlightCard: data.linkHighlightCard === true,
+        linkHighlightUnderline: data.linkHighlightUnderline === true,
+        linkHighlightGlow: data.linkHighlightGlow !== false
     };
-});
+}
+
+function shouldShowLinkHighlight(otherMatches) {
+    if (!settings.linkHighlightEnabled || otherMatches.length === 0) return false;
+    if (settings.linkHighlightScope === "always") return true;
+    return otherMatches.every(tab => tab.hidden);
+}
 
 function cancelDuplicateAutoHide() {
     if (duplicateAutoHideTimer) {
@@ -224,6 +252,11 @@ async function syncHighlights(nextTabIds) {
 
     if (nextSet.size === 0) {
         if (state.highlightedTabIds.size > 0) {
+            // resetMultiselectToActiveOnly only resets the current window;
+            // per-tab updates cover highlighted tabs in other windows.
+            for (const tabId of state.highlightedTabIds) {
+                browser.tabs.update(tabId, { highlighted: false }).catch(() => {});
+            }
             await resetMultiselectToActiveOnly();
         }
         return;
@@ -286,8 +319,9 @@ async function showDuplicatesForActiveTab({ pulseBadge = false } = {}) {
 
     const matchedTabs = tabs.filter(tab => getTabNormalizedKey(tab) === activeKey);
     const duplicateCount = Math.max(0, matchedTabs.length - 1);
+    // Hidden tabs reject highlight updates — never target them.
     const highlightIds = settings.enableDuplicateHighlight
-        ? matchedTabs.filter(tab => tab.id !== activeTab.id).map(tab => tab.id)
+        ? matchedTabs.filter(tab => tab.id !== activeTab.id && !tab.hidden).map(tab => tab.id)
         : [];
 
     if (pulseBadge) {
@@ -360,27 +394,31 @@ async function showHoverMatches(sourceTabId, hoveredUrl) {
         return { count: 0, tabIds: [] };
     }
 
-    const matchedTabs = tabs.filter(tab => {
-        if (tab.id === sourceTabId) return false;
-        return getTabNormalizedKey(tab) === hoveredKey;
-    });
+    const matchedTabs = tabs.filter(tab => getTabNormalizedKey(tab) === hoveredKey);
+    const otherMatches = matchedTabs.filter(tab => tab.id !== sourceTabId);
 
-    await setBadge(sourceTabId, matchedTabs.length);
+    await setBadge(sourceTabId, otherMatches.length);
     if (requestId !== state.requestId) {
         return { count: 0, tabIds: [] };
     }
 
-    const highlightIds = settings.enableHoverHighlight
-        ? matchedTabs.map(tab => tab.id)
-        : [];
-
     if (settings.enableHoverHighlight) {
+        const highlightIds = otherMatches.filter(tab => !tab.hidden).map(tab => tab.id);
         await syncHighlights(highlightIds);
-    } else if (state.highlightedTabIds.size > 0) {
+        if (requestId !== state.requestId) {
+            return { count: 0, tabIds: [], showLinkHighlight: false };
+        }
+
+        const showLinkHighlight = shouldShowLinkHighlight(otherMatches);
+        return { count: otherMatches.length, tabIds: highlightIds, showLinkHighlight };
+    }
+
+    if (state.highlightedTabIds.size > 0) {
         await syncHighlights([]);
     }
 
-    return { count: matchedTabs.length, tabIds: highlightIds };
+    const showLinkHighlight = shouldShowLinkHighlight(otherMatches);
+    return { count: otherMatches.length, tabIds: [], showLinkHighlight };
 }
 
 async function endHoverMode(sourceTabId) {
@@ -408,25 +446,16 @@ async function clearAllVisuals() {
 }
 
 function applySettingsPatch(patch) {
-    if (Object.prototype.hasOwnProperty.call(patch, "showCounter")) {
-        settings.showCounter = patch.showCounter !== false;
-    }
-    if (Object.prototype.hasOwnProperty.call(patch, "enableDuplicateHighlight")) {
-        settings.enableDuplicateHighlight = patch.enableDuplicateHighlight !== false;
-    }
-    if (Object.prototype.hasOwnProperty.call(patch, "enableHoverHighlight")) {
-        settings.enableHoverHighlight = patch.enableHoverHighlight !== false;
-    }
-    if (Object.prototype.hasOwnProperty.call(patch, "duplicateAutoHideDelay")) {
-        const nextDelay = patch.duplicateAutoHideDelay;
-        settings.duplicateAutoHideDelay = Number.isFinite(nextDelay)
-            ? nextDelay
-            : DEFAULT_SETTINGS.duplicateAutoHideDelay;
-    }
+    settings = normalizeSettings({ ...settings, ...patch });
 }
 
-browser.tabs.onActivated.addListener(activeInfo => {
+browser.tabs.onActivated.addListener(async activeInfo => {
     suppressedSourceTabs.delete(activeInfo.tabId);
+    // A backgrounded source tab fires no mouse events, so hover mode would
+    // otherwise stay stuck with its highlights and title marker.
+    if (state.mode === "hover") {
+        await endHoverMode();
+    }
     state.hoverSourceTabId = null;
     scheduleDuplicateRefresh(0, true);
 });
