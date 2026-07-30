@@ -23,7 +23,6 @@
 
 ## STEP-05 — Site access on by default (no ask UI)
 - [x] Restore `<all_urls>` in `host_permissions` + `content_scripts` (as in working commits before 1.6)
-- [x] `granted_host_permissions: true` for temporary installs
 - [x] Remove grant.html / permission-request UX
 - [x] Note: Add-ons Manager may still label site access “Optional” (Firefox UI)
 

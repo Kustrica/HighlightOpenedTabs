@@ -20,7 +20,6 @@
   "host_permissions": [
     "<all_urls>"
   ],
-  "granted_host_permissions": true,
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
