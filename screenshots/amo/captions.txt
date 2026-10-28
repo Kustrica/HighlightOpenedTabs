@@ -1,0 +1,13 @@
+Highlight Opened Tabs – AMO screenshot captions (upload in this order)
+
+01_onpage_link_highlight.png
+Links that are already open in another tab are marked right on the page – with a card frame, an underline, or a soft glow.
+
+02_tabs_highlight_on_hover.png
+Hover a link and every open tab with the same address is highlighted in the tab bar.
+
+03_active_tab_duplicates_badge.png
+Duplicates of the active tab are highlighted, and the badge on the toolbar icon shows how many copies are open.
+
+04_settings.png
+Pick highlight styles and colors, adjust thickness, glow strength, hover delay and flash duration, and choose how tabs are selected.
