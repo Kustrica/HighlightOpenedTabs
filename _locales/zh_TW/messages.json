@@ -1,4 +1,5 @@
 {
+    "iconPickerLicenses": {"message":"圖示授權"},
   "extensionName": {
     "message": "Highlight Opened Tabs",
     "description": "Name of the extension"

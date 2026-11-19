@@ -1,5 +1,8 @@
 # Changelog
 
+1.9.10
+- Added a localized icon licenses footer in Settings.
+
 1.9.9
 - Improved the contrast of the GitHub and Patreon icons in Settings.
 

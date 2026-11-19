@@ -1,4 +1,5 @@
 {
+    "iconPickerLicenses": {"message":"Lisensi ikon"},
   "extensionName": {
     "message": "Highlight Opened Tabs",
     "description": "Name of the extension"
