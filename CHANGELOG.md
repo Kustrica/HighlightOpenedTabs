@@ -1,5 +1,12 @@
 # Changelog
 
+1.9.9
+- Improved the contrast of the GitHub and Patreon icons in Settings.
+
+1.9.8
+- Updated the color picker and reset icons in the link highlighting settings.
+- Refreshed the GitHub and Patreon icons in Settings.
+
 1.9.7
 - Updated the Telegram contact and added a 128 px icon for Firefox Add-ons Manager.
 

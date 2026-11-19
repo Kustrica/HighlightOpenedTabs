@@ -1,0 +1,4 @@
+Third-party icon notices
+
+GitHub and Patreon link artwork: https://simpleicons.org/ (collection: CC0; LICENSE-SIMPLE-ICONS.txt). Brand marks belong to their respective owners.
+Tabler icon artwork: https://github.com/tabler/tabler-icons (MIT; LICENSE-TABLER.txt).
