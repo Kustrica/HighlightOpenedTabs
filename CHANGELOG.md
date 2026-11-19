@@ -1,5 +1,8 @@
 # Changelog
 
+1.9.6
+- Updated the extension icon.
+
 1.9.5
 - Interface language selector on the Options page (as in Workspaces): Auto (browser language) or any of the 19 languages.
 - Removed `i18n.onLanguageChanged`, which does not work in Firefox.
