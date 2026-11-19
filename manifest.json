@@ -1,16 +1,17 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "1.9.6",
+  "version": "1.9.7",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
-  "author": "Kustrica (Telegram: @kustric)",
-  "homepage_url": "https://t.me/kustric",
+  "author": "Kustrica (Telegram: @kustricadev)",
+  "homepage_url": "https://t.me/kustricadev",
   "action": {
     "default_title": "Highlight Opened Tabs",
     "default_icon": "icons/main-200.png"
   },
   "icons": {
+    "128": "icons/addon-128.png",
     "200": "icons/main-200.png"
   },
   "permissions": [

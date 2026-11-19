@@ -1,5 +1,8 @@
 # Changelog
 
+1.9.7
+- Updated the Telegram contact and added a 128 px icon for Firefox Add-ons Manager.
+
 1.9.6
 - Updated the extension icon.
 
